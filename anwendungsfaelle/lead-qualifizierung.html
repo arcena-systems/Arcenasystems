@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lead-Qualifizierung für Immobilienunternehmen — Arcena Systems</title>
+  <meta name="description" content="Automatische Lead-Bewertung steigerte Konversionsraten um 40% — manuelle Nachverfolgung entfällt, wiederkehrender Umsatz verdoppelt." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: '#292F4D',
+            'arc-blue': '#466DCA',
+            'deep-blue': '#244AA0',
+            silver: '#A9B0C7',
+            'arc-white': '#FDFDFE',
+            'bg-dark': '#0A0E1F',
+            'card-top': '#121635',
+            'card-bottom': '#0B0E23',
+          },
+          fontFamily: {
+            display: ['Geist', 'sans-serif'],
+            body: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+
+  <style>
+    /* -- Base -- */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: #0A0E1F; color: #FDFDFE; font-family: 'Plus Jakarta Sans', sans-serif; -webkit-font-smoothing: antialiased; }
+
+    /* -- CSS Variables -- */
+    :root {
+      --navy: #292F4D;
+      --blue: #466DCA;
+      --deep-blue: #244AA0;
+      --silver: #A9B0C7;
+      --white: #FDFDFE;
+      --bg-dark: #0A0E1F;
+    }
+
+    /* -- Noise/Grain overlay -- */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 128px 128px;
+    }
+
+    /* -- Typography -- */
+    .font-display { font-family: 'Geist', sans-serif; }
+    .font-body { font-family: 'Plus Jakarta Sans', sans-serif; }
+
+    /* -- Animations -- */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInLeft {
+      from { opacity: 0; transform: translateX(-24px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    /* -- Scroll-reveal system -- */
+    .reveal {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity 0.9s cubic-bezier(0.33, 1.53, 0.69, 0.99), transform 0.9s cubic-bezier(0.33, 1.53, 0.69, 0.99);
+      will-change: transform, opacity;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0) translateX(0) scale(1); }
+
+    .reveal-left {
+      opacity: 0; transform: translateX(-24px);
+      transition: opacity 1s cubic-bezier(0.33, 1.53, 0.69, 0.99), transform 1s cubic-bezier(0.33, 1.53, 0.69, 0.99);
+      will-change: transform, opacity;
+    }
+    .reveal-left.visible { opacity: 1; transform: translateX(0); }
+
+    .reveal-right {
+      opacity: 0; transform: translateX(24px);
+      transition: opacity 1s cubic-bezier(0.33, 1.53, 0.69, 0.99), transform 1s cubic-bezier(0.33, 1.53, 0.69, 0.99);
+      will-change: transform, opacity;
+    }
+    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+    .reveal-scale {
+      opacity: 0; transform: scale(0.92);
+      transition: opacity 0.8s cubic-bezier(0.33, 1.53, 0.69, 0.99), transform 0.8s cubic-bezier(0.33, 1.53, 0.69, 0.99);
+      will-change: transform, opacity;
+    }
+    .reveal-scale.visible { opacity: 1; transform: scale(1); }
+
+    .reveal-up-lg {
+      opacity: 0; transform: translateY(40px);
+      transition: opacity 1.2s cubic-bezier(0.33, 1.53, 0.69, 0.99), transform 1.2s cubic-bezier(0.33, 1.53, 0.69, 0.99);
+      will-change: transform, opacity;
+    }
+    .reveal-up-lg.visible { opacity: 1; transform: translateY(0); }
+
+    /* Staggered children */
+    .stagger-children > *:nth-child(1) { transition-delay: 0ms; }
+    .stagger-children > *:nth-child(2) { transition-delay: 100ms; }
+    .stagger-children > *:nth-child(3) { transition-delay: 200ms; }
+    .stagger-children > *:nth-child(4) { transition-delay: 300ms; }
+    .stagger-children > *:nth-child(5) { transition-delay: 400ms; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-up-lg { animation: none !important; transition: none !important; opacity: 1 !important; transform: none !important; }
+    }
+
+    /* -- Gradient text -- */
+    .gradient-text {
+      background: linear-gradient(135deg, var(--blue) 0%, var(--white) 70%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* -- Code highlight (Bima style) -- */
+    .highlight-code {
+      background: rgba(70, 109, 202, 0.15);
+      color: var(--blue);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    /* -- Nav -- */
+    .nav-blur {
+      background: rgba(10, 14, 31, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    /* -- Tag pill (Bima style) -- */
+    .tag-pill {
+      display: inline-flex; align-items: center;
+      padding: 5px 14px; border-radius: 50px;
+      border: 1px solid rgba(255,255,255,0.25);
+      font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.7);
+      transition: border-color 0.3s ease, color 0.3s ease;
+    }
+    .tag-pill:hover { border-color: var(--blue); color: var(--white); }
+
+    /* -- Section separators -- */
+    .section-sep {
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(70,109,202,0.2) 50%, transparent 100%);
+    }
+
+    /* -- Card hover -- */
+    .case-card { position: relative; }
+    .case-card .card-glow {
+      position: absolute; inset: -1px; border-radius: 18px;
+      background: rgba(70, 109, 202, 0.45);
+      opacity: 0; transition: opacity 0.4s ease;
+      z-index: 0;
+    }
+    .case-card:hover .card-glow,
+    .case-card:focus-within .card-glow { opacity: 1; }
+    .case-card .card-inner {
+      position: relative; z-index: 1;
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
+    }
+    .case-card:hover .card-inner {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px 8px rgba(0, 0, 0, 0.35);
+    }
+
+    /* -- Focus visible -- */
+    *:focus-visible {
+      outline: 2px solid var(--blue);
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--blue);
+      outline-offset: 3px;
+    }
+
+    /* -- Mobile nav overlay -- */
+    .mobile-nav {
+      position: fixed; inset: 0; z-index: 100;
+      background: rgba(10, 14, 31, 0.97);
+      backdrop-filter: blur(20px);
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 32px;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .mobile-nav.open { opacity: 1; pointer-events: auto; }
+    .mobile-nav a {
+      font-family: 'Geist', sans-serif;
+      font-size: 24px; font-weight: 600; color: var(--white);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .mobile-nav a:hover { color: var(--blue); }
+
+    /* -- Video placeholder -- */
+    .video-placeholder {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%; /* 16:9 */
+      border-radius: 16px;
+      overflow: hidden;
+      background: linear-gradient(180deg, #121635 0%, #0B0E23 100%);
+      border: 1px solid rgba(255,255,255,0.12);
+      cursor: pointer;
+    }
+    .video-placeholder:hover .play-btn {
+      transform: translate(-50%, -50%) scale(1.1);
+      box-shadow: 0 0 40px rgba(70,109,202,0.4);
+    }
+    .play-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: rgba(70,109,202,0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 0 24px rgba(70,109,202,0.3);
+    }
+    .play-btn svg {
+      width: 28px;
+      height: 28px;
+      margin-left: 3px;
+    }
+
+    /* -- Stat card -- */
+    .stat-card {
+      padding: 32px 28px;
+      border-radius: 16px;
+      background: linear-gradient(180deg, rgba(18,22,53,0.7) 0%, rgba(11,14,35,0.6) 100%);
+      border: 1px solid rgba(255,255,255,0.07);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+      text-align: center;
+      transition: border-color 0.4s ease, box-shadow 0.4s ease;
+    }
+    .stat-card:hover {
+      border-color: rgba(70,109,202,0.15);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2), 0 0 20px rgba(70,109,202,0.06);
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- Skip Link -->
+<a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[200] focus:bg-arc-blue focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:text-sm">
+  Zum Inhalt springen
+</a>
+
+<!-- ======== NAVIGATION ======== -->
+<nav class="nav-blur fixed top-0 left-0 right-0 z-50 border-b border-white/[0.06]" aria-label="Hauptnavigation">
+  <div class="max-w-[1200px] mx-auto px-5 lg:px-8 h-[72px] flex items-center justify-between">
+
+    <!-- Logo -->
+    <a href="/" class="flex items-center gap-3 group" aria-label="Arcena Systems - Startseite">
+      <svg viewBox="0 0 16 16" width="32" height="32" aria-hidden="true" class="flex-shrink-0">
+        <polygon fill="#FDFDFE" points="14.747553,2.699218 15.149305,1.987466 16,3.263507 9.710892,14.12395 8.944087,14.12395 8.588211,13.541965 9.263917,12.364232 9.277024,12.38586"/>
+        <polygon fill="#A9B0C7" points="15.075247,1.87605 15.149305,1.987466 14.747553,2.699218 14.214067,1.87605"/>
+        <path fill="#FDFDFE" d="M7.997706,10.202761l3.553517-6.032196h-7.31348L7.997706,10.202761z M8.796625,11.484045l-0.040634,0.070127l0.507926,0.810061l-0.675706,1.177733L1.568345,2.060869c0.05833-0.084545,0.095031-0.154672,0.095031-0.154672V1.87605h12.502847v0.383402L8.796625,11.484045z"/>
+        <polygon fill="#466DCA" points="0.860525,2.347929 8.044894,14.12395 6.554541,14.12395 0,3.233359 0.665875,2.029411"/>
+        <path fill="#FDFDFE" d="M1.663376,1.87605v0.030148c0,0-0.036702,0.070127-0.095031,0.154672L1.455618,1.87605h0.057019H1.663376z"/>
+        <path fill="#244AA0" d="M1.455618,1.87605l0.112727,0.18482C1.482489,2.186049,1.34879,2.342031,1.217057,2.342031c-0.133044,0-0.269365,0.003277-0.356531,0.005898l-0.19465-0.318519L0.751075,1.87605H1.455618z"/>
+      </svg>
+      <div class="flex flex-col leading-none">
+        <span class="font-display text-[18px] font-bold tracking-[-0.02em] text-arc-white group-hover:text-white transition-colors duration-200">arcena</span>
+        <span class="font-display text-[9px] font-medium tracking-[0.28em] text-silver uppercase mt-[1px]">systems</span>
+      </div>
+    </a>
+
+    <!-- Desktop links -->
+    <div class="hidden md:flex items-center gap-8">
+      <a href="/" class="font-body text-[14px] font-medium text-silver hover:text-arc-white transition-colors duration-200">Startseite</a>
+      <a href="/#problem" class="font-body text-[14px] font-medium text-silver hover:text-arc-white transition-colors duration-200">Problem</a>
+      <a href="/#loesung" class="font-body text-[14px] font-medium text-silver hover:text-arc-white transition-colors duration-200">Lösung</a>
+      <a href="/#usecases" class="font-body text-[14px] font-medium text-silver hover:text-arc-white transition-colors duration-200">Anwendungsfälle</a>
+      <a href="/#kontakt" class="font-body text-[14px] font-medium text-silver hover:text-arc-white transition-colors duration-200">Kontakt</a>
+    </div>
+
+    <!-- Desktop CTA -->
+    <a href="/#kontakt" class="hidden md:inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-arc-blue text-white text-[14px] font-semibold font-body transition-[background-color,box-shadow,transform] duration-300 hover:bg-deep-blue hover:shadow-[0_4px_20px_rgba(70,109,202,0.35)] active:scale-[0.97]">
+      Erstgespräch buchen
+      <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+
+    <!-- Mobile hamburger -->
+    <button id="navToggle" class="md:hidden flex flex-col gap-[5px] p-2 -mr-2" aria-label="Menü öffnen" aria-expanded="false">
+      <span class="block w-5 h-[2px] bg-arc-white rounded-full transition-transform duration-300 origin-center" id="bar1"></span>
+      <span class="block w-5 h-[2px] bg-arc-white rounded-full transition-opacity duration-300" id="bar2"></span>
+      <span class="block w-5 h-[2px] bg-arc-white rounded-full transition-transform duration-300 origin-center" id="bar3"></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile nav overlay -->
+<div class="mobile-nav" id="mobileNav" aria-hidden="true">
+  <a href="/" onclick="closeMobileNav()">Startseite</a>
+  <a href="/#problem" onclick="closeMobileNav()">Problem</a>
+  <a href="/#loesung" onclick="closeMobileNav()">Lösung</a>
+  <a href="/#usecases" onclick="closeMobileNav()">Anwendungsfälle</a>
+  <a href="/#kontakt" onclick="closeMobileNav()">Kontakt</a>
+  <a href="/#kontakt" onclick="closeMobileNav()" class="mt-4 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-arc-blue text-white text-[16px] font-semibold">
+    Erstgespräch buchen
+  </a>
+</div>
+
+<!-- ======== MAIN CONTENT ======== -->
+<main id="main">
+
+<!-- -------- HERO IMAGE -------- -->
+<section class="relative pt-[72px]" aria-label="Hero">
+  <!-- Full-width hero image -->
+  <div class="w-full h-[320px] sm:h-[420px] lg:h-[500px] relative overflow-hidden">
+    <img
+      src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1200&h=600&fit=crop"
+      alt="Moderne Immobilien - Lead-Qualifizierung"
+      class="absolute inset-0 w-full h-full object-cover"
+    />
+    <!-- Dark gradient overlay from bottom -->
+    <div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(10,14,31,0.3) 0%, rgba(10,14,31,0.6) 50%, #0A0E1F 100%);"></div>
+  </div>
+</section>
+
+<!-- -------- TITLE + TAGS -------- -->
+<section class="relative -mt-16 sm:-mt-20 z-10 pb-12" aria-label="Titel">
+  <div class="max-w-[1200px] mx-auto px-5 lg:px-8">
+
+    <!-- Back link -->
+    <div class="reveal mb-8">
+      <a href="/#usecases" class="inline-flex items-center gap-2 font-body text-[14px] font-medium text-silver hover:text-arc-white transition-colors duration-200 group">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" class="transition-transform duration-200 group-hover:-translate-x-1" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Zurück zu Anwendungsfällen
+      </a>
+    </div>
+
+    <!-- Tags -->
+    <div class="reveal flex flex-wrap gap-2 mb-6" style="transition-delay: 80ms;">
+      <span class="tag-pill">Immobilien</span>
+      <span class="tag-pill">Vertrieb</span>
+    </div>
+
+    <!-- Title -->
+    <h1 class="reveal-up-lg font-display text-[32px] sm:text-[44px] lg:text-[56px] font-bold leading-[1.08] tracking-[-0.03em] text-arc-white mb-6" style="transition-delay: 120ms;">
+      Lead-Qualifizierung für<br>
+      <span class="gradient-text">Immobilienunternehmen</span>
+    </h1>
+
+    <!-- Subtitle -->
+    <p class="reveal font-body text-[16px] sm:text-[18px] leading-[1.7] text-silver max-w-[720px]" style="transition-delay: 200ms;">
+      Automatische Lead-Bewertung <span class="highlight-code">steigerte Konversionsraten um 40%</span> — manuelle Nachverfolgung entfällt, wiederkehrender Umsatz verdoppelt.
+    </p>
+  </div>
+</section>
+
+<!-- Section separator -->
+<div class="section-sep max-w-[1200px] mx-auto" aria-hidden="true"></div>
+
+<!-- -------- STATS ROW -------- -->
+<section class="relative py-16 sm:py-20" aria-label="Kennzahlen">
+  <div class="max-w-[1200px] mx-auto px-5 lg:px-8">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 lg:gap-7 stagger-children">
+
+      <!-- Stat 1 -->
+      <div class="reveal stat-card">
+        <div class="font-display text-[48px] sm:text-[56px] lg:text-[64px] font-bold leading-none tracking-[-0.03em] gradient-text mb-3">40%</div>
+        <p class="font-body text-[14px] sm:text-[15px] text-silver font-medium">Höhere Konversionsrate</p>
+      </div>
+
+      <!-- Stat 2 -->
+      <div class="reveal stat-card" style="transition-delay: 100ms;">
+        <div class="font-display text-[48px] sm:text-[56px] lg:text-[64px] font-bold leading-none tracking-[-0.03em] gradient-text mb-3">2x</div>
+        <p class="font-body text-[14px] sm:text-[15px] text-silver font-medium">Mehr Umsatz</p>
+      </div>
+
+      <!-- Stat 3 -->
+      <div class="reveal stat-card" style="transition-delay: 200ms;">
+        <div class="font-display text-[48px] sm:text-[56px] lg:text-[64px] font-bold leading-none tracking-[-0.03em] gradient-text mb-3">85%</div>
+        <p class="font-body text-[14px] sm:text-[15px] text-silver font-medium">Weniger manueller Aufwand</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Section separator -->
+<div class="section-sep max-w-[1200px] mx-auto" aria-hidden="true"></div>
+
+<!-- -------- CONTENT SECTION 1: Die Ausgangssituation -------- -->
+<section class="relative py-20 sm:py-28" aria-label="Die Ausgangssituation">
+
+  <!-- Subtle background accent -->
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+    <div class="absolute top-[30%] left-[50%] -translate-x-1/2 w-[700px] h-[400px] rounded-full" style="background: radial-gradient(ellipse, rgba(70,109,202,0.04) 0%, transparent 70%);"></div>
+  </div>
+
+  <div class="relative z-10 max-w-[1200px] mx-auto px-5 lg:px-8">
+    <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+
+      <!-- Text (left) -->
+      <div class="flex-1 lg:max-w-[55%]">
+        <div class="reveal-left font-display text-[13px] font-medium tracking-[0.15em] text-silver/60 uppercase mb-5">
+          [ 01 — Ausgangssituation ]
+        </div>
+        <h2 class="reveal-up-lg font-display text-[28px] sm:text-[36px] lg:text-[44px] font-bold leading-[1.1] tracking-[-0.02em] text-arc-white mb-6" style="transition-delay: 80ms;">
+          Die Ausgangssituation
+        </h2>
+        <div class="reveal space-y-5" style="transition-delay: 160ms;">
+          <p class="font-body text-[15px] sm:text-[16px] leading-[1.8] text-silver">
+            Ein wachsendes Immobilienunternehmen erhielt täglich Hunderte von Anfragen über Portale wie <span class="highlight-code">ImmoScout24</span>, <span class="highlight-code">Immowelt</span> und die eigene Website. Das Problem: Die Qualität der Leads variierte enorm.
+          </p>
+          <p class="font-body text-[15px] sm:text-[16px] leading-[1.8] text-silver">
+            Die Makler verbrachten bis zu <span class="highlight-code">60% ihrer Arbeitszeit</span> mit der manuellen Sichtung und Nachverfolgung von Anfragen, die am Ende nie zu einem Abschluss führten. Wertvolle Zeit ging verloren, während potenzielle Käufer durch langsame Reaktionszeiten absprangen.
+          </p>
+          <p class="font-body text-[15px] sm:text-[16px] leading-[1.8] text-silver">
+            Es fehlte ein systematischer Ansatz, um Leads anhand objektiver Kriterien zu priorisieren und automatisch nachzuverfolgen. Die Folge: verpasste Chancen, frustrierte Mitarbeiter und stagnierender Umsatz.
+          </p>
+        </div>
+      </div>
+
+      <!-- Image (right) -->
+      <div class="flex-1 w-full lg:max-w-[45%]">
+        <div class="reveal-scale rounded-2xl border border-white/[0.12] overflow-hidden" style="background: linear-gradient(180deg, #121635 0%, #0B0E23 100%); box-shadow: 0 10px 30px 5px rgba(0,0,0,0.25);">
+          <div class="p-4 sm:p-5">
+            <div class="rounded-xl overflow-hidden border border-white/[0.08]">
+              <img
+                src="https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?w=600&h=400&fit=crop"
+                alt="Immobilienbüro mit manueller Lead-Verwaltung"
+                class="w-full h-[240px] sm:h-[300px] object-cover"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Section separator -->
+<div class="section-sep max-w-[1200px] mx-auto" aria-hidden="true"></div>
+
+<!-- -------- CONTENT SECTION 2: Unser Ansatz -------- -->
+<section class="relative py-20 sm:py-28" aria-label="Unser Ansatz">
+  <div class="relative z-10 max-w-[1200px] mx-auto px-5 lg:px-8">
+    <div class="flex flex-col lg:flex-row-reverse items-center gap-12 lg:gap-16">
+
+      <!-- Text (right on desktop, reversed) -->
+      <div class="flex-1 lg:max-w-[55%]">
+        <div class="reveal-left font-display text-[13px] font-medium tracking-[0.15em] text-silver/60 uppercase mb-5">
+          [ 02 — Ansatz ]
+        </div>
+        <h2 class="reveal-up-lg font-display text-[28px] sm:text-[36px] lg:text-[44px] font-bold leading-[1.1] tracking-[-0.02em] text-arc-white mb-6" style="transition-delay: 80ms;">
+          Unser Ansatz
+        </h2>
+        <div class="reveal space-y-5" style="transition-delay: 160ms;">
+          <p class="font-body text-[15px] sm:text-[16px] leading-[1.8] text-silver">
+            Wir entwickelten ein <span class="highlight-code">KI-gestütztes Lead-Scoring-System</span>, das eingehende Anfragen automatisch bewertet. Jeder Lead wird anhand objektiver Kriterien analysiert:
+          </p>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-3">
+              <span class="flex-shrink-0 mt-1.5 w-1.5 h-1.5 rounded-full bg-arc-blue"></span>
+              <span class="font-body text-[15px] sm:text-[16px] leading-[1.7] text-silver"><strong class="text-arc-white font-semibold">Budget-Analyse:</strong> Passt die Kaufkraft zum Objektpreis?</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="flex-shrink-0 mt-1.5 w-1.5 h-1.5 rounded-full bg-arc-blue"></span>
+              <span class="font-body text-[15px] sm:text-[16px] leading-[1.7] text-silver"><strong class="text-arc-white font-semibold">Zeitrahmen:</strong> Wie dringend ist der Kauf- oder Mietwunsch?</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="flex-shrink-0 mt-1.5 w-1.5 h-1.5 rounded-full bg-arc-blue"></span>
+              <span class="font-body text-[15px] sm:text-[16px] leading-[1.7] text-silver"><strong class="text-arc-white font-semibold">Standortpräferenzen:</strong> Stimmen Lage-Wünsche mit dem Portfolio überein?</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="flex-shrink-0 mt-1.5 w-1.5 h-1.5 rounded-full bg-arc-blue"></span>
+              <span class="font-body text-[15px] sm:text-[16px] leading-[1.7] text-silver"><strong class="text-arc-white font-semibold">Engagement-Signale:</strong> Wie aktiv interagiert der Interessent?</span>
+            </li>
+          </ul>
+          <p class="font-body text-[15px] sm:text-[16px] leading-[1.8] text-silver">
+            Das System wurde nahtlos in das bestehende CRM (<span class="highlight-code">onOffice</span>) integriert — ohne Tool-Umstellung, ohne Schulungsaufwand für das Team.
+          </p>
+        </div>
+      </div>
+
+      <!-- Image (left on desktop) -->
+      <div class="flex-1 w-full lg:max-w-[45%]">
+        <div class="reveal-scale rounded-2xl border border-white/[0.12] overflow-hidden" style="background: linear-gradient(180deg, #121635 0%, #0B0E23 100%); box-shadow: 0 10px 30px 5px rgba(0,0,0,0.25);">
+          <div class="p-4 sm:p-5">
+            <div class="rounded-xl overflow-hidden border border-white/[0.08]">
+              <img
+                src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=600&h=400&fit=crop"
+                alt="Team bei der Implementierung des KI-Systems"
+                class="w-full h-[240px] sm:h-[300px] object-cover"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Section separator -->
+<div class="section-sep max-w-[1200px] mx-auto" aria-hidden="true"></div>
+
+<!-- -------- CONTENT SECTION 3: Die Umsetzung -------- -->
+<section class="relative py-20 sm:py-28" aria-label="Die Umsetzung">
+
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+    <div class="absolute top-[40%] right-[20%] w-[500px] h-[400px] rounded-full" style="background: radial-gradient(ellipse, rgba(70,109,202,0.04) 0%, transparent 70%);"></div>
+  </div>
+
+  <div class="relative z-10 max-w-[1200px] mx-auto px-5 lg:px-8">
+
+    <div class="max-w-[800px] mx-auto">
+      <div class="reveal-left font-display text-[13px] font-medium tracking-[0.15em] text-silver/60 uppercase mb-5">
+        [ 03 — Umsetzung ]
+      </div>
+      <h2 class="reveal-up-lg font-display text-[28px] sm:text-[36px] lg:text-[44px] font-bold leading-[1.1] tracking-[-0.02em] text-arc-white mb-8" style="transition-delay: 80ms;">
+        Die Umsetzung
+      </h2>
+
+      <div class="reveal space-y-6" style="transition-delay: 160ms;">
+        <p class="font-body text-[15px] sm:text-[16px] leading-[1.8] text-silver">
+          Der gesamte Workflow wurde als <span class="highlight-code">n8n-Automatisierung</span> gebaut — modular, transparent und jederzeit erweiterbar. Die Architektur im Überblick:
+        </p>
+
+        <!-- Workflow steps -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 my-8">
+
+          <div class="rounded-xl border border-white/[0.08] p-5" style="background: linear-gradient(180deg, rgba(18,22,53,0.5) 0%, rgba(11,14,35,0.4) 100%);">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-8 h-8 rounded-lg bg-arc-blue/20 flex items-center justify-center flex-shrink-0">
+                <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="#466DCA" stroke-width="2"><path d="M21 12a9 9 0 0 1-9 9m9-9a9 9 0 0 0-9-9m9 9H3m9 9a9 9 0 0 1-9-9m9 9c1.66 0 3-4.03 3-9s-1.34-9-3-9m0 18c-1.66 0-3-4.03-3-9s1.34-9 3-9"/></svg>
+              </div>
+              <h3 class="font-display text-[15px] font-semibold text-arc-white">Portal-APIs</h3>
+            </div>
+            <p class="font-body text-[13px] leading-[1.7] text-silver/80">Automatischer Abruf aller neuen Leads von ImmoScout24, Immowelt und der eigenen Website in Echtzeit.</p>
+          </div>
+
+          <div class="rounded-xl border border-white/[0.08] p-5" style="background: linear-gradient(180deg, rgba(18,22,53,0.5) 0%, rgba(11,14,35,0.4) 100%);">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-8 h-8 rounded-lg bg-arc-blue/20 flex items-center justify-center flex-shrink-0">
+                <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="#466DCA" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg>
+              </div>
+              <h3 class="font-display text-[15px] font-semibold text-arc-white">KI-Scoring</h3>
+            </div>
+            <p class="font-body text-[13px] leading-[1.7] text-silver/80">Das KI-Modell bewertet jeden Lead mit einem Score von 0-100 basierend auf Budget, Zeitrahmen, Standort und Engagement.</p>
+          </div>
+
+          <div class="rounded-xl border border-white/[0.08] p-5" style="background: linear-gradient(180deg, rgba(18,22,53,0.5) 0%, rgba(11,14,35,0.4) 100%);">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-8 h-8 rounded-lg bg-arc-blue/20 flex items-center justify-center flex-shrink-0">
+                <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="#466DCA" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+              <h3 class="font-display text-[15px] font-semibold text-arc-white">CRM-Anreicherung</h3>
+            </div>
+            <p class="font-body text-[13px] leading-[1.7] text-silver/80">Bewertete Leads werden automatisch im onOffice-CRM kategorisiert und mit Scoring-Daten angereichert.</p>
+          </div>
+
+          <div class="rounded-xl border border-white/[0.08] p-5" style="background: linear-gradient(180deg, rgba(18,22,53,0.5) 0%, rgba(11,14,35,0.4) 100%);">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-8 h-8 rounded-lg bg-arc-blue/20 flex items-center justify-center flex-shrink-0">
+                <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="#466DCA" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              </div>
+              <h3 class="font-display text-[15px] font-semibold text-arc-white">Follow-up-Sequenzen</h3>
+            </div>
+            <p class="font-body text-[13px] leading-[1.7] text-silver/80">Automatisierte, personalisierte E-Mail-Sequenzen je nach Lead-Score. Human-in-the-loop für Grenzfälle.</p>
+          </div>
+
+        </div>
+
+        <p class="font-body text-[15px] sm:text-[16px] leading-[1.8] text-silver">
+          Der gesamte Prozess läuft vollautomatisch im Hintergrund. Bei Grenzfällen — Leads mit einem Score zwischen 40 und 60 — werden die Makler per Benachrichtigung eingebunden (<span class="highlight-code">Human-in-the-loop</span>). So bleibt die finale Entscheidung beim Team.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Section separator -->
+<div class="section-sep max-w-[1200px] mx-auto" aria-hidden="true"></div>
+
+<!-- -------- VIDEO TESTIMONIAL -------- -->
+<section class="relative py-20 sm:py-28" aria-label="Kundenstimme">
+  <div class="max-w-[900px] mx-auto px-5 lg:px-8">
+
+    <div class="text-center mb-10">
+      <div class="reveal-left font-display text-[13px] font-medium tracking-[0.15em] text-silver/60 uppercase mb-5">
+        [ Kundenstimme ]
+      </div>
+      <h2 class="reveal-up-lg font-display text-[28px] sm:text-[36px] lg:text-[44px] font-bold leading-[1.1] tracking-[-0.02em] text-arc-white" style="transition-delay: 80ms;">
+        Was unser Kunde sagt
+      </h2>
+    </div>
+
+    <!-- Video placeholder (16:9 landscape) -->
+    <div class="reveal-scale" style="transition-delay: 160ms;">
+      <div class="video-placeholder">
+        <!-- Subtle background pattern inside -->
+        <div class="absolute inset-0 opacity-[0.03]" style="background-image: linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px); background-size: 40px 40px;"></div>
+
+        <!-- Play button -->
+        <div class="play-btn">
+          <svg fill="white" viewBox="0 0 24 24" aria-hidden="true">
+            <polygon points="5,3 19,12 5,21"/>
+          </svg>
+        </div>
+
+        <!-- Label -->
+        <div class="absolute bottom-5 left-0 right-0 text-center">
+          <p class="font-body text-[14px] text-silver/60 font-medium">Kundenstimme — Video folgt in Kürze</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Section separator -->
+<div class="section-sep max-w-[1200px] mx-auto" aria-hidden="true"></div>
+
+<!-- -------- RESULTS SECTION -------- -->
+<section class="relative py-24 sm:py-32 overflow-hidden" aria-label="Das Ergebnis">
+
+  <!-- Background accents -->
+  <div class="absolute inset-0" aria-hidden="true" style="background: linear-gradient(180deg, #0A0E1F 0%, #0F1A3A 25%, #1A2E5C 50%, #152650 75%, #0D1530 100%);">
+    <div class="absolute top-[10%] left-[15%] w-[500px] h-[500px] rounded-full" style="background: radial-gradient(circle, rgba(70,109,202,0.15) 0%, transparent 60%);"></div>
+    <div class="absolute bottom-[10%] right-[10%] w-[400px] h-[400px] rounded-full" style="background: radial-gradient(circle, rgba(36,74,160,0.12) 0%, transparent 60%);"></div>
+    <div class="absolute inset-0 opacity-[0.04]" style="background: linear-gradient(135deg, transparent 30%, rgba(70,109,202,0.3) 50%, transparent 70%);"></div>
+  </div>
+
+  <!-- Grid line decoration -->
+  <div class="absolute inset-0 pointer-events-none opacity-[0.02]" aria-hidden="true">
+    <div class="absolute inset-0" style="background-image: linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px); background-size: 80px 80px;"></div>
+  </div>
+
+  <div class="relative z-10 max-w-[1200px] mx-auto px-5 lg:px-8">
+
+    <div class="text-center mb-14 lg:mb-16">
+      <div class="reveal-left font-display text-[13px] font-medium tracking-[0.15em] text-silver/60 uppercase mb-5">
+        [ 04 — Ergebnis ]
+      </div>
+      <h2 class="reveal-up-lg font-display text-[32px] sm:text-[44px] lg:text-[56px] font-bold leading-[1.08] tracking-[-0.03em] text-arc-white mb-6" style="transition-delay: 80ms;">
+        Das Ergebnis
+      </h2>
+      <p class="reveal font-body text-[16px] sm:text-[18px] leading-[1.7] text-silver/80 max-w-[600px] mx-auto" style="transition-delay: 160ms;">
+        Innerhalb von 8 Wochen nach der Implementierung zeigten sich messbare Verbesserungen über alle Vertriebskennzahlen hinweg.
+      </p>
+    </div>
+
+    <!-- Large stat cards -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 lg:gap-8 stagger-children">
+
+      <div class="reveal text-center p-8 sm:p-10 rounded-2xl border border-white/[0.1]" style="background: rgba(255,255,255,0.03);">
+        <div class="font-display text-[56px] sm:text-[64px] lg:text-[80px] font-bold leading-none tracking-[-0.04em] gradient-text mb-4">40%</div>
+        <p class="font-display text-[16px] sm:text-[18px] font-semibold text-arc-white mb-2">Höhere Konversionsrate</p>
+        <p class="font-body text-[13px] sm:text-[14px] text-silver/70 leading-[1.6]">Fokus auf qualifizierte Leads steigerte die Abschlussquote drastisch.</p>
+      </div>
+
+      <div class="reveal text-center p-8 sm:p-10 rounded-2xl border border-white/[0.1]" style="background: rgba(255,255,255,0.03); transition-delay: 120ms;">
+        <div class="font-display text-[56px] sm:text-[64px] lg:text-[80px] font-bold leading-none tracking-[-0.04em] gradient-text mb-4">2x</div>
+        <p class="font-display text-[16px] sm:text-[18px] font-semibold text-arc-white mb-2">Wiederkehrender Umsatz</p>
+        <p class="font-body text-[13px] sm:text-[14px] text-silver/70 leading-[1.6]">Effizientere Vertriebsprozesse führten zu einer Verdopplung des Umsatzes.</p>
+      </div>
+
+      <div class="reveal text-center p-8 sm:p-10 rounded-2xl border border-white/[0.1]" style="background: rgba(255,255,255,0.03); transition-delay: 240ms;">
+        <div class="font-display text-[56px] sm:text-[64px] lg:text-[80px] font-bold leading-none tracking-[-0.04em] gradient-text mb-4">85%</div>
+        <p class="font-display text-[16px] sm:text-[18px] font-semibold text-arc-white mb-2">Weniger manueller Aufwand</p>
+        <p class="font-body text-[13px] sm:text-[14px] text-silver/70 leading-[1.6]">Makler konzentrieren sich jetzt nur noch auf kaufbereite Interessenten.</p>
+      </div>
+
+    </div>
+
+    <!-- Summary -->
+    <div class="reveal text-center mt-12 max-w-[700px] mx-auto" style="transition-delay: 300ms;">
+      <p class="font-body text-[16px] sm:text-[18px] leading-[1.8] text-silver/80">
+        Die Makler haben ihre Arbeitsweise grundlegend verändert: Statt stundenlang unqualifizierte Anfragen durchzuarbeiten, fokussieren sie sich jetzt <span class="highlight-code">ausschließlich auf heiße Leads</span> — und schließen schneller ab.
+      </p>
+    </div>
+
+    <!-- CTA -->
+    <div class="reveal text-center mt-10" style="transition-delay: 400ms;">
+      <a href="/#kontakt" class="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-arc-blue text-white text-[15px] font-semibold font-body transition-[background-color,box-shadow,transform] duration-300 hover:bg-deep-blue hover:shadow-[0_6px_24px_rgba(70,109,202,0.4)] active:scale-[0.97]">
+        Ähnliche Ergebnisse erzielen
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Section separator -->
+<div class="section-sep max-w-[1200px] mx-auto" aria-hidden="true"></div>
+
+<!-- -------- MORE CASE STUDIES -------- -->
+<section class="relative py-24 sm:py-32" aria-label="Weitere Anwendungsfälle">
+  <div class="max-w-[1200px] mx-auto px-5 lg:px-8">
+
+    <!-- Header -->
+    <div class="mb-14 lg:mb-16 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+      <div>
+        <div class="reveal-left font-display text-[13px] font-medium tracking-[0.15em] text-silver/60 uppercase mb-5">
+          [ Weitere Anwendungsfälle ]
+        </div>
+        <h2 class="reveal-up-lg font-display text-[28px] sm:text-[36px] lg:text-[44px] font-bold leading-[1.1] tracking-[-0.02em] text-arc-white" style="transition-delay: 80ms;">
+          <span class="gradient-text">Mehr entdecken</span>
+        </h2>
+      </div>
+      <p class="reveal-right font-body text-[15px] leading-[1.7] text-silver max-w-[380px]" style="transition-delay: 160ms;">
+        Erfahren Sie, wie wir weitere Immobilienprozesse mit KI automatisiert haben.
+      </p>
+    </div>
+
+    <!-- Case study cards -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-7">
+
+      <!-- Card 1: Dokumentenmanagement -->
+      <a href="/anwendungsfaelle/dokumentenmanagement" class="reveal-scale case-card block group">
+        <div class="card-glow" aria-hidden="true"></div>
+        <div class="card-inner rounded-2xl border border-white/[0.12] overflow-hidden" style="background: linear-gradient(180deg, #121635 0%, #0B0E23 100%); box-shadow: 0 10px 30px 5px rgba(0,0,0,0.25);">
+          <!-- Image -->
+          <div class="p-4 sm:p-5 pb-0">
+            <div class="h-[200px] sm:h-[220px] rounded-xl border border-white/[0.08] overflow-hidden relative">
+              <img
+                src="https://framerusercontent.com/images/bIoafZBGDDkv76VvPOYCtZk.jpg"
+                alt="KI-Dokumentenmanagement Dashboard"
+                class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </div>
+          <!-- Text -->
+          <div class="p-5 sm:p-6 pt-4">
+            <div class="flex items-center gap-1 mb-3">
+              <span class="font-display text-[13px] text-silver/50">[</span>
+              <span class="font-display text-[13px] text-silver/50 tabular-nums">02</span>
+              <span class="font-display text-[13px] text-silver/50">]</span>
+            </div>
+            <h3 class="font-display text-[20px] sm:text-[24px] font-bold text-arc-white leading-[1.15] tracking-[-0.02em] mb-3">
+              KI-Dokumenten&shy;management für Immobilien&shy;verwaltung
+            </h3>
+            <p class="font-body text-[13px] sm:text-[14px] leading-[1.7] text-silver mb-4">
+              KI-Automatisierung <span class="highlight-code">reduzierte Bearbeitungszeit um 80%</span> und beschleunigte Prüfprozesse um 50%.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="tag-pill">Back-Office</span>
+              <span class="tag-pill">Dokumentation</span>
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card 2: Mieterservice -->
+      <a href="/anwendungsfaelle/mieterservice" class="reveal-scale case-card block group" style="transition-delay: 120ms;">
+        <div class="card-glow" aria-hidden="true"></div>
+        <div class="card-inner rounded-2xl border border-white/[0.12] overflow-hidden" style="background: linear-gradient(180deg, #121635 0%, #0B0E23 100%); box-shadow: 0 10px 30px 5px rgba(0,0,0,0.25);">
+          <!-- Image -->
+          <div class="p-4 sm:p-5 pb-0">
+            <div class="h-[200px] sm:h-[220px] rounded-xl border border-white/[0.08] overflow-hidden relative">
+              <img
+                src="https://framerusercontent.com/images/yTUnV3zMKsVEgqFGDU7fBY84Q.jpg"
+                alt="KI-Mieterservice Dashboard"
+                class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </div>
+          <!-- Text -->
+          <div class="p-5 sm:p-6 pt-4">
+            <div class="flex items-center gap-1 mb-3">
+              <span class="font-display text-[13px] text-silver/50">[</span>
+              <span class="font-display text-[13px] text-silver/50 tabular-nums">03</span>
+              <span class="font-display text-[13px] text-silver/50">]</span>
+            </div>
+            <h3 class="font-display text-[20px] sm:text-[24px] font-bold text-arc-white leading-[1.15] tracking-[-0.02em] mb-3">
+              KI-gestützter Mieterservice für Hausverwaltungen
+            </h3>
+            <p class="font-body text-[13px] sm:text-[14px] leading-[1.7] text-silver mb-4">
+              KI-Chatbot <span class="highlight-code">senkte Support-Kosten um 60%</span> und verdreifachte die Antwortgeschwindigkeit.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="tag-pill">Hausverwaltung</span>
+              <span class="tag-pill">Service</span>
+            </div>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- Section separator -->
+<div class="section-sep" aria-hidden="true"></div>
+
+</main>
+
+<!-- -------- FOOTER -------- -->
+<footer class="relative py-16 sm:py-20" style="background: #060A18;" aria-label="Footer">
+  <div class="max-w-[1200px] mx-auto px-5 lg:px-8">
+
+    <!-- Footer columns -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-10 lg:gap-8 mb-16">
+
+      <!-- Plattform -->
+      <div>
+        <h4 class="font-display text-[13px] font-semibold text-arc-white uppercase tracking-[0.1em] mb-5">Plattform</h4>
+        <ul class="space-y-3">
+          <li><a href="/" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Wie es funktioniert</a></li>
+          <li><a href="/#usecases" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Anwendungsfälle</a></li>
+          <li><a href="/#problem" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Das Problem</a></li>
+          <li><a href="/#kontakt" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Preise</a></li>
+        </ul>
+      </div>
+
+      <!-- Lösungen -->
+      <div>
+        <h4 class="font-display text-[13px] font-semibold text-arc-white uppercase tracking-[0.1em] mb-5">Lösungen</h4>
+        <ul class="space-y-3">
+          <li><a href="/#usecases" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Automatisierung</a></li>
+          <li><a href="/#usecases" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Dokumentation</a></li>
+          <li><a href="/#usecases" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Lead-Management</a></li>
+        </ul>
+      </div>
+
+      <!-- Ressourcen -->
+      <div>
+        <h4 class="font-display text-[13px] font-semibold text-arc-white uppercase tracking-[0.1em] mb-5">Ressourcen</h4>
+        <ul class="space-y-3">
+          <li><a href="#" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Blog</a></li>
+          <li><a href="#" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">FAQ</a></li>
+          <li><a href="#" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Datenschutz</a></li>
+        </ul>
+      </div>
+
+      <!-- Unternehmen -->
+      <div>
+        <h4 class="font-display text-[13px] font-semibold text-arc-white uppercase tracking-[0.1em] mb-5">Unternehmen</h4>
+        <ul class="space-y-3">
+          <li><a href="#" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Über uns</a></li>
+          <li><a href="/#kontakt" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Kontakt</a></li>
+          <li><a href="#" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Karriere</a></li>
+          <li><a href="#" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Impressum</a></li>
+        </ul>
+      </div>
+
+      <!-- Kontakt -->
+      <div class="col-span-2 sm:col-span-3 lg:col-span-1">
+        <h4 class="font-display text-[13px] font-semibold text-arc-white uppercase tracking-[0.1em] mb-5">Kontakt</h4>
+        <p class="font-body text-[14px] text-silver/60 leading-[1.7] mb-4">
+          Haben Sie Fragen? Schreiben Sie uns direkt.
+        </p>
+        <a href="mailto:dani.halabi55@gmail.com" class="inline-flex items-center gap-2 font-body text-[14px] font-medium text-arc-blue hover:text-white transition-colors duration-200">
+          E-Mail senden
+          <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="h-px bg-white/[0.06] mb-10"></div>
+
+    <!-- Bottom bar -->
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+
+      <!-- Logo -->
+      <a href="/" class="flex items-center gap-3" aria-label="Arcena Systems">
+        <svg viewBox="0 0 16 16" width="24" height="24" aria-hidden="true">
+          <polygon fill="#FDFDFE" points="14.747553,2.699218 15.149305,1.987466 16,3.263507 9.710892,14.12395 8.944087,14.12395 8.588211,13.541965 9.263917,12.364232 9.277024,12.38586"/>
+          <polygon fill="#A9B0C7" points="15.075247,1.87605 15.149305,1.987466 14.747553,2.699218 14.214067,1.87605"/>
+          <path fill="#FDFDFE" d="M7.997706,10.202761l3.553517-6.032196h-7.31348L7.997706,10.202761z M8.796625,11.484045l-0.040634,0.070127l0.507926,0.810061l-0.675706,1.177733L1.568345,2.060869c0.05833-0.084545,0.095031-0.154672,0.095031-0.154672V1.87605h12.502847v0.383402L8.796625,11.484045z"/>
+          <polygon fill="#466DCA" points="0.860525,2.347929 8.044894,14.12395 6.554541,14.12395 0,3.233359 0.665875,2.029411"/>
+          <path fill="#244AA0" d="M1.455618,1.87605l0.112727,0.18482C1.482489,2.186049,1.34879,2.342031,1.217057,2.342031c-0.133044,0-0.269365,0.003277-0.356531,0.005898l-0.19465-0.318519L0.751075,1.87605H1.455618z"/>
+        </svg>
+        <span class="font-display text-[15px] font-bold tracking-[-0.01em] text-silver/40">arcena systems</span>
+      </a>
+
+      <!-- Copyright + links -->
+      <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+        <span class="font-body text-[12px] text-silver/30">&copy; 2026 Arcena Systems. Alle Rechte vorbehalten.</span>
+        <a href="#" class="font-body text-[12px] text-silver/30 hover:text-silver/60 transition-colors duration-200">Datenschutz</a>
+        <a href="#" class="font-body text-[12px] text-silver/30 hover:text-silver/60 transition-colors duration-200">Impressum</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ======== SCRIPTS ======== -->
+<script>
+  // -- Mobile nav toggle --
+  const navToggle = document.getElementById('navToggle');
+  const mobileNav = document.getElementById('mobileNav');
+  const bar1 = document.getElementById('bar1');
+  const bar2 = document.getElementById('bar2');
+  const bar3 = document.getElementById('bar3');
+  let navOpen = false;
+
+  navToggle.addEventListener('click', () => {
+    navOpen = !navOpen;
+    mobileNav.classList.toggle('open', navOpen);
+    mobileNav.setAttribute('aria-hidden', !navOpen);
+    navToggle.setAttribute('aria-expanded', navOpen);
+    navToggle.setAttribute('aria-label', navOpen ? 'Menü schließen' : 'Menü öffnen');
+    if (navOpen) {
+      bar1.style.transform = 'translateY(7px) rotate(45deg)';
+      bar2.style.opacity = '0';
+      bar3.style.transform = 'translateY(-7px) rotate(-45deg)';
+    } else {
+      bar1.style.transform = '';
+      bar2.style.opacity = '';
+      bar3.style.transform = '';
+    }
+  });
+
+  function closeMobileNav() {
+    navOpen = false;
+    mobileNav.classList.remove('open');
+    mobileNav.setAttribute('aria-hidden', 'true');
+    navToggle.setAttribute('aria-expanded', 'false');
+    navToggle.setAttribute('aria-label', 'Menü öffnen');
+    bar1.style.transform = '';
+    bar2.style.opacity = '';
+    bar3.style.transform = '';
+  }
+
+  // -- Scroll reveal (IntersectionObserver) --
+  const revealSelectors = '.reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-up-lg';
+  const revealElements = document.querySelectorAll(revealSelectors);
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+  revealElements.forEach(el => revealObserver.observe(el));
+
+  // -- Nav background on scroll --
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) {
+      nav.style.borderBottomColor = 'rgba(255,255,255,0.08)';
+    } else {
+      nav.style.borderBottomColor = 'rgba(255,255,255,0.04)';
+    }
+  }, { passive: true });
+
+  // -- Section separator glow on scroll --
+  if (window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+    const seps = document.querySelectorAll('.section-sep');
+    const sepObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'scaleX(1)';
+        }
+      });
+    }, { threshold: 0.5 });
+    seps.forEach(sep => {
+      sep.style.opacity = '0';
+      sep.style.transform = 'scaleX(0.3)';
+      sep.style.transition = 'opacity 1s ease, transform 1s cubic-bezier(0.33, 1.53, 0.69, 0.99)';
+      sepObserver.observe(sep);
+    });
+  }
+</script>
+
+</body>
+</html>

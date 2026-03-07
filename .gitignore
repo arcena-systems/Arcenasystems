@@ -1,0 +1,14 @@
+# Dependencies
+node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Dev screenshots
+temporary screenshots/
+
+# Reference & inspiration (not part of the website)
+Bima_inspiration/
+Images for Prompt/
+Info.txt

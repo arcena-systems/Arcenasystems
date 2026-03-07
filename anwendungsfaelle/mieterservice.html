@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>KI-gestützter Mieterservice — Arcena Systems</title>
+  <meta name="description" content="Wie ein KI-Chatbot die Support-Kosten um 60% senkte und die Antwortgeschwindigkeit verdreifachte. Case Study von Arcena Systems." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: '#292F4D',
+            'arc-blue': '#466DCA',
+            'deep-blue': '#244AA0',
+            silver: '#A9B0C7',
+            'arc-white': '#FDFDFE',
+            'bg-dark': '#0A0E1F',
+            'card-top': '#121635',
+            'card-bottom': '#0B0E23',
+          },
+          fontFamily: {
+            display: ['Geist', 'sans-serif'],
+            body: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+
+  <style>
+    /* ── Base ── */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: #0A0E1F; color: #FDFDFE; font-family: 'Plus Jakarta Sans', sans-serif; -webkit-font-smoothing: antialiased; }
+
+    /* ── CSS Variables ── */
+    :root {
+      --navy: #292F4D;
+      --blue: #466DCA;
+      --deep-blue: #244AA0;
+      --silver: #A9B0C7;
+      --white: #FDFDFE;
+      --bg-dark: #0A0E1F;
+    }
+
+    /* ── Noise/Grain overlay ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 128px 128px;
+    }
+
+    /* ── Typography ── */
+    .font-display { font-family: 'Geist', sans-serif; }
+    .font-body { font-family: 'Plus Jakarta Sans', sans-serif; }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #FDFDFE 0%, #A9B0C7 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .highlight-code {
+      background: rgba(70, 109, 202, 0.15);
+      color: #466DCA;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-family: 'Geist', monospace;
+      font-size: 0.9em;
+      font-weight: 500;
+    }
+
+    .tag-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 100px;
+      background: rgba(70, 109, 202, 0.12);
+      border: 1px solid rgba(70, 109, 202, 0.25);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: #466DCA;
+      white-space: nowrap;
+    }
+
+    /* ── Animations ── */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInLeft {
+      from { opacity: 0; transform: translateX(-24px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    /* ── Scroll-reveal system ── */
+    .reveal {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity 0.9s cubic-bezier(0.33, 1.53, 0.69, 0.99), transform 0.9s cubic-bezier(0.33, 1.53, 0.69, 0.99);
+      will-change: transform, opacity;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0) translateX(0) scale(1); }
+
+    .reveal-left {
+      opacity: 0; transform: translateX(-24px);
+      transition: opacity 1s cubic-bezier(0.33, 1.53, 0.69, 0.99), transform 1s cubic-bezier(0.33, 1.53, 0.69, 0.99);
+      will-change: transform, opacity;
+    }
+    .reveal-left.visible { opacity: 1; transform: translateX(0); }
+
+    .reveal-right {
+      opacity: 0; transform: translateX(24px);
+      transition: opacity 1s cubic-bezier(0.33, 1.53, 0.69, 0.99), transform 1s cubic-bezier(0.33, 1.53, 0.69, 0.99);
+      will-change: transform, opacity;
+    }
+    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+    .reveal-scale {
+      opacity: 0; transform: scale(0.92);
+      transition: opacity 0.8s cubic-bezier(0.33, 1.53, 0.69, 0.99), transform 0.8s cubic-bezier(0.33, 1.53, 0.69, 0.99);
+      will-change: transform, opacity;
+    }
+    .reveal-scale.visible { opacity: 1; transform: scale(1); }
+
+    .reveal-up-lg {
+      opacity: 0; transform: translateY(40px);
+      transition: opacity 1.2s cubic-bezier(0.33, 1.53, 0.69, 0.99), transform 1.2s cubic-bezier(0.33, 1.53, 0.69, 0.99);
+      will-change: transform, opacity;
+    }
+    .reveal-up-lg.visible { opacity: 1; transform: translateY(0); }
+
+    /* Staggered children */
+    .stagger-children > *:nth-child(1) { transition-delay: 0ms; }
+    .stagger-children > *:nth-child(2) { transition-delay: 100ms; }
+    .stagger-children > *:nth-child(3) { transition-delay: 200ms; }
+    .stagger-children > *:nth-child(4) { transition-delay: 300ms; }
+    .stagger-children > *:nth-child(5) { transition-delay: 400ms; }
+
+    /* Hero entrance */
+    @media (prefers-reduced-motion: no-preference) {
+      .hero-animate { animation: fadeInLeft 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+      .hero-animate-d1 { animation-delay: 0.1s; }
+      .hero-animate-d2 { animation-delay: 0.25s; }
+      .hero-animate-d3 { animation-delay: 0.4s; }
+      .hero-animate-d4 { animation-delay: 0.55s; }
+      .hero-animate-d5 { animation-delay: 0.7s; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-animate, .reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-up-lg {
+        animation: none !important;
+        transition: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
+
+    /* ── Card hover ── */
+    .case-card { position: relative; }
+    .case-card .card-glow {
+      position: absolute; inset: -1px; border-radius: 18px;
+      background: rgba(70, 109, 202, 0.45);
+      opacity: 0; transition: opacity 0.4s ease;
+      z-index: 0;
+    }
+    .case-card:hover .card-glow,
+    .case-card:focus-within .card-glow { opacity: 1; }
+    .case-card .card-inner {
+      position: relative; z-index: 1;
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
+    }
+    .case-card:hover .card-inner {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px 8px rgba(0, 0, 0, 0.35);
+    }
+
+    /* ── Focus visible ── */
+    *:focus-visible {
+      outline: 2px solid var(--blue);
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+
+    /* ── Video play button hover ── */
+    .play-btn {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .play-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 40px rgba(70, 109, 202, 0.4);
+    }
+
+    /* ── Stat card shimmer ── */
+    .stat-card {
+      position: relative;
+      overflow: hidden;
+    }
+    .stat-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(70, 109, 202, 0.04), transparent);
+      transition: left 0.6s ease;
+    }
+    .stat-card:hover::after {
+      left: 100%;
+    }
+
+    /* ── Section separator ── */
+    .section-sep {
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(70, 109, 202, 0.3) 50%, transparent 100%);
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- ──────── NAVIGATION ──────── -->
+<nav class="fixed top-0 left-0 right-0 z-50 border-b border-white/[0.06]" style="background:rgba(10,14,31,0.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);">
+  <div class="max-w-[1200px] mx-auto px-5 lg:px-8 h-[72px] flex items-center justify-between">
+    <a href="/" class="flex items-center gap-3">
+      <svg viewBox="0 0 16 16" width="32" height="32"><polygon fill="#FDFDFE" points="14.747553,2.699218 15.149305,1.987466 16,3.263507 9.710892,14.12395 8.944087,14.12395 8.588211,13.541965 9.263917,12.364232 9.277024,12.38586"/><polygon fill="#A9B0C7" points="15.075247,1.87605 15.149305,1.987466 14.747553,2.699218 14.214067,1.87605"/><path fill="#FDFDFE" d="M7.997706,10.202761l3.553517-6.032196h-7.31348L7.997706,10.202761z M8.796625,11.484045l-0.040634,0.070127l0.507926,0.810061l-0.675706,1.177733L1.568345,2.060869c0.05833-0.084545,0.095031-0.154672,0.095031-0.154672V1.87605h12.502847v0.383402L8.796625,11.484045z"/><polygon fill="#466DCA" points="0.860525,2.347929 8.044894,14.12395 6.554541,14.12395 0,3.233359 0.665875,2.029411"/><path fill="#244AA0" d="M1.455618,1.87605l0.112727,0.18482C1.482489,2.186049,1.34879,2.342031,1.217057,2.342031c-0.133044,0-0.269365,0.003277-0.356531,0.005898l-0.19465-0.318519L0.751075,1.87605H1.455618z"/></svg>
+      <div class="flex flex-col leading-none"><span class="font-display text-[18px] font-bold tracking-[-0.02em] text-[#FDFDFE]">arcena</span><span class="font-display text-[9px] font-medium tracking-[0.28em] text-[#A9B0C7] uppercase mt-[1px]">systems</span></div>
+    </a>
+    <div class="hidden md:flex items-center gap-8">
+      <a href="/" class="font-body text-[14px] font-medium text-[#A9B0C7] hover:text-[#FDFDFE] transition-colors">Startseite</a>
+      <a href="/#usecases" class="font-body text-[14px] font-medium text-[#A9B0C7] hover:text-[#FDFDFE] transition-colors">Anwendungsfälle</a>
+      <a href="/#kontakt" class="font-body text-[14px] font-medium text-[#A9B0C7] hover:text-[#FDFDFE] transition-colors">Kontakt</a>
+    </div>
+    <a href="/#kontakt" class="hidden md:inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#466DCA] text-white text-[14px] font-semibold hover:bg-[#244AA0] transition-all duration-300">Erstgespräch buchen <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    <!-- Mobile menu button -->
+    <button id="navToggle" class="md:hidden flex flex-col gap-[5px] p-2" aria-label="Menü öffnen" aria-expanded="false">
+      <span id="bar1" class="block w-5 h-[2px] bg-[#FDFDFE] transition-transform duration-300 origin-center"></span>
+      <span id="bar2" class="block w-5 h-[2px] bg-[#FDFDFE] transition-opacity duration-300"></span>
+      <span id="bar3" class="block w-5 h-[2px] bg-[#FDFDFE] transition-transform duration-300 origin-center"></span>
+    </button>
+  </div>
+  <!-- Mobile nav -->
+  <div id="mobileNav" class="md:hidden overflow-hidden max-h-0 transition-all duration-300" aria-hidden="true" style="background:rgba(10,14,31,0.95);">
+    <div class="px-5 py-6 flex flex-col gap-4">
+      <a href="/" class="font-body text-[15px] font-medium text-[#A9B0C7] hover:text-[#FDFDFE] transition-colors">Startseite</a>
+      <a href="/#usecases" class="font-body text-[15px] font-medium text-[#A9B0C7] hover:text-[#FDFDFE] transition-colors">Anwendungsfälle</a>
+      <a href="/#kontakt" class="font-body text-[15px] font-medium text-[#A9B0C7] hover:text-[#FDFDFE] transition-colors">Kontakt</a>
+      <a href="/#kontakt" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-[#466DCA] text-white text-[14px] font-semibold mt-2">Erstgespräch buchen</a>
+    </div>
+  </div>
+</nav>
+
+
+<!-- ──────── HERO SECTION ──────── -->
+<section class="pt-[112px] pb-16 sm:pb-20">
+  <div class="max-w-[1200px] mx-auto px-5 lg:px-8">
+
+    <!-- Back link -->
+    <a href="/#usecases" class="inline-flex items-center gap-2 font-body text-[14px] font-medium text-[#A9B0C7] hover:text-[#FDFDFE] transition-colors mb-8 hero-animate hero-animate-d1">
+      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      Zurück zu Anwendungsfällen
+    </a>
+
+    <!-- Tag pills -->
+    <div class="flex flex-wrap gap-3 mb-6 hero-animate hero-animate-d2">
+      <span class="tag-pill">Hausverwaltung</span>
+      <span class="tag-pill">Service</span>
+    </div>
+
+    <!-- Hero image -->
+    <div class="rounded-2xl overflow-hidden border border-white/[0.12] mb-10 hero-animate hero-animate-d3" style="background: linear-gradient(180deg, #121635 0%, #0B0E23 100%);">
+      <img
+        src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1200&h=600&fit=crop"
+        alt="Modernes Wohngebäude — KI-Mieterservice Case Study"
+        class="w-full h-auto object-cover"
+        style="aspect-ratio: 2/1;"
+        loading="eager"
+      />
+    </div>
+
+    <!-- Title & subtitle -->
+    <h1 class="font-display text-[32px] sm:text-[40px] lg:text-[48px] font-bold tracking-[-0.03em] leading-[1.1] text-[#FDFDFE] mb-5 hero-animate hero-animate-d4">
+      KI-gestützter Mieterservice<br class="hidden sm:block" /> für Hausverwaltungen
+    </h1>
+    <p class="font-body text-[18px] sm:text-[20px] leading-[1.7] text-[#A9B0C7] max-w-[720px] hero-animate hero-animate-d5">
+      KI-Chatbot senkte Support-Kosten um 60% und verdreifachte die Antwortgeschwindigkeit.
+    </p>
+
+  </div>
+</section>
+
+
+<!-- ──────── STATS ROW ──────── -->
+<section class="pb-16 sm:pb-20">
+  <div class="max-w-[1200px] mx-auto px-5 lg:px-8">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 stagger-children">
+
+      <!-- Stat 1 -->
+      <div class="stat-card reveal rounded-2xl p-8 text-center border border-white/[0.12]" style="background: linear-gradient(180deg, #121635 0%, #0B0E23 100%);">
+        <span class="font-display text-[48px] sm:text-[56px] font-bold tracking-[-0.03em] text-[#466DCA] block leading-none">60%</span>
+        <span class="font-body text-[15px] text-[#A9B0C7] mt-3 block">Geringere Support-Kosten</span>
+      </div>
+
+      <!-- Stat 2 -->
+      <div class="stat-card reveal rounded-2xl p-8 text-center border border-white/[0.12]" style="background: linear-gradient(180deg, #121635 0%, #0B0E23 100%);">
+        <span class="font-display text-[48px] sm:text-[56px] font-bold tracking-[-0.03em] text-[#466DCA] block leading-none">3x</span>
+        <span class="font-body text-[15px] text-[#A9B0C7] mt-3 block">Schnellere Antworten</span>
+      </div>
+
+      <!-- Stat 3 -->
+      <div class="stat-card reveal rounded-2xl p-8 text-center border border-white/[0.12]" style="background: linear-gradient(180deg, #121635 0%, #0B0E23 100%);">
+        <span class="font-display text-[48px] sm:text-[56px] font-bold tracking-[-0.03em] text-[#466DCA] block leading-none">24/7</span>
+        <span class="font-body text-[15px] text-[#A9B0C7] mt-3 block">Verfügbarkeit</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ──────── SEPARATOR ──────── -->
+<div class="max-w-[1200px] mx-auto px-5 lg:px-8"><div class="section-sep"></div></div>
+
+
+<!-- ──────── CONTENT SECTION 1: Die Ausgangssituation ──────── -->
+<section class="py-16 sm:py-24">
+  <div class="max-w-[1200px] mx-auto px-5 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+      <!-- Text -->
+      <div class="reveal-left">
+        <span class="font-display text-[12px] font-semibold tracking-[0.2em] uppercase text-[#466DCA] mb-4 block">Das Problem</span>
+        <h2 class="font-display text-[28px] sm:text-[36px] font-bold tracking-[-0.02em] leading-[1.15] text-[#FDFDFE] mb-6">
+          Die Ausgangssituation
+        </h2>
+        <div class="space-y-4 font-body text-[16px] leading-[1.8] text-[#A9B0C7]">
+          <p>
+            Eine Hausverwaltung mit über <span class="highlight-code">2.000 Mieteinheiten</span> bearbeitete wöchentlich mehr als 200 Mieteranfragen — von Reparaturmeldungen über Nebenkostenabrechnungen bis hin zu allgemeinen Fragen zum Mietvertrag.
+          </p>
+          <p>
+            Das Support-Team war chronisch überlastet. Die durchschnittliche Antwortzeit lag bei <span class="highlight-code">3–5 Werktagen</span>. Mieter waren frustriert, die Beschwerdequote stieg kontinuierlich an, und die Mitarbeiterfluktuation im Service-Bereich war hoch.
+          </p>
+          <p>
+            Besonders problematisch: Wiederkehrende Standardfragen (z.B. „Wann wird meine Nebenkostenabrechnung versendet?") beanspruchten genauso viel Zeit wie komplexe Anliegen — ohne jede Priorisierung.
+          </p>
+        </div>
+      </div>
+
+      <!-- Image -->
+      <div class="reveal-right">
+        <div class="rounded-2xl overflow-hidden border border-white/[0.12]" style="background: linear-gradient(180deg, #121635 0%, #0B0E23 100%);">
+          <img
+            src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&h=400&fit=crop"
+            alt="Bürogebäude — Hausverwaltung"
+            class="w-full h-auto object-cover"
+            style="aspect-ratio: 3/2;"
+            loading="lazy"
+          />
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ──────── SEPARATOR ──────── -->
+<div class="max-w-[1200px] mx-auto px-5 lg:px-8"><div class="section-sep"></div></div>
+
+
+<!-- ──────── CONTENT SECTION 2: Unser Ansatz ──────── -->
+<section class="py-16 sm:py-24">
+  <div class="max-w-[1200px] mx-auto px-5 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+      <!-- Image (left on desktop) -->
+      <div class="reveal-left order-2 lg:order-1">
+        <div class="rounded-2xl overflow-hidden border border-white/[0.12]" style="background: linear-gradient(180deg, #121635 0%, #0B0E23 100%);">
+          <img
+            src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=600&h=400&fit=crop"
+            alt="Team arbeitet an KI-Lösung"
+            class="w-full h-auto object-cover"
+            style="aspect-ratio: 3/2;"
+            loading="lazy"
+          />
+        </div>
+      </div>
+
+      <!-- Text (right on desktop) -->
+      <div class="reveal-right order-1 lg:order-2">
+        <span class="font-display text-[12px] font-semibold tracking-[0.2em] uppercase text-[#466DCA] mb-4 block">Die Lösung</span>
+        <h2 class="font-display text-[28px] sm:text-[36px] font-bold tracking-[-0.02em] leading-[1.15] text-[#FDFDFE] mb-6">
+          Unser Ansatz
+        </h2>
+        <div class="space-y-4 font-body text-[16px] leading-[1.8] text-[#A9B0C7]">
+          <p>
+            Wir entwickelten einen <span class="highlight-code">KI-gestützten Chatbot</span> in Kombination mit einem intelligenten Ticket-Management-System, das eingehende Anfragen automatisch versteht, kategorisiert und bearbeitet.
+          </p>
+          <p>
+            Der Chatbot wurde mit dem spezifischen Wissen der Hausverwaltung trainiert — Hausordnungen, FAQ-Kataloge, Nebenkostenrichtlinien und typische Abläufe. So konnte er auf die häufigsten Fragen sofort und präzise antworten.
+          </p>
+          <ul class="space-y-3 mt-4">
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-[#466DCA] mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+              <span>Automatische Kategorisierung: Instandhaltung, Abrechnung, Allgemein</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-[#466DCA] mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+              <span>Sofortige Antworten auf Standardfragen</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-[#466DCA] mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+              <span>Intelligente Eskalation an menschliche Mitarbeiter bei komplexen Fällen</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ──────── SEPARATOR ──────── -->
+<div class="max-w-[1200px] mx-auto px-5 lg:px-8"><div class="section-sep"></div></div>
+
+
+<!-- ──────── CONTENT SECTION 3: Die Umsetzung ──────── -->
+<section class="py-16 sm:py-24">
+  <div class="max-w-[1200px] mx-auto px-5 lg:px-8">
+    <div class="reveal">
+      <span class="font-display text-[12px] font-semibold tracking-[0.2em] uppercase text-[#466DCA] mb-4 block">Der Prozess</span>
+      <h2 class="font-display text-[28px] sm:text-[36px] font-bold tracking-[-0.02em] leading-[1.15] text-[#FDFDFE] mb-6">
+        Die Umsetzung
+      </h2>
+      <p class="font-body text-[16px] leading-[1.8] text-[#A9B0C7] max-w-[720px] mb-10">
+        Der gesamte Workflow wurde in <span class="highlight-code">n8n</span> orchestriert — ein durchgängig automatisierter Prozess von der Anfrage bis zur Dokumentation.
+      </p>
+    </div>
+
+    <!-- Workflow steps -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 stagger-children">
+
+      <!-- Step 1 -->
+      <div class="reveal rounded-2xl p-7 border border-white/[0.12]" style="background: linear-gradient(180deg, #121635 0%, #0B0E23 100%);">
+        <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-5" style="background: rgba(70,109,202,0.15);">
+          <svg class="w-5 h-5 text-[#466DCA]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 4H6a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-2m-4-1v8m0 0l3-3m-3 3L9 8"/></svg>
+        </div>
+        <h3 class="font-display text-[16px] font-semibold text-[#FDFDFE] mb-2">1. Eingang</h3>
+        <p class="font-body text-[14px] leading-[1.7] text-[#A9B0C7]">
+          Anfrage kommt per E-Mail, Chat oder Telefon ein und wird automatisch erfasst.
+        </p>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="reveal rounded-2xl p-7 border border-white/[0.12]" style="background: linear-gradient(180deg, #121635 0%, #0B0E23 100%);">
+        <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-5" style="background: rgba(70,109,202,0.15);">
+          <svg class="w-5 h-5 text-[#466DCA]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+        </div>
+        <h3 class="font-display text-[16px] font-semibold text-[#FDFDFE] mb-2">2. KI-Kategorisierung</h3>
+        <p class="font-body text-[14px] leading-[1.7] text-[#A9B0C7]">
+          Die KI analysiert den Inhalt und ordnet die Anfrage einer Kategorie zu (Instandhaltung, Abrechnung, Allgemein).
+        </p>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="reveal rounded-2xl p-7 border border-white/[0.12]" style="background: linear-gradient(180deg, #121635 0%, #0B0E23 100%);">
+        <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-5" style="background: rgba(70,109,202,0.15);">
+          <svg class="w-5 h-5 text-[#466DCA]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>
+        </div>
+        <h3 class="font-display text-[16px] font-semibold text-[#FDFDFE] mb-2">3. Auto-Antwort oder Ticket</h3>
+        <p class="font-body text-[14px] leading-[1.7] text-[#A9B0C7]">
+          Standardfragen werden sofort beantwortet. Komplexe Anliegen erzeugen ein priorisiertes Ticket.
+        </p>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="reveal rounded-2xl p-7 border border-white/[0.12]" style="background: linear-gradient(180deg, #121635 0%, #0B0E23 100%);">
+        <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-5" style="background: rgba(70,109,202,0.15);">
+          <svg class="w-5 h-5 text-[#466DCA]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        </div>
+        <h3 class="font-display text-[16px] font-semibold text-[#FDFDFE] mb-2">4. Zuweisung</h3>
+        <p class="font-body text-[14px] leading-[1.7] text-[#A9B0C7]">
+          Tickets werden automatisch dem zuständigen Mitarbeiter oder Dienstleister zugewiesen.
+        </p>
+      </div>
+
+      <!-- Step 5 -->
+      <div class="reveal rounded-2xl p-7 border border-white/[0.12]" style="background: linear-gradient(180deg, #121635 0%, #0B0E23 100%);">
+        <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-5" style="background: rgba(70,109,202,0.15);">
+          <svg class="w-5 h-5 text-[#466DCA]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
+        </div>
+        <h3 class="font-display text-[16px] font-semibold text-[#FDFDFE] mb-2">5. Status-Updates</h3>
+        <p class="font-body text-[14px] leading-[1.7] text-[#A9B0C7]">
+          Mieter erhalten automatisch Benachrichtigungen über den Fortschritt ihrer Anfrage.
+        </p>
+      </div>
+
+      <!-- Step 6 -->
+      <div class="reveal rounded-2xl p-7 border border-white/[0.12]" style="background: linear-gradient(180deg, #121635 0%, #0B0E23 100%);">
+        <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-5" style="background: rgba(70,109,202,0.15);">
+          <svg class="w-5 h-5 text-[#466DCA]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+        </div>
+        <h3 class="font-display text-[16px] font-semibold text-[#FDFDFE] mb-2">6. Dokumentation</h3>
+        <p class="font-body text-[14px] leading-[1.7] text-[#A9B0C7]">
+          Jede Interaktion wird automatisch dokumentiert — für Reporting, Compliance und Optimierung.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ──────── SEPARATOR ──────── -->
+<div class="max-w-[1200px] mx-auto px-5 lg:px-8"><div class="section-sep"></div></div>
+
+
+<!-- ──────── CONTENT SECTION 4: Das Ergebnis ──────── -->
+<section class="py-16 sm:py-24">
+  <div class="max-w-[1200px] mx-auto px-5 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+      <!-- Text -->
+      <div class="reveal-left">
+        <span class="font-display text-[12px] font-semibold tracking-[0.2em] uppercase text-[#466DCA] mb-4 block">Das Ergebnis</span>
+        <h2 class="font-display text-[28px] sm:text-[36px] font-bold tracking-[-0.02em] leading-[1.15] text-[#FDFDFE] mb-6">
+          Messbare Transformation
+        </h2>
+        <div class="space-y-4 font-body text-[16px] leading-[1.8] text-[#A9B0C7]">
+          <p>
+            Innerhalb von 8 Wochen nach Go-live zeigten sich die Ergebnisse deutlich. Der KI-Chatbot übernahm <span class="highlight-code">73% aller Anfragen</span> vollautomatisch — ohne menschliches Eingreifen.
+          </p>
+          <p>
+            Die Support-Kosten sanken um 60%, während die Antwortgeschwindigkeit sich verdreifachte. Statt 3–5 Tagen erhielten Mieter nun in der Regel innerhalb von <span class="highlight-code">Minuten</span> eine qualifizierte Antwort.
+          </p>
+          <p>
+            Der Zufriedenheitswert der Mieter stieg von <strong class="text-[#FDFDFE]">3,2 auf 4,7 von 5 Sternen</strong> — ein Sprung, der auch die Weiterempfehlungsrate signifikant erhöhte.
+          </p>
+        </div>
+      </div>
+
+      <!-- Result stats grid -->
+      <div class="reveal-right">
+        <div class="grid grid-cols-2 gap-4">
+          <div class="rounded-2xl p-6 border border-white/[0.12] text-center" style="background: linear-gradient(180deg, #121635 0%, #0B0E23 100%);">
+            <span class="font-display text-[36px] font-bold tracking-[-0.02em] text-[#466DCA] block leading-none">60%</span>
+            <span class="font-body text-[13px] text-[#A9B0C7] mt-2 block">Geringere Kosten</span>
+          </div>
+          <div class="rounded-2xl p-6 border border-white/[0.12] text-center" style="background: linear-gradient(180deg, #121635 0%, #0B0E23 100%);">
+            <span class="font-display text-[36px] font-bold tracking-[-0.02em] text-[#466DCA] block leading-none">3x</span>
+            <span class="font-body text-[13px] text-[#A9B0C7] mt-2 block">Schnellere Antworten</span>
+          </div>
+          <div class="rounded-2xl p-6 border border-white/[0.12] text-center" style="background: linear-gradient(180deg, #121635 0%, #0B0E23 100%);">
+            <span class="font-display text-[36px] font-bold tracking-[-0.02em] text-[#466DCA] block leading-none">24/7</span>
+            <span class="font-body text-[13px] text-[#A9B0C7] mt-2 block">Verfügbarkeit</span>
+          </div>
+          <div class="rounded-2xl p-6 border border-white/[0.12] text-center" style="background: linear-gradient(180deg, #121635 0%, #0B0E23 100%);">
+            <span class="font-display text-[36px] font-bold tracking-[-0.02em] text-[#466DCA] block leading-none">4.7</span>
+            <span class="font-body text-[13px] text-[#A9B0C7] mt-2 block">von 5 Sternen</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ──────── SEPARATOR ──────── -->
+<div class="max-w-[1200px] mx-auto px-5 lg:px-8"><div class="section-sep"></div></div>
+
+
+<!-- ──────── VIDEO TESTIMONIAL PLACEHOLDER ──────── -->
+<section class="py-16 sm:py-24">
+  <div class="max-w-[1200px] mx-auto px-5 lg:px-8">
+    <div class="reveal-scale">
+      <span class="font-display text-[12px] font-semibold tracking-[0.2em] uppercase text-[#466DCA] mb-4 block text-center">Kundenstimme</span>
+      <h2 class="font-display text-[28px] sm:text-[36px] font-bold tracking-[-0.02em] leading-[1.15] text-[#FDFDFE] mb-10 text-center">
+        Was unser Kunde sagt
+      </h2>
+
+      <!-- 16:9 video container -->
+      <div class="relative rounded-2xl overflow-hidden border border-white/[0.12] cursor-pointer group" style="aspect-ratio: 16/9; background: linear-gradient(180deg, #121635 0%, #0B0E23 100%);">
+        <!-- Dark gradient overlay -->
+        <div class="absolute inset-0" style="background: radial-gradient(ellipse at center, rgba(10,14,31,0.6) 0%, rgba(10,14,31,0.85) 100%);"></div>
+
+        <!-- Play button -->
+        <div class="absolute inset-0 flex items-center justify-center">
+          <div class="play-btn w-20 h-20 rounded-full flex items-center justify-center" style="background: rgba(70,109,202,0.25); border: 2px solid rgba(70,109,202,0.5);">
+            <svg class="w-8 h-8 text-[#FDFDFE] ml-1" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Decorative lines -->
+        <div class="absolute bottom-0 left-0 right-0 h-px" style="background: linear-gradient(90deg, transparent 0%, rgba(70,109,202,0.2) 50%, transparent 100%);"></div>
+      </div>
+
+      <p class="font-body text-[15px] text-[#A9B0C7]/60 text-center mt-5 italic">
+        Kundenstimme — Video folgt in Kürze
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ──────── SEPARATOR ──────── -->
+<div class="max-w-[1200px] mx-auto px-5 lg:px-8"><div class="section-sep"></div></div>
+
+
+<!-- ──────── RESULTS SECTION (Large Stats) ──────── -->
+<section class="py-16 sm:py-24">
+  <div class="max-w-[1200px] mx-auto px-5 lg:px-8 text-center">
+    <div class="reveal-up-lg">
+      <span class="font-display text-[12px] font-semibold tracking-[0.2em] uppercase text-[#466DCA] mb-4 block">Ergebnisse auf einen Blick</span>
+      <h2 class="font-display text-[28px] sm:text-[36px] font-bold tracking-[-0.02em] leading-[1.15] text-[#FDFDFE] mb-4">
+        Zahlen, die überzeugen
+      </h2>
+      <p class="font-body text-[16px] leading-[1.7] text-[#A9B0C7] max-w-[600px] mx-auto mb-14">
+        In weniger als 2 Monaten erzielte die KI-Lösung signifikante Verbesserungen über alle relevanten KPIs hinweg.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-5 stagger-children">
+      <div class="reveal rounded-2xl p-8 lg:p-10 border border-white/[0.12]" style="background: linear-gradient(180deg, #121635 0%, #0B0E23 100%);">
+        <span class="font-display text-[40px] sm:text-[52px] lg:text-[60px] font-bold tracking-[-0.03em] block leading-none gradient-text">60%</span>
+        <span class="font-body text-[13px] sm:text-[14px] text-[#A9B0C7] mt-3 block">Geringere Support-Kosten</span>
+      </div>
+      <div class="reveal rounded-2xl p-8 lg:p-10 border border-white/[0.12]" style="background: linear-gradient(180deg, #121635 0%, #0B0E23 100%);">
+        <span class="font-display text-[40px] sm:text-[52px] lg:text-[60px] font-bold tracking-[-0.03em] block leading-none gradient-text">3x</span>
+        <span class="font-body text-[13px] sm:text-[14px] text-[#A9B0C7] mt-3 block">Schnellere Antworten</span>
+      </div>
+      <div class="reveal rounded-2xl p-8 lg:p-10 border border-white/[0.12]" style="background: linear-gradient(180deg, #121635 0%, #0B0E23 100%);">
+        <span class="font-display text-[40px] sm:text-[52px] lg:text-[60px] font-bold tracking-[-0.03em] block leading-none gradient-text">24/7</span>
+        <span class="font-body text-[13px] sm:text-[14px] text-[#A9B0C7] mt-3 block">Verfügbarkeit</span>
+      </div>
+      <div class="reveal rounded-2xl p-8 lg:p-10 border border-white/[0.12]" style="background: linear-gradient(180deg, #121635 0%, #0B0E23 100%);">
+        <span class="font-display text-[40px] sm:text-[52px] lg:text-[60px] font-bold tracking-[-0.03em] block leading-none gradient-text">4.7</span>
+        <span class="font-body text-[13px] sm:text-[14px] text-[#A9B0C7] mt-3 block">Zufriedenheit (von 5)</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ──────── SEPARATOR ──────── -->
+<div class="max-w-[1200px] mx-auto px-5 lg:px-8"><div class="section-sep"></div></div>
+
+
+<!-- ──────── MORE CASE STUDIES ──────── -->
+<section class="py-16 sm:py-24">
+  <div class="max-w-[1200px] mx-auto px-5 lg:px-8">
+    <div class="reveal-left mb-12">
+      <span class="font-display text-[12px] font-semibold tracking-[0.2em] uppercase text-[#466DCA] mb-4 block">Weitere Projekte</span>
+      <h2 class="font-display text-[28px] sm:text-[36px] font-bold tracking-[-0.02em] leading-[1.15] text-[#FDFDFE]">
+        Weitere Anwendungsfälle
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 stagger-children">
+
+      <!-- Card 1: Lead-Qualifizierung -->
+      <a href="/anwendungsfaelle/lead-qualifizierung" class="case-card reveal block group">
+        <div class="card-glow"></div>
+        <div class="card-inner rounded-2xl overflow-hidden border border-white/[0.12]" style="background: linear-gradient(180deg, #121635 0%, #0B0E23 100%);">
+          <div class="p-7 sm:p-8">
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="tag-pill" style="font-size: 11px; padding: 4px 10px;">Vertrieb</span>
+              <span class="tag-pill" style="font-size: 11px; padding: 4px 10px;">Lead-Management</span>
+            </div>
+            <h3 class="font-display text-[20px] sm:text-[22px] font-bold tracking-[-0.02em] text-[#FDFDFE] mb-3 group-hover:text-[#466DCA] transition-colors">
+              KI-gestützte Lead-Qualifizierung
+            </h3>
+            <p class="font-body text-[14px] leading-[1.7] text-[#A9B0C7] mb-5">
+              Automatische Bewertung und Priorisierung eingehender Leads — für schnellere Abschlüsse und weniger Streuverluste.
+            </p>
+            <span class="inline-flex items-center gap-2 font-body text-[14px] font-semibold text-[#466DCA] group-hover:gap-3 transition-all">
+              Case Study lesen
+              <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card 2: Dokumentenmanagement -->
+      <a href="/anwendungsfaelle/dokumentenmanagement" class="case-card reveal block group">
+        <div class="card-glow"></div>
+        <div class="card-inner rounded-2xl overflow-hidden border border-white/[0.12]" style="background: linear-gradient(180deg, #121635 0%, #0B0E23 100%);">
+          <div class="p-7 sm:p-8">
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="tag-pill" style="font-size: 11px; padding: 4px 10px;">Dokumentation</span>
+              <span class="tag-pill" style="font-size: 11px; padding: 4px 10px;">Automatisierung</span>
+            </div>
+            <h3 class="font-display text-[20px] sm:text-[22px] font-bold tracking-[-0.02em] text-[#FDFDFE] mb-3 group-hover:text-[#466DCA] transition-colors">
+              Intelligentes Dokumentenmanagement
+            </h3>
+            <p class="font-body text-[14px] leading-[1.7] text-[#A9B0C7] mb-5">
+              KI-basierte Erfassung, Klassifizierung und Archivierung von Dokumenten — von der Eingangspost bis zum digitalen Archiv.
+            </p>
+            <span class="inline-flex items-center gap-2 font-body text-[14px] font-semibold text-[#466DCA] group-hover:gap-3 transition-all">
+              Case Study lesen
+              <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ──────── CTA SECTION ──────── -->
+<section class="py-16 sm:py-24">
+  <div class="max-w-[800px] mx-auto px-5 lg:px-8 text-center">
+    <div class="reveal-scale rounded-2xl p-10 sm:p-14 border border-white/[0.12]" style="background: linear-gradient(180deg, #121635 0%, #0B0E23 100%);">
+      <h2 class="font-display text-[24px] sm:text-[32px] font-bold tracking-[-0.02em] leading-[1.15] text-[#FDFDFE] mb-4">
+        Bereit für Ihren eigenen Anwendungsfall?
+      </h2>
+      <p class="font-body text-[16px] leading-[1.7] text-[#A9B0C7] mb-8 max-w-[520px] mx-auto">
+        Lassen Sie uns in einem kostenlosen Erstgespräch herausfinden, wie KI-Automatisierung Ihre Prozesse transformieren kann.
+      </p>
+      <a href="/#kontakt" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[#466DCA] text-white text-[15px] font-semibold hover:bg-[#244AA0] transition-all duration-300">
+        Erstgespräch buchen
+        <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ──────── FOOTER ──────── -->
+<footer class="relative py-16 sm:py-20" style="background: #060A18;" aria-label="Footer">
+  <div class="max-w-[1200px] mx-auto px-5 lg:px-8">
+
+    <!-- Footer columns -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-10 lg:gap-8 mb-16">
+
+      <!-- Plattform -->
+      <div>
+        <h4 class="font-display text-[13px] font-semibold text-arc-white uppercase tracking-[0.1em] mb-5">Plattform</h4>
+        <ul class="space-y-3">
+          <li><a href="/" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Wie es funktioniert</a></li>
+          <li><a href="/#usecases" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Anwendungsfälle</a></li>
+          <li><a href="/#problem" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Das Problem</a></li>
+          <li><a href="/#kontakt" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Preise</a></li>
+        </ul>
+      </div>
+
+      <!-- Lösungen -->
+      <div>
+        <h4 class="font-display text-[13px] font-semibold text-arc-white uppercase tracking-[0.1em] mb-5">Lösungen</h4>
+        <ul class="space-y-3">
+          <li><a href="/#usecases" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Automatisierung</a></li>
+          <li><a href="/#usecases" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Dokumentation</a></li>
+          <li><a href="/#usecases" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Lead-Management</a></li>
+        </ul>
+      </div>
+
+      <!-- Ressourcen -->
+      <div>
+        <h4 class="font-display text-[13px] font-semibold text-arc-white uppercase tracking-[0.1em] mb-5">Ressourcen</h4>
+        <ul class="space-y-3">
+          <li><a href="#" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Blog</a></li>
+          <li><a href="#" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">FAQ</a></li>
+          <li><a href="#" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Datenschutz</a></li>
+        </ul>
+      </div>
+
+      <!-- Unternehmen -->
+      <div>
+        <h4 class="font-display text-[13px] font-semibold text-arc-white uppercase tracking-[0.1em] mb-5">Unternehmen</h4>
+        <ul class="space-y-3">
+          <li><a href="#" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Über uns</a></li>
+          <li><a href="/#kontakt" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Kontakt</a></li>
+          <li><a href="#" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Karriere</a></li>
+          <li><a href="#" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Impressum</a></li>
+        </ul>
+      </div>
+
+      <!-- Kontakt -->
+      <div class="col-span-2 sm:col-span-3 lg:col-span-1">
+        <h4 class="font-display text-[13px] font-semibold text-arc-white uppercase tracking-[0.1em] mb-5">Kontakt</h4>
+        <p class="font-body text-[14px] text-silver/60 leading-[1.7] mb-4">
+          Haben Sie Fragen? Schreiben Sie uns direkt.
+        </p>
+        <a href="mailto:dani.halabi55@gmail.com" class="inline-flex items-center gap-2 font-body text-[14px] font-medium text-arc-blue hover:text-white transition-colors duration-200">
+          E-Mail senden
+          <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="h-px bg-white/[0.06] mb-10"></div>
+
+    <!-- Bottom bar: logo + copyright -->
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+
+      <!-- Logo -->
+      <a href="/" class="flex items-center gap-3" aria-label="Arcena Systems">
+        <svg viewBox="0 0 16 16" width="24" height="24" aria-hidden="true">
+          <polygon fill="#FDFDFE" points="14.747553,2.699218 15.149305,1.987466 16,3.263507 9.710892,14.12395 8.944087,14.12395 8.588211,13.541965 9.263917,12.364232 9.277024,12.38586"/>
+          <polygon fill="#A9B0C7" points="15.075247,1.87605 15.149305,1.987466 14.747553,2.699218 14.214067,1.87605"/>
+          <path fill="#FDFDFE" d="M7.997706,10.202761l3.553517-6.032196h-7.31348L7.997706,10.202761z M8.796625,11.484045l-0.040634,0.070127l0.507926,0.810061l-0.675706,1.177733L1.568345,2.060869c0.05833-0.084545,0.095031-0.154672,0.095031-0.154672V1.87605h12.502847v0.383402L8.796625,11.484045z"/>
+          <polygon fill="#466DCA" points="0.860525,2.347929 8.044894,14.12395 6.554541,14.12395 0,3.233359 0.665875,2.029411"/>
+          <path fill="#244AA0" d="M1.455618,1.87605l0.112727,0.18482C1.482489,2.186049,1.34879,2.342031,1.217057,2.342031c-0.133044,0-0.269365,0.003277-0.356531,0.005898l-0.19465-0.318519L0.751075,1.87605H1.455618z"/>
+        </svg>
+        <span class="font-display text-[15px] font-bold tracking-[-0.01em] text-silver/40">arcena systems</span>
+      </a>
+
+      <!-- Copyright + links -->
+      <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+        <span class="font-body text-[12px] text-silver/30">&copy; 2026 Arcena Systems. Alle Rechte vorbehalten.</span>
+        <a href="#" class="font-body text-[12px] text-silver/30 hover:text-silver/60 transition-colors duration-200">Datenschutz</a>
+        <a href="#" class="font-body text-[12px] text-silver/30 hover:text-silver/60 transition-colors duration-200">Impressum</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ════════ SCRIPTS ════════ -->
+<script>
+  // ── Mobile nav toggle ──
+  const navToggle = document.getElementById('navToggle');
+  const mobileNav = document.getElementById('mobileNav');
+  const bar1 = document.getElementById('bar1');
+  const bar2 = document.getElementById('bar2');
+  const bar3 = document.getElementById('bar3');
+  let navOpen = false;
+
+  if (navToggle) {
+    navToggle.addEventListener('click', () => {
+      navOpen = !navOpen;
+      if (navOpen) {
+        mobileNav.style.maxHeight = mobileNav.scrollHeight + 'px';
+        mobileNav.setAttribute('aria-hidden', 'false');
+        navToggle.setAttribute('aria-expanded', 'true');
+        navToggle.setAttribute('aria-label', 'Menü schließen');
+        bar1.style.transform = 'translateY(7px) rotate(45deg)';
+        bar2.style.opacity = '0';
+        bar3.style.transform = 'translateY(-7px) rotate(-45deg)';
+      } else {
+        mobileNav.style.maxHeight = '0';
+        mobileNav.setAttribute('aria-hidden', 'true');
+        navToggle.setAttribute('aria-expanded', 'false');
+        navToggle.setAttribute('aria-label', 'Menü öffnen');
+        bar1.style.transform = '';
+        bar2.style.opacity = '';
+        bar3.style.transform = '';
+      }
+    });
+  }
+
+  // Close mobile nav on link click
+  mobileNav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navOpen = false;
+      mobileNav.style.maxHeight = '0';
+      mobileNav.setAttribute('aria-hidden', 'true');
+      navToggle.setAttribute('aria-expanded', 'false');
+      navToggle.setAttribute('aria-label', 'Menü öffnen');
+      bar1.style.transform = '';
+      bar2.style.opacity = '';
+      bar3.style.transform = '';
+    });
+  });
+
+  // ── Scroll reveal (IntersectionObserver) ──
+  const revealSelectors = '.reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-up-lg';
+  const revealElements = document.querySelectorAll(revealSelectors);
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+  revealElements.forEach(el => revealObserver.observe(el));
+
+  // ── Nav background on scroll ──
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) {
+      nav.style.borderBottomColor = 'rgba(255,255,255,0.08)';
+    } else {
+      nav.style.borderBottomColor = 'rgba(255,255,255,0.04)';
+    }
+  }, { passive: true });
+</script>
+
+</body>
+</html>

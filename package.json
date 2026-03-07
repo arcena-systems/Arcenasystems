@@ -1,0 +1,15 @@
+{
+  "name": "arcena-systems-website",
+  "version": "1.0.0",
+  "description": "Corporate website for Arcena Systems",
+  "type": "module",
+  "scripts": {
+    "start": "node serve.mjs",
+    "screenshot": "node screenshot.mjs http://localhost:3000"
+  },
+  "author": "Arcena Systems",
+  "license": "ISC",
+  "devDependencies": {
+    "puppeteer": "^24.37.5"
+  }
+}

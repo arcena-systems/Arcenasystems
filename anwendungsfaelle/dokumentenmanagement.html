@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>KI-Dokumentenmanagement für Immobilienverwaltung — Arcena Systems</title>
+  <meta name="description" content="Wie KI-Automatisierung die Dokumentenbearbeitung um 80% beschleunigte und Prüfprozesse um 50% verkürzte — ein Anwendungsfall von Arcena Systems." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: '#292F4D',
+            'arc-blue': '#466DCA',
+            'deep-blue': '#244AA0',
+            silver: '#A9B0C7',
+            'arc-white': '#FDFDFE',
+            'bg-dark': '#0A0E1F',
+            'card-top': '#121635',
+            'card-bottom': '#0B0E23',
+          },
+          fontFamily: {
+            display: ['Geist', 'sans-serif'],
+            body: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+
+  <style>
+    /* ── Base ── */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: #0A0E1F; color: #FDFDFE; font-family: 'Plus Jakarta Sans', sans-serif; -webkit-font-smoothing: antialiased; }
+
+    /* ── CSS Variables ── */
+    :root {
+      --navy: #292F4D;
+      --blue: #466DCA;
+      --deep-blue: #244AA0;
+      --silver: #A9B0C7;
+      --white: #FDFDFE;
+      --bg-dark: #0A0E1F;
+    }
+
+    /* ── Noise/Grain overlay ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 128px 128px;
+    }
+
+    /* ── Typography ── */
+    .font-display { font-family: 'Geist', sans-serif; }
+    .font-body { font-family: 'Plus Jakarta Sans', sans-serif; }
+
+    /* ── Gradient text ── */
+    .gradient-text {
+      background: linear-gradient(135deg, var(--blue) 0%, var(--white) 70%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ── Code highlight (Bima style) ── */
+    .highlight-code {
+      background: rgba(70, 109, 202, 0.15);
+      color: var(--blue);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: 'Geist', monospace;
+      font-size: 0.92em;
+      font-weight: 600;
+    }
+
+    /* ── Tag pill (Bima style) ── */
+    .tag-pill {
+      display: inline-flex; align-items: center;
+      padding: 5px 14px; border-radius: 50px;
+      border: 1px solid rgba(255,255,255,0.25);
+      font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.7);
+      transition: border-color 0.3s ease, color 0.3s ease;
+    }
+    .tag-pill:hover { border-color: var(--blue); color: var(--white); }
+
+    /* ── Animations ── */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInLeft {
+      from { opacity: 0; transform: translateX(-24px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    /* ── Scroll-reveal system ── */
+    .reveal {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity 0.9s cubic-bezier(0.33, 1.53, 0.69, 0.99), transform 0.9s cubic-bezier(0.33, 1.53, 0.69, 0.99);
+      will-change: transform, opacity;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0) translateX(0) scale(1); }
+
+    .reveal-left {
+      opacity: 0; transform: translateX(-24px);
+      transition: opacity 1s cubic-bezier(0.33, 1.53, 0.69, 0.99), transform 1s cubic-bezier(0.33, 1.53, 0.69, 0.99);
+      will-change: transform, opacity;
+    }
+    .reveal-left.visible { opacity: 1; transform: translateX(0); }
+
+    .reveal-right {
+      opacity: 0; transform: translateX(24px);
+      transition: opacity 1s cubic-bezier(0.33, 1.53, 0.69, 0.99), transform 1s cubic-bezier(0.33, 1.53, 0.69, 0.99);
+      will-change: transform, opacity;
+    }
+    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+    .reveal-scale {
+      opacity: 0; transform: scale(0.92);
+      transition: opacity 0.8s cubic-bezier(0.33, 1.53, 0.69, 0.99), transform 0.8s cubic-bezier(0.33, 1.53, 0.69, 0.99);
+      will-change: transform, opacity;
+    }
+    .reveal-scale.visible { opacity: 1; transform: scale(1); }
+
+    .reveal-up-lg {
+      opacity: 0; transform: translateY(40px);
+      transition: opacity 1.2s cubic-bezier(0.33, 1.53, 0.69, 0.99), transform 1.2s cubic-bezier(0.33, 1.53, 0.69, 0.99);
+      will-change: transform, opacity;
+    }
+    .reveal-up-lg.visible { opacity: 1; transform: translateY(0); }
+
+    /* Stagger */
+    .stagger-children > *:nth-child(1) { transition-delay: 0ms; }
+    .stagger-children > *:nth-child(2) { transition-delay: 100ms; }
+    .stagger-children > *:nth-child(3) { transition-delay: 200ms; }
+    .stagger-children > *:nth-child(4) { transition-delay: 300ms; }
+    .stagger-children > *:nth-child(5) { transition-delay: 400ms; }
+
+    /* Hero entrance */
+    @media (prefers-reduced-motion: no-preference) {
+      .hero-animate { animation: fadeInLeft 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+      .hero-animate-d1 { animation-delay: 0.1s; }
+      .hero-animate-d2 { animation-delay: 0.25s; }
+      .hero-animate-d3 { animation-delay: 0.4s; }
+      .hero-animate-d4 { animation-delay: 0.55s; }
+      .hero-animate-d5 { animation-delay: 0.7s; }
+    }
+
+    /* ── Content section styling ── */
+    .content-section-card {
+      border-radius: 16px;
+      background: linear-gradient(180deg, #121635 0%, #0B0E23 100%);
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 10px 30px 5px rgba(0,0,0,0.25);
+      overflow: hidden;
+    }
+
+    /* ── Stat card ── */
+    .stat-card {
+      border-radius: 16px;
+      background: linear-gradient(180deg, rgba(18,22,53,0.7) 0%, rgba(11,14,35,0.6) 100%);
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 28px 24px;
+      text-align: center;
+      transition: border-color 0.4s ease, box-shadow 0.4s ease;
+    }
+    .stat-card:hover {
+      border-color: rgba(70,109,202,0.3);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2), 0 0 20px rgba(70,109,202,0.08);
+    }
+
+    /* ── Video placeholder ── */
+    .video-placeholder {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 16px;
+      background: linear-gradient(180deg, #121635 0%, #0B0E23 100%);
+      border: 1px solid rgba(255,255,255,0.12);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      overflow: hidden;
+      transition: border-color 0.4s ease;
+    }
+    .video-placeholder:hover {
+      border-color: rgba(70,109,202,0.3);
+    }
+    .video-placeholder .play-btn {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      background: rgba(70,109,202,0.2);
+      border: 2px solid rgba(70,109,202,0.5);
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+    .video-placeholder:hover .play-btn {
+      background: rgba(70,109,202,0.35);
+      transform: scale(1.08);
+    }
+
+    /* ── Case study link card ── */
+    .case-link-card {
+      border-radius: 16px;
+      background: linear-gradient(180deg, #121635 0%, #0B0E23 100%);
+      border: 1px solid rgba(255,255,255,0.12);
+      overflow: hidden;
+      transition: border-color 0.4s ease, box-shadow 0.4s ease, transform 0.4s ease;
+    }
+    .case-link-card:hover {
+      border-color: rgba(70,109,202,0.3);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.3), 0 0 24px rgba(70,109,202,0.08);
+      transform: translateY(-4px);
+    }
+
+    /* ── Section separator glow ── */
+    .section-sep {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(70,109,202,0.25), transparent);
+      margin: 0 auto;
+      max-width: 600px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════ NAVIGATION ══════════════════════════════════ -->
+<nav class="fixed top-0 left-0 right-0 z-50 border-b border-white/[0.06]" style="background:rgba(10,14,31,0.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);">
+  <div class="max-w-[1200px] mx-auto px-5 lg:px-8 h-[72px] flex items-center justify-between">
+    <a href="/" class="flex items-center gap-3">
+      <svg viewBox="0 0 16 16" width="32" height="32"><polygon fill="#FDFDFE" points="14.747553,2.699218 15.149305,1.987466 16,3.263507 9.710892,14.12395 8.944087,14.12395 8.588211,13.541965 9.263917,12.364232 9.277024,12.38586"/><polygon fill="#A9B0C7" points="15.075247,1.87605 15.149305,1.987466 14.747553,2.699218 14.214067,1.87605"/><path fill="#FDFDFE" d="M7.997706,10.202761l3.553517-6.032196h-7.31348L7.997706,10.202761z M8.796625,11.484045l-0.040634,0.070127l0.507926,0.810061l-0.675706,1.177733L1.568345,2.060869c0.05833-0.084545,0.095031-0.154672,0.095031-0.154672V1.87605h12.502847v0.383402L8.796625,11.484045z"/><polygon fill="#466DCA" points="0.860525,2.347929 8.044894,14.12395 6.554541,14.12395 0,3.233359 0.665875,2.029411"/><path fill="#244AA0" d="M1.455618,1.87605l0.112727,0.18482C1.482489,2.186049,1.34879,2.342031,1.217057,2.342031c-0.133044,0-0.269365,0.003277-0.356531,0.005898l-0.19465-0.318519L0.751075,1.87605H1.455618z"/></svg>
+      <div class="flex flex-col leading-none"><span class="font-display text-[18px] font-bold tracking-[-0.02em] text-[#FDFDFE]">arcena</span><span class="font-display text-[9px] font-medium tracking-[0.28em] text-[#A9B0C7] uppercase mt-[1px]">systems</span></div>
+    </a>
+    <div class="hidden md:flex items-center gap-8">
+      <a href="/" class="font-body text-[14px] font-medium text-[#A9B0C7] hover:text-[#FDFDFE] transition-colors">Startseite</a>
+      <a href="/#usecases" class="font-body text-[14px] font-medium text-[#A9B0C7] hover:text-[#FDFDFE] transition-colors">Anwendungsfälle</a>
+      <a href="/#kontakt" class="font-body text-[14px] font-medium text-[#A9B0C7] hover:text-[#FDFDFE] transition-colors">Kontakt</a>
+    </div>
+    <a href="/#kontakt" class="hidden md:inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#466DCA] text-white text-[14px] font-semibold hover:bg-[#244AA0] transition-all duration-300">Erstgespräch buchen <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+  </div>
+</nav>
+
+
+<!-- ══════════════════════════════════ HERO SECTION ══════════════════════════════════ -->
+<section class="relative pt-[120px] pb-16 sm:pb-20" aria-label="Case Study Hero">
+  <div class="max-w-[1200px] mx-auto px-5 lg:px-8">
+
+    <!-- Back link -->
+    <a href="/#usecases" class="hero-animate hero-animate-d1 inline-flex items-center gap-2 font-body text-[14px] font-medium text-silver hover:text-arc-white transition-colors duration-200 mb-8 group">
+      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" class="transition-transform duration-200 group-hover:-translate-x-1"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      Zurück zu Anwendungsfällen
+    </a>
+
+    <!-- Tag pills -->
+    <div class="hero-animate hero-animate-d2 flex flex-wrap gap-2 mb-6">
+      <span class="tag-pill">Back-Office</span>
+      <span class="tag-pill">Dokumentation</span>
+    </div>
+
+    <!-- Hero image -->
+    <div class="hero-animate hero-animate-d3 mb-10">
+      <div class="rounded-2xl border border-white/[0.12] overflow-hidden" style="box-shadow: 0 10px 30px 5px rgba(0,0,0,0.25);">
+        <img
+          src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6e?w=1200&h=600&fit=crop"
+          alt="KI-Dokumentenmanagement für Immobilienverwaltung"
+          class="w-full h-[280px] sm:h-[400px] lg:h-[500px] object-cover"
+          loading="eager"
+          decoding="async"
+        />
+      </div>
+    </div>
+
+    <!-- Title and subtitle -->
+    <div class="max-w-[820px]">
+      <h1 class="hero-animate hero-animate-d4 font-display text-[32px] sm:text-[44px] lg:text-[56px] font-bold leading-[1.08] tracking-[-0.03em] text-arc-white mb-6">
+        KI-Dokumenten&shy;management für <span class="gradient-text">Immobilien&shy;verwaltung</span>
+      </h1>
+      <p class="hero-animate hero-animate-d5 font-body text-[16px] sm:text-[18px] leading-[1.7] text-silver max-w-[640px]">
+        Wie eine Immobilienverwaltung mit KI-gestützter Dokumentenklassifikation die Bearbeitungszeit um 80% senkte, Prüfprozesse um 50% beschleunigte und eine Erkennungsrate von 95% erreichte.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════ STATS ROW ══════════════════════════════════ -->
+<section class="relative py-12 sm:py-16" aria-label="Kennzahlen">
+  <div class="max-w-[1200px] mx-auto px-5 lg:px-8">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 stagger-children">
+
+      <div class="reveal stat-card">
+        <div class="font-display text-[48px] sm:text-[56px] font-bold tracking-[-0.03em] gradient-text mb-2">80%</div>
+        <div class="font-body text-[14px] sm:text-[15px] text-silver font-medium">Schnellere Bearbeitung</div>
+      </div>
+
+      <div class="reveal stat-card">
+        <div class="font-display text-[48px] sm:text-[56px] font-bold tracking-[-0.03em] gradient-text mb-2">50%</div>
+        <div class="font-body text-[14px] sm:text-[15px] text-silver font-medium">Schnellere Prüfprozesse</div>
+      </div>
+
+      <div class="reveal stat-card">
+        <div class="font-display text-[48px] sm:text-[56px] font-bold tracking-[-0.03em] gradient-text mb-2">95%</div>
+        <div class="font-body text-[14px] sm:text-[15px] text-silver font-medium">Dokument-Erkennungsrate</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ── Section Separator ── -->
+<div class="section-sep my-8 sm:my-12"></div>
+
+
+<!-- ══════════════════════════════════ CONTENT SECTION 1: Die Ausgangssituation ══════════════════════════════════ -->
+<section class="relative py-16 sm:py-24" aria-label="Die Ausgangssituation">
+  <div class="max-w-[1200px] mx-auto px-5 lg:px-8">
+    <div class="content-section-card">
+      <div class="flex flex-col lg:flex-row">
+
+        <!-- Text content -->
+        <div class="flex-1 p-7 sm:p-8 lg:py-14 lg:pl-12 lg:pr-8 flex flex-col justify-center">
+          <div class="reveal-left">
+            <div class="font-display text-[13px] font-medium tracking-[0.15em] text-silver/60 uppercase mb-4">
+              [ 01 — Ausgangssituation ]
+            </div>
+            <h2 class="font-display text-[28px] sm:text-[34px] lg:text-[40px] font-bold text-arc-white leading-[1.1] tracking-[-0.02em] mb-6">
+              Die Ausgangssituation
+            </h2>
+          </div>
+          <div class="reveal-right" style="transition-delay: 120ms;">
+            <p class="font-body text-[15px] sm:text-[16px] leading-[1.75] text-silver mb-5">
+              Eine mittelständische Immobilienverwaltung mit über 3.000 Einheiten empfing täglich <span class="highlight-code">hunderte Dokumente</span> über verschiedenste Kanäle: E-Mail-Anhänge, Cloud-Uploads, Fax-Eingänge und postalische Scans.
+            </p>
+            <p class="font-body text-[15px] sm:text-[16px] leading-[1.75] text-silver mb-5">
+              Die Mitarbeitenden verbrachten jeden Tag <span class="highlight-code">mehrere Stunden</span> damit, Dokumente manuell zu sichten, korrekt zu benennen und in die richtigen Ordnerstrukturen des DMS einzusortieren. Mietverträge, Nebenkostenabrechnungen, Versicherungsunterlagen, Handwerkerrechnungen — alles musste einzeln geprüft und zugeordnet werden.
+            </p>
+            <p class="font-body text-[15px] sm:text-[16px] leading-[1.75] text-silver">
+              Fehlende oder falsch abgelegte Dokumente führten regelmäßig zu Verzögerungen bei Prüfungen, Compliance-Risiken und frustrierten Mietern, die auf Rückmeldungen warteten.
+            </p>
+          </div>
+        </div>
+
+        <!-- Image area -->
+        <div class="flex-1 p-5 sm:p-6 lg:p-5">
+          <div class="reveal-scale h-[240px] sm:h-[300px] lg:h-full lg:min-h-[420px] rounded-xl border border-white/[0.12] overflow-hidden relative">
+            <img
+              src="https://images.unsplash.com/photo-1568992687947-868a62a9f521?w=600&h=400&fit=crop"
+              alt="Stapel von Dokumenten in einer Immobilienverwaltung"
+              class="absolute inset-0 w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════ CONTENT SECTION 2: Unser Ansatz (reversed) ══════════════════════════════════ -->
+<section class="relative py-16 sm:py-24" aria-label="Unser Ansatz">
+  <div class="max-w-[1200px] mx-auto px-5 lg:px-8">
+    <div class="content-section-card">
+      <div class="flex flex-col lg:flex-row-reverse">
+
+        <!-- Text content -->
+        <div class="flex-1 p-7 sm:p-8 lg:py-14 lg:pr-12 lg:pl-8 flex flex-col justify-center">
+          <div class="reveal-left">
+            <div class="font-display text-[13px] font-medium tracking-[0.15em] text-silver/60 uppercase mb-4">
+              [ 02 — Ansatz ]
+            </div>
+            <h2 class="font-display text-[28px] sm:text-[34px] lg:text-[40px] font-bold text-arc-white leading-[1.1] tracking-[-0.02em] mb-6">
+              Unser Ansatz
+            </h2>
+          </div>
+          <div class="reveal-right" style="transition-delay: 120ms;">
+            <p class="font-body text-[15px] sm:text-[16px] leading-[1.75] text-silver mb-5">
+              Wir entwickelten ein KI-System zur <span class="highlight-code">automatischen Dokumentenerkennung und -klassifikation</span>. Die Lösung analysiert eingehende Dokumente in Echtzeit, erkennt den Dokumenttyp und extrahiert relevante Schlüsseldaten.
+            </p>
+            <p class="font-body text-[15px] sm:text-[16px] leading-[1.75] text-silver mb-5">
+              Zentrale Datenpunkte werden automatisch erfasst: <span class="highlight-code">Mietername</span>, <span class="highlight-code">Objektadresse</span>, <span class="highlight-code">Dokumenttyp</span> (Mietvertrag, Rechnung, Betriebskostenabrechnung etc.) sowie relevante Fristen und Beträge.
+            </p>
+            <p class="font-body text-[15px] sm:text-[16px] leading-[1.75] text-silver">
+              Die nahtlose Integration in das bestehende Dokumentenmanagementsystem (DMS) war dabei entscheidend — keine neue Software, kein Systemwechsel, sondern eine intelligente Erweiterung des bestehenden Workflows.
+            </p>
+          </div>
+        </div>
+
+        <!-- Image area -->
+        <div class="flex-1 p-5 sm:p-6 lg:p-5">
+          <div class="reveal-scale h-[240px] sm:h-[300px] lg:h-full lg:min-h-[420px] rounded-xl border border-white/[0.12] overflow-hidden relative">
+            <img
+              src="https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?w=600&h=400&fit=crop"
+              alt="KI-gestützte Dokumentenanalyse"
+              class="absolute inset-0 w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════ CONTENT SECTION 3: Die Umsetzung ══════════════════════════════════ -->
+<section class="relative py-16 sm:py-24" aria-label="Die Umsetzung">
+  <div class="max-w-[1200px] mx-auto px-5 lg:px-8">
+    <div class="content-section-card">
+      <div class="flex flex-col lg:flex-row">
+
+        <!-- Text content -->
+        <div class="flex-1 p-7 sm:p-8 lg:py-14 lg:pl-12 lg:pr-8 flex flex-col justify-center">
+          <div class="reveal-left">
+            <div class="font-display text-[13px] font-medium tracking-[0.15em] text-silver/60 uppercase mb-4">
+              [ 03 — Umsetzung ]
+            </div>
+            <h2 class="font-display text-[28px] sm:text-[34px] lg:text-[40px] font-bold text-arc-white leading-[1.1] tracking-[-0.02em] mb-6">
+              Die Umsetzung
+            </h2>
+          </div>
+          <div class="reveal-right" style="transition-delay: 120ms;">
+            <p class="font-body text-[15px] sm:text-[16px] leading-[1.75] text-silver mb-5">
+              Der gesamte Prozess wurde als <span class="highlight-code">n8n-Workflow</span> implementiert und läuft vollautomatisch im Hintergrund:
+            </p>
+            <ul class="font-body text-[15px] sm:text-[16px] leading-[1.75] text-silver space-y-3 mb-5">
+              <li class="flex items-start gap-3">
+                <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-arc-blue flex-shrink-0"></span>
+                <span><strong class="text-arc-white">Dokumenteneingang:</strong> Automatischer Import aus E-Mail-Postfächern, Cloud-Speichern und Scan-Verzeichnissen</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-arc-blue flex-shrink-0"></span>
+                <span><strong class="text-arc-white">KI-Klassifikation:</strong> GPT-basierte Analyse erkennt Dokumenttyp, extrahiert Metadaten und ordnet automatisch zu</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-arc-blue flex-shrink-0"></span>
+                <span><strong class="text-arc-white">Auto-Umbenennung:</strong> Einheitliche Namenskonvention wird automatisch angewendet</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-arc-blue flex-shrink-0"></span>
+                <span><strong class="text-arc-white">Vollständigkeitsprüfung:</strong> Automatische Erkennung fehlender Pflichtdokumente pro Objekt</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-arc-blue flex-shrink-0"></span>
+                <span><strong class="text-arc-white">Automatische Nachforderung:</strong> Fehlende Unterlagen werden per E-Mail beim Absender angefordert</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-arc-blue flex-shrink-0"></span>
+                <span><strong class="text-arc-white">Dashboard:</strong> Echtzeit-Übersicht über alle Dokumentenstatus für das Back-Office-Team</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Image / Process Visual area -->
+        <div class="flex-1 p-5 sm:p-6 lg:p-5">
+          <div class="reveal-scale h-auto lg:h-full lg:min-h-[520px] rounded-xl border border-white/[0.12] overflow-hidden relative p-6 sm:p-8 flex flex-col justify-center" style="background: linear-gradient(180deg, rgba(18,22,53,0.5) 0%, rgba(11,14,35,0.5) 100%);">
+            <!-- Workflow visual -->
+            <div class="space-y-4">
+              <!-- Step 1 -->
+              <div class="flex items-center gap-4 p-4 rounded-xl border border-white/[0.08]" style="background: rgba(10,14,31,0.6);">
+                <div class="w-10 h-10 rounded-lg bg-arc-blue/20 border border-arc-blue/30 flex items-center justify-center flex-shrink-0">
+                  <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#466DCA" stroke-width="2"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                </div>
+                <div>
+                  <div class="font-display text-[13px] font-semibold text-arc-white">Dokumenteneingang</div>
+                  <div class="font-body text-[12px] text-silver/60">E-Mail, Cloud, Fax</div>
+                </div>
+              </div>
+              <!-- Arrow -->
+              <div class="flex justify-center">
+                <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#466DCA" stroke-width="2" class="opacity-40"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+              </div>
+              <!-- Step 2 -->
+              <div class="flex items-center gap-4 p-4 rounded-xl border border-arc-blue/20" style="background: rgba(70,109,202,0.08);">
+                <div class="w-10 h-10 rounded-lg bg-arc-blue/20 border border-arc-blue/30 flex items-center justify-center flex-shrink-0">
+                  <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#466DCA" stroke-width="2"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                </div>
+                <div>
+                  <div class="font-display text-[13px] font-semibold text-arc-white">KI-Klassifikation (GPT)</div>
+                  <div class="font-body text-[12px] text-silver/60">Typ, Metadaten, Zuordnung</div>
+                </div>
+              </div>
+              <!-- Arrow -->
+              <div class="flex justify-center">
+                <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#466DCA" stroke-width="2" class="opacity-40"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+              </div>
+              <!-- Step 3 -->
+              <div class="flex items-center gap-4 p-4 rounded-xl border border-white/[0.08]" style="background: rgba(10,14,31,0.6);">
+                <div class="w-10 h-10 rounded-lg bg-arc-blue/20 border border-arc-blue/30 flex items-center justify-center flex-shrink-0">
+                  <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#466DCA" stroke-width="2"><path d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+                </div>
+                <div>
+                  <div class="font-display text-[13px] font-semibold text-arc-white">Auto-Umbenennung & Ablage</div>
+                  <div class="font-body text-[12px] text-silver/60">DMS-Integration</div>
+                </div>
+              </div>
+              <!-- Arrow -->
+              <div class="flex justify-center">
+                <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#466DCA" stroke-width="2" class="opacity-40"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+              </div>
+              <!-- Step 4 -->
+              <div class="flex items-center gap-4 p-4 rounded-xl border border-white/[0.08]" style="background: rgba(10,14,31,0.6);">
+                <div class="w-10 h-10 rounded-lg bg-arc-blue/20 border border-arc-blue/30 flex items-center justify-center flex-shrink-0">
+                  <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#466DCA" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                </div>
+                <div>
+                  <div class="font-display text-[13px] font-semibold text-arc-white">Vollständigkeitsprüfung</div>
+                  <div class="font-body text-[12px] text-silver/60">Auto-Nachforderung</div>
+                </div>
+              </div>
+              <!-- Arrow -->
+              <div class="flex justify-center">
+                <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#466DCA" stroke-width="2" class="opacity-40"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+              </div>
+              <!-- Step 5 -->
+              <div class="flex items-center gap-4 p-4 rounded-xl border border-green-500/20" style="background: rgba(34,197,94,0.05);">
+                <div class="w-10 h-10 rounded-lg bg-green-500/15 border border-green-500/25 flex items-center justify-center flex-shrink-0">
+                  <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#22C55E" stroke-width="2"><path d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2"/></svg>
+                </div>
+                <div>
+                  <div class="font-display text-[13px] font-semibold text-arc-white">Dashboard & Monitoring</div>
+                  <div class="font-body text-[12px] text-green-400/70">Live-Übersicht</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════ CONTENT SECTION 4: Das Ergebnis (reversed) ══════════════════════════════════ -->
+<section class="relative py-16 sm:py-24" aria-label="Das Ergebnis">
+  <div class="max-w-[1200px] mx-auto px-5 lg:px-8">
+    <div class="content-section-card">
+      <div class="flex flex-col lg:flex-row-reverse">
+
+        <!-- Text content -->
+        <div class="flex-1 p-7 sm:p-8 lg:py-14 lg:pr-12 lg:pl-8 flex flex-col justify-center">
+          <div class="reveal-left">
+            <div class="font-display text-[13px] font-medium tracking-[0.15em] text-silver/60 uppercase mb-4">
+              [ 04 — Ergebnis ]
+            </div>
+            <h2 class="font-display text-[28px] sm:text-[34px] lg:text-[40px] font-bold text-arc-white leading-[1.1] tracking-[-0.02em] mb-6">
+              Das Ergebnis
+            </h2>
+          </div>
+          <div class="reveal-right" style="transition-delay: 120ms;">
+            <p class="font-body text-[15px] sm:text-[16px] leading-[1.75] text-silver mb-6">
+              Die Implementierung transformierte den gesamten Dokumenten-Workflow der Verwaltung innerhalb weniger Wochen:
+            </p>
+            <div class="space-y-5">
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 rounded-xl bg-arc-blue/15 border border-arc-blue/25 flex items-center justify-center flex-shrink-0">
+                  <span class="font-display text-[18px] font-bold gradient-text">80%</span>
+                </div>
+                <div>
+                  <div class="font-display text-[15px] font-semibold text-arc-white mb-1">Schnellere Dokumentenbearbeitung</div>
+                  <div class="font-body text-[14px] text-silver leading-[1.6]">Die KI-Klassifikation und automatische Ablage reduzierten die manuelle Bearbeitungszeit von Stunden auf Minuten.</div>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 rounded-xl bg-arc-blue/15 border border-arc-blue/25 flex items-center justify-center flex-shrink-0">
+                  <span class="font-display text-[18px] font-bold gradient-text">50%</span>
+                </div>
+                <div>
+                  <div class="font-display text-[15px] font-semibold text-arc-white mb-1">Schnellere Prüfprozesse</div>
+                  <div class="font-body text-[14px] text-silver leading-[1.6]">Automatische Vollständigkeitsprüfung und Nachforderung eliminieren Engpässe bei Compliance-Checks.</div>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 rounded-xl bg-arc-blue/15 border border-arc-blue/25 flex items-center justify-center flex-shrink-0">
+                  <span class="font-display text-[18px] font-bold gradient-text">95%</span>
+                </div>
+                <div>
+                  <div class="font-display text-[15px] font-semibold text-arc-white mb-1">Dokument-Erkennungsrate</div>
+                  <div class="font-body text-[14px] text-silver leading-[1.6]">Die KI erkennt und klassifiziert nahezu alle gängigen Dokumenttypen im Immobilienbereich korrekt.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Image area -->
+        <div class="flex-1 p-5 sm:p-6 lg:p-5">
+          <div class="reveal-scale h-[240px] sm:h-[300px] lg:h-full lg:min-h-[420px] rounded-xl border border-white/[0.12] overflow-hidden relative">
+            <img
+              src="https://images.unsplash.com/photo-1568992687947-868a62a9f521?w=600&h=400&fit=crop"
+              alt="Effizientes Dokumentenmanagement Dashboard"
+              class="absolute inset-0 w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ── Section Separator ── -->
+<div class="section-sep my-8 sm:my-12"></div>
+
+
+<!-- ══════════════════════════════════ VIDEO TESTIMONIAL ══════════════════════════════════ -->
+<section class="relative py-16 sm:py-24" aria-label="Video-Testimonial">
+  <div class="max-w-[1200px] mx-auto px-5 lg:px-8">
+
+    <div class="reveal-left mb-10">
+      <div class="font-display text-[13px] font-medium tracking-[0.15em] text-silver/60 uppercase mb-4">
+        [ Kundenstimme ]
+      </div>
+      <h2 class="font-display text-[28px] sm:text-[34px] lg:text-[40px] font-bold text-arc-white leading-[1.1] tracking-[-0.02em]">
+        Was unser Kunde sagt
+      </h2>
+    </div>
+
+    <div class="reveal-scale">
+      <div class="video-placeholder">
+        <!-- Subtle background gradient shimmer -->
+        <div class="absolute inset-0 opacity-20" style="background: radial-gradient(ellipse at center, rgba(70,109,202,0.2) 0%, transparent 70%);"></div>
+        <div class="play-btn mb-5">
+          <svg width="28" height="28" fill="none" viewBox="0 0 24 24" class="ml-1">
+            <path d="M8 5.14v13.72a1 1 0 001.5.86l11.04-6.86a1 1 0 000-1.72L9.5 4.28a1 1 0 00-1.5.86z" fill="#466DCA"/>
+          </svg>
+        </div>
+        <div class="font-display text-[16px] sm:text-[18px] font-semibold text-arc-white mb-2 relative z-10">Kundenstimme</div>
+        <div class="font-body text-[14px] text-silver/60 relative z-10">Video folgt in Kürze</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ── Section Separator ── -->
+<div class="section-sep my-8 sm:my-12"></div>
+
+
+<!-- ══════════════════════════════════ RESULTS SECTION (Large Stats) ══════════════════════════════════ -->
+<section class="relative py-20 sm:py-28" aria-label="Ergebnisse im Detail">
+  <div class="max-w-[1200px] mx-auto px-5 lg:px-8 text-center">
+
+    <div class="reveal-up-lg mb-14">
+      <div class="font-display text-[13px] font-medium tracking-[0.15em] text-silver/60 uppercase mb-4">
+        [ Ergebnisse ]
+      </div>
+      <h2 class="font-display text-[32px] sm:text-[44px] lg:text-[56px] font-bold leading-[1.08] tracking-[-0.03em]">
+        Messbare <span class="gradient-text">Resultate</span>
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 lg:gap-8 stagger-children">
+
+      <div class="reveal p-8 sm:p-10 rounded-2xl border border-white/[0.12]" style="background: linear-gradient(180deg, rgba(18,22,53,0.6) 0%, rgba(11,14,35,0.5) 100%);">
+        <div class="font-display text-[64px] sm:text-[72px] lg:text-[80px] font-bold tracking-[-0.04em] gradient-text leading-none mb-3">80%</div>
+        <div class="font-display text-[16px] sm:text-[18px] font-semibold text-arc-white mb-2">Schnellere Bearbeitung</div>
+        <div class="font-body text-[14px] text-silver leading-[1.6]">Dokumente werden automatisch erkannt, benannt und abgelegt — in Sekunden statt Stunden.</div>
+      </div>
+
+      <div class="reveal p-8 sm:p-10 rounded-2xl border border-white/[0.12]" style="background: linear-gradient(180deg, rgba(18,22,53,0.6) 0%, rgba(11,14,35,0.5) 100%);">
+        <div class="font-display text-[64px] sm:text-[72px] lg:text-[80px] font-bold tracking-[-0.04em] gradient-text leading-none mb-3">50%</div>
+        <div class="font-display text-[16px] sm:text-[18px] font-semibold text-arc-white mb-2">Schnellere Prüfprozesse</div>
+        <div class="font-body text-[14px] text-silver leading-[1.6]">Compliance-Checks und Vollständigkeitsprüfungen laufen automatisch — weniger Rückfragen, weniger Verzögerungen.</div>
+      </div>
+
+      <div class="reveal p-8 sm:p-10 rounded-2xl border border-white/[0.12]" style="background: linear-gradient(180deg, rgba(18,22,53,0.6) 0%, rgba(11,14,35,0.5) 100%);">
+        <div class="font-display text-[64px] sm:text-[72px] lg:text-[80px] font-bold tracking-[-0.04em] gradient-text leading-none mb-3">95%</div>
+        <div class="font-display text-[16px] sm:text-[18px] font-semibold text-arc-white mb-2">Erkennungsrate</div>
+        <div class="font-body text-[14px] text-silver leading-[1.6]">Die KI klassifiziert Mietverträge, Rechnungen und Bescheide mit nahezu perfekter Genauigkeit.</div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ── Section Separator ── -->
+<div class="section-sep my-8 sm:my-12"></div>
+
+
+<!-- ══════════════════════════════════ MORE CASE STUDIES ══════════════════════════════════ -->
+<section class="relative py-20 sm:py-28" aria-label="Weitere Anwendungsfälle">
+  <div class="max-w-[1200px] mx-auto px-5 lg:px-8">
+
+    <div class="reveal-up-lg text-center mb-14">
+      <div class="font-display text-[13px] font-medium tracking-[0.15em] text-silver/60 uppercase mb-4">
+        [ Weitere Anwendungsfälle ]
+      </div>
+      <h2 class="font-display text-[32px] sm:text-[44px] lg:text-[56px] font-bold leading-[1.08] tracking-[-0.03em]">
+        Mehr <span class="gradient-text">Erfolgsgeschichten</span>
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+
+      <!-- Card 1: Lead-Qualifizierung -->
+      <a href="/anwendungsfaelle/lead-qualifizierung" class="reveal-scale case-link-card group block">
+        <div class="h-[200px] sm:h-[240px] overflow-hidden relative">
+          <img
+            src="https://framerusercontent.com/images/B7UgIbtSivDNxsW5IZaMYzVC7gw.jpg"
+            alt="Lead-Qualifizierung für Immobilienunternehmen"
+            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        <div class="p-6 sm:p-7">
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="tag-pill text-[12px] py-1 px-3">Immobilien</span>
+            <span class="tag-pill text-[12px] py-1 px-3">Vertrieb</span>
+          </div>
+          <h3 class="font-display text-[20px] sm:text-[24px] font-bold text-arc-white leading-[1.15] tracking-[-0.02em] mb-3">
+            Lead-Qualifizierung für Immobilien&shy;unternehmen
+          </h3>
+          <p class="font-body text-[14px] leading-[1.65] text-silver mb-4">
+            Automatische Lead-Bewertung steigerte Konversionsraten um 40% — manuelle Nachverfolgung entfällt.
+          </p>
+          <span class="inline-flex items-center gap-2 font-body text-[14px] font-semibold text-arc-blue group-hover:text-arc-white transition-colors duration-200">
+            Case Study lesen
+            <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" class="transition-transform duration-200 group-hover:translate-x-1"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- Card 2: Mieterservice -->
+      <a href="/anwendungsfaelle/mieterservice" class="reveal-scale case-link-card group block" style="transition-delay: 120ms;">
+        <div class="h-[200px] sm:h-[240px] overflow-hidden relative">
+          <img
+            src="https://framerusercontent.com/images/yTUnV3zMKsVEgqFGDU7fBY84Q.jpg"
+            alt="KI-gestützter Mieterservice"
+            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        <div class="p-6 sm:p-7">
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="tag-pill text-[12px] py-1 px-3">Hausverwaltung</span>
+            <span class="tag-pill text-[12px] py-1 px-3">Service</span>
+          </div>
+          <h3 class="font-display text-[20px] sm:text-[24px] font-bold text-arc-white leading-[1.15] tracking-[-0.02em] mb-3">
+            KI-gestützter Mieterservice für Haus&shy;verwaltungen
+          </h3>
+          <p class="font-body text-[14px] leading-[1.65] text-silver mb-4">
+            KI-Chatbot senkte Support-Kosten um 60% und verdreifachte die Antwortgeschwindigkeit.
+          </p>
+          <span class="inline-flex items-center gap-2 font-body text-[14px] font-semibold text-arc-blue group-hover:text-arc-white transition-colors duration-200">
+            Case Study lesen
+            <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" class="transition-transform duration-200 group-hover:translate-x-1"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </span>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- CTA -->
+    <div class="reveal text-center mt-14">
+      <a href="/#kontakt" class="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-arc-blue text-white text-[15px] font-semibold font-body transition-[background-color,box-shadow,transform] duration-300 hover:bg-deep-blue hover:shadow-[0_6px_24px_rgba(70,109,202,0.4)] active:scale-[0.97]">
+        Jetzt unverbindlich beraten lassen
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════ FOOTER ══════════════════════════════════ -->
+<footer class="relative py-16 sm:py-20" style="background: #060A18;" aria-label="Footer">
+  <div class="max-w-[1200px] mx-auto px-5 lg:px-8">
+
+    <!-- Footer columns -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-10 lg:gap-8 mb-16">
+
+      <!-- Plattform -->
+      <div>
+        <h4 class="font-display text-[13px] font-semibold text-arc-white uppercase tracking-[0.1em] mb-5">Plattform</h4>
+        <ul class="space-y-3">
+          <li><a href="/" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Wie es funktioniert</a></li>
+          <li><a href="/#usecases" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Anwendungsfälle</a></li>
+          <li><a href="/#problem" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Das Problem</a></li>
+          <li><a href="/#kontakt" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Preise</a></li>
+        </ul>
+      </div>
+
+      <!-- Lösungen -->
+      <div>
+        <h4 class="font-display text-[13px] font-semibold text-arc-white uppercase tracking-[0.1em] mb-5">Lösungen</h4>
+        <ul class="space-y-3">
+          <li><a href="/#usecases" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Automatisierung</a></li>
+          <li><a href="/#usecases" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Dokumentation</a></li>
+          <li><a href="/#usecases" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Lead-Management</a></li>
+        </ul>
+      </div>
+
+      <!-- Ressourcen -->
+      <div>
+        <h4 class="font-display text-[13px] font-semibold text-arc-white uppercase tracking-[0.1em] mb-5">Ressourcen</h4>
+        <ul class="space-y-3">
+          <li><a href="#" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Blog</a></li>
+          <li><a href="#" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">FAQ</a></li>
+          <li><a href="#" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Datenschutz</a></li>
+        </ul>
+      </div>
+
+      <!-- Unternehmen -->
+      <div>
+        <h4 class="font-display text-[13px] font-semibold text-arc-white uppercase tracking-[0.1em] mb-5">Unternehmen</h4>
+        <ul class="space-y-3">
+          <li><a href="#" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Über uns</a></li>
+          <li><a href="/#kontakt" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Kontakt</a></li>
+          <li><a href="#" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Karriere</a></li>
+          <li><a href="#" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Impressum</a></li>
+        </ul>
+      </div>
+
+      <!-- Kontakt -->
+      <div class="col-span-2 sm:col-span-3 lg:col-span-1">
+        <h4 class="font-display text-[13px] font-semibold text-arc-white uppercase tracking-[0.1em] mb-5">Kontakt</h4>
+        <p class="font-body text-[14px] text-silver/60 leading-[1.7] mb-4">
+          Haben Sie Fragen? Schreiben Sie uns direkt.
+        </p>
+        <a href="mailto:dani.halabi55@gmail.com" class="inline-flex items-center gap-2 font-body text-[14px] font-medium text-arc-blue hover:text-white transition-colors duration-200">
+          E-Mail senden
+          <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="h-px bg-white/[0.06] mb-10"></div>
+
+    <!-- Bottom bar -->
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+
+      <!-- Logo -->
+      <a href="/" class="flex items-center gap-3" aria-label="Arcena Systems">
+        <svg viewBox="0 0 16 16" width="24" height="24" aria-hidden="true">
+          <polygon fill="#FDFDFE" points="14.747553,2.699218 15.149305,1.987466 16,3.263507 9.710892,14.12395 8.944087,14.12395 8.588211,13.541965 9.263917,12.364232 9.277024,12.38586"/>
+          <polygon fill="#A9B0C7" points="15.075247,1.87605 15.149305,1.987466 14.747553,2.699218 14.214067,1.87605"/>
+          <path fill="#FDFDFE" d="M7.997706,10.202761l3.553517-6.032196h-7.31348L7.997706,10.202761z M8.796625,11.484045l-0.040634,0.070127l0.507926,0.810061l-0.675706,1.177733L1.568345,2.060869c0.05833-0.084545,0.095031-0.154672,0.095031-0.154672V1.87605h12.502847v0.383402L8.796625,11.484045z"/>
+          <polygon fill="#466DCA" points="0.860525,2.347929 8.044894,14.12395 6.554541,14.12395 0,3.233359 0.665875,2.029411"/>
+          <path fill="#244AA0" d="M1.455618,1.87605l0.112727,0.18482C1.482489,2.186049,1.34879,2.342031,1.217057,2.342031c-0.133044,0-0.269365,0.003277-0.356531,0.005898l-0.19465-0.318519L0.751075,1.87605H1.455618z"/>
+        </svg>
+        <span class="font-display text-[15px] font-bold tracking-[-0.01em] text-silver/40">arcena systems</span>
+      </a>
+
+      <!-- Copyright -->
+      <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+        <span class="font-body text-[12px] text-silver/30">&copy; 2026 Arcena Systems. Alle Rechte vorbehalten.</span>
+        <a href="#" class="font-body text-[12px] text-silver/30 hover:text-silver/60 transition-colors duration-200">Datenschutz</a>
+        <a href="#" class="font-body text-[12px] text-silver/30 hover:text-silver/60 transition-colors duration-200">Impressum</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ════════ SCRIPTS ════════ -->
+<script>
+  // ── Scroll reveal (IntersectionObserver) — all reveal variants ──
+  const revealSelectors = '.reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-up-lg';
+  const revealElements = document.querySelectorAll(revealSelectors);
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+  revealElements.forEach(el => revealObserver.observe(el));
+
+  // ── Nav background on scroll ──
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) {
+      nav.style.borderBottomColor = 'rgba(255,255,255,0.08)';
+    } else {
+      nav.style.borderBottomColor = 'rgba(255,255,255,0.04)';
+    }
+  }, { passive: true });
+
+  // ── Section separator glow on scroll ──
+  if (window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+    const seps = document.querySelectorAll('.section-sep');
+    const sepObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'scaleX(1)';
+        }
+      });
+    }, { threshold: 0.5 });
+    seps.forEach(sep => {
+      sep.style.opacity = '0';
+      sep.style.transform = 'scaleX(0.3)';
+      sep.style.transition = 'opacity 1s ease, transform 1s cubic-bezier(0.33, 1.53, 0.69, 0.99)';
+      sepObserver.observe(sep);
+    });
+  }
+</script>
+
+</body>
+</html>
