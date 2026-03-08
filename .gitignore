@@ -12,3 +12,6 @@ temporary screenshots/
 Bima_inspiration/
 Images for Prompt/
 Info.txt
+
+# Worktrees (parallel agent workspaces)
+../worktrees/
