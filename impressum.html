@@ -6,35 +6,8 @@
   <title>Impressum — Arcena Systems</title>
   <meta name="description" content="Impressum von Arcena Systems — Angaben gemäß § 5 DDG." />
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet" />
-
-  <!-- Tailwind CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            navy: '#292F4D',
-            'arc-blue': '#466DCA',
-            'deep-blue': '#244AA0',
-            silver: '#A9B0C7',
-            'arc-white': '#FDFDFE',
-            'bg-dark': '#0A0E1F',
-            'card-top': '#121635',
-            'card-bottom': '#0B0E23',
-          },
-          fontFamily: {
-            display: ['Geist', 'sans-serif'],
-            body: ['"Plus Jakarta Sans"', 'sans-serif'],
-          },
-        },
-      },
-    }
-  </script>
+  <!-- Styles (self-hosted fonts + Tailwind, no external CDN) -->
+  <link rel="stylesheet" href="/styles.css" />
 
   <style>
     *, *::before, *::after { box-sizing: border-box; }
@@ -73,10 +46,10 @@
     <section class="mb-10">
       <h2 class="font-display text-[20px] font-semibold text-arc-white mb-4">Angaben gemäß § 5 DDG</h2>
       <div class="font-body text-[15px] text-silver/80 leading-[1.8] space-y-1">
-        <p>[Vor- und Nachname]</p>
+        <p>Dani Halabi</p>
         <p>Arcena Systems</p>
-        <p>[Straße und Hausnummer]</p>
-        <p>[PLZ] [Stadt]</p>
+        <p>Stuvkamp 20</p>
+        <p>22081 Hamburg</p>
         <p>Deutschland</p>
       </div>
     </section>
@@ -85,7 +58,7 @@
     <section class="mb-10">
       <h2 class="font-display text-[20px] font-semibold text-arc-white mb-4">Kontakt</h2>
       <div class="font-body text-[15px] text-silver/80 leading-[1.8] space-y-1">
-        <p>Telefon: [Telefonnummer]</p>
+        <p>Telefon: +49 157 7620 6009</p>
         <p>E-Mail: <a href="mailto:dani.halabi55@gmail.com" class="text-arc-blue hover:text-white transition-colors duration-200">dani.halabi55@gmail.com</a></p>
       </div>
     </section>
@@ -106,9 +79,9 @@
     <section class="mb-10">
       <h2 class="font-display text-[20px] font-semibold text-arc-white mb-4">Redaktionell verantwortlich</h2>
       <div class="font-body text-[15px] text-silver/80 leading-[1.8] space-y-1">
-        <p>[Vor- und Nachname]</p>
-        <p>[Straße und Hausnummer]</p>
-        <p>[PLZ] [Stadt]</p>
+        <p>Dani Halabi</p>
+        <p>Stuvkamp 20</p>
+        <p>22081 Hamburg</p>
       </div>
     </section>
 
