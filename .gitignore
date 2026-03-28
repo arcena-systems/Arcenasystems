@@ -5,13 +5,17 @@ node_modules/
 .DS_Store
 Thumbs.db
 
+# Environment / secrets
+.env
+.env.local
+.env.*
+
 # Dev screenshots
 temporary screenshots/
 
 # Reference & inspiration (not part of the website)
 Bima_inspiration/
 Images for Prompt/
-Info.txt
 
-# Worktrees (parallel agent workspaces)
-../worktrees/
+# Logs
+*.log

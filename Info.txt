@@ -1,0 +1,87 @@
+Notes for website:
+
+We have an AI Automation Agency and build Automations with n8n and can use AI to  optimize the process. Here are the dream outcomes of the costumers I wrote out:
+
+Dream Outcomes
+
+1. Wiederkehrende Aufgaben loswerden (Zeitersparnis)
+Kernversprechen:
+„Weniger manuelle Arbeit und mehr Zeit für die wirklich wichtigen Aufgaben — ohne dass das Team irgendetwas umstellen muss.“
+
+
+„Spart jede Woche spürbar Zeit, indem wir wiederkehrende Aufgaben komplett automatisieren — ohne zusätzlichen Aufwand auf eurer Seite.“
+
+
+„Spart X Stunden jede Woche durch das Ablösen von Y-Aufgaben — vollständig ohne Mehraufwand eurerseits.“
+
+
+
+2. Wachstum ohne zusätzliche Mitarbeiter
+Kernversprechen:
+„Das Unternehmen kann schneller wachsen, ohne sofort neue Mitarbeiter einstellen zu müssen.“
+
+
+„Skaliert eure Abläufe, ohne dass der Personalaufwand mitwächst — das ermöglicht Wachstum mit der gleichen Teamgröße.“
+
+
+„Prozessautomatisierung für Firmen, die wachsen wollen, ohne neue Mitarbeiter einstellen zu müssen.“
+
+
+
+3. Stressreduktion & Entlastung im Tagesgeschäft
+Kernversprechen:
+„Ein spürbar entspannteres Tagesgeschäft, weil nervige, zeitraubende Aufgaben automatisch erledigt werden.“
+
+
+„Innerhalb von 1–2 Wochen reduzieren wir spürbar den Arbeitsstress, indem wir lästige Routineaufgaben abnehmen — ohne dass ihr ein neues Tool lernen müsst.“
+
+
+
+4. Verbesserung bestehender Prozesse (Effizienz & Qualität)
+Kernversprechen:
+„Wir optimieren bestehende Abläufe so, dass sie deutlich effizienter und stabiler laufen — und damit Zeit, Kosten und Fehler reduzieren.“
+
+
+„Prozesse laufen schneller, fehlerfrei und einheitlich — ohne Mehraufwand für das Team.“
+
+
+
+Wir helfen Unternehmen, schneller zu wachsen, effizienter zu arbeiten und ihr Team zu entlasten — indem wir manuelle Prozesse durch zuverlässige und sichere Automatisierungen ersetzen.
+
+
+
+Was wir machen:
+
+Wir helfen Unternehmen dabei, ihre täglichen, wiederkehrenden Aufgaben durch moderne Automationen zu vereinfachen oder komplett zu übernehmen. Dabei schauen wir uns genau an, wie ein Prozess heute funktioniert, wo Zeit verloren geht und wo Fehler entstehen — und bauen daraus automatisierte Abläufe, die im Hintergrund zuverlässig für euch arbeiten.
+Statt neue Tools einzuführen oder das Team umzuschulen, integrieren wir unsere Lösungen in die bestehenden Systeme des Unternehmens. So laufen wichtige Aufgaben schneller, stabiler und ohne manuellen Aufwand.
+Unser Ziel ist einfach: weniger Stress, weniger Zeitaufwand und mehr Kapazität für die Arbeit, die wirklich zählt — damit Unternehmen wachsen können, ohne ständig neue Mitarbeiter einstellen zu müssen.
+
+
+
+What is the Website viewers’ state?
+
+The viewer is Cold and is new to the company, he doesn't know how or what we can do or him. We need to make the website valuable and let him see what can be good for him and explain what we can do for him. He needs to get value/learn something new and get interessted in our solution.
+
+What are their biggest problems:
+- Verschwenden Zeit an wiederkehrenden Aufgaben
+- Verlieren Kunden aufgrund von mangelnder Kommunikation (lead nurture oder Wiedergewinnung) zum Beispiel keine follow ups, updates, und keine schnelle Reaktion
+- fühlen sich gezwungen bei viel Arbeit neue Mitarbeiter einzustellen um alles im griff zu bekommen.
+
+What they already believe (before clicking on our website):
+-AI kann help and is known every (but still afraid GDPR and so one...)
+-last important check should be done by human (especially when communication with costumer crucial) (Human in the loop)
+- They think they are already digitalized with a newer cam but miss out on a lot because of this believe.
+- They believe human is still better than an ai agent
+
+What they are unsure about:
+-legal issues (GPRR) when implementing these solutions
+-If this solution will actually help them
+-If they have work on their end when implementing an solution (for example they might think they have to learn n8n to have it)
+-if the ROI is high enough
+- if AI is safe
+-If the solution can really take on a human workers task.
+
+What made them click?
+-Cold call
+-Cold email
+-Maybe ADS
