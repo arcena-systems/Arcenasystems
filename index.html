@@ -584,6 +584,83 @@
       transition: color 0.2s ease;
     }
     .mobile-nav a:hover { color: var(--blue); }
+
+    /* ── FAQ Accordion ── */
+    .faq-item {
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      background: linear-gradient(180deg, rgba(18,22,53,0.6) 0%, rgba(11,14,35,0.5) 100%);
+      transition: border-color 0.4s ease, box-shadow 0.4s ease;
+      overflow: hidden;
+    }
+    .faq-item:hover {
+      border-color: rgba(70,109,202,0.2);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15), 0 0 12px rgba(70,109,202,0.06);
+    }
+    .faq-item[open] {
+      border-color: rgba(70,109,202,0.25);
+    }
+    .faq-item summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 22px 24px;
+      cursor: pointer;
+      list-style: none;
+      font-family: 'Geist', sans-serif;
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1.4;
+      transition: color 0.3s ease;
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::marker { display: none; content: ''; }
+    .faq-item summary:hover { color: var(--blue); }
+    .faq-item summary .faq-chevron {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      color: var(--silver);
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.3s ease;
+    }
+    .faq-item[open] summary .faq-chevron {
+      transform: rotate(180deg);
+      color: var(--blue);
+    }
+    .faq-item .faq-answer {
+      padding: 0 24px 22px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 15px;
+      line-height: 1.75;
+      color: rgba(169,176,199,0.85);
+    }
+    @media (max-width: 639px) {
+      .faq-item summary { padding: 18px 20px; font-size: 15px; }
+      .faq-item .faq-answer { padding: 0 20px 18px; font-size: 14px; }
+    }
+
+    /* ── FAQ smooth open/close animation ── */
+    .faq-answer {
+      opacity: 0;
+      transform: translateY(-8px);
+      transition: opacity 0.35s cubic-bezier(0.33, 0.9, 0.68, 1),
+                  transform 0.35s cubic-bezier(0.33, 0.9, 0.68, 1);
+      will-change: transform, opacity;
+      pointer-events: none;
+    }
+    .faq-answer--visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+    .faq-answer--closing {
+      opacity: 0;
+      transform: translateY(-8px);
+      transition: opacity 0.25s cubic-bezier(0.33, 0.9, 0.68, 1),
+                  transform 0.25s cubic-bezier(0.33, 0.9, 0.68, 1);
+    }
   </style>
 </head>
 
@@ -621,6 +698,7 @@
       <a href="#problem" class="font-body text-[14px] font-medium text-silver hover:text-arc-white transition-colors duration-200">Problem</a>
       <a href="#loesung" class="font-body text-[14px] font-medium text-silver hover:text-arc-white transition-colors duration-200">Lösung</a>
       <a href="#usecases" class="font-body text-[14px] font-medium text-silver hover:text-arc-white transition-colors duration-200">Anwendungsfälle</a>
+      <a href="#faq" class="font-body text-[14px] font-medium text-silver hover:text-arc-white transition-colors duration-200">FAQ</a>
       <a href="#kontakt" class="font-body text-[14px] font-medium text-silver hover:text-arc-white transition-colors duration-200">Kontakt</a>
     </div>
 
@@ -645,6 +723,7 @@
   <a href="#problem" onclick="closeMobileNav()">Problem</a>
   <a href="#loesung" onclick="closeMobileNav()">Lösung</a>
   <a href="#usecases" onclick="closeMobileNav()">Anwendungsfälle</a>
+  <a href="#faq" onclick="closeMobileNav()">FAQ</a>
   <a href="#kontakt" onclick="closeMobileNav()">Kontakt</a>
   <a href="#kontakt" onclick="closeMobileNav()" class="mt-4 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-arc-blue text-white text-[16px] font-semibold">
     Erstgespräch buchen
@@ -1311,6 +1390,130 @@
   </div>
 </section>
 
+<!-- Section separator -->
+<div class="section-sep max-w-[1200px] mx-auto" aria-hidden="true"></div>
+
+<!-- ──────── FAQ SECTION ──────── -->
+<section id="faq" class="relative py-24 sm:py-32 overflow-hidden" aria-label="Häufig gestellte Fragen">
+
+  <!-- Subtle background accent -->
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+    <div class="absolute top-[30%] left-[50%] -translate-x-1/2 w-[700px] h-[350px] rounded-full" style="background: radial-gradient(ellipse, rgba(70,109,202,0.05) 0%, transparent 70%);"></div>
+  </div>
+
+  <div class="relative z-10 max-w-[800px] mx-auto px-5 lg:px-8">
+
+    <!-- Header -->
+    <div class="text-center mb-14 lg:mb-16">
+      <div class="reveal-left font-display text-[13px] font-medium tracking-[0.15em] text-silver/60 uppercase mb-5">
+        [ FAQ ]
+      </div>
+      <h2 class="reveal-up-lg font-display text-[36px] sm:text-[44px] lg:text-[56px] font-bold leading-[1.05] tracking-[-0.03em] text-arc-white" style="transition-delay: 100ms;">
+        Häufig gestellte <span class="gradient-text">Fragen</span>
+      </h2>
+      <p class="reveal font-body text-[16px] leading-[1.7] text-silver/70 max-w-[520px] mx-auto mt-5" style="transition-delay: 200ms;">
+        Antworten auf die wichtigsten Fragen zu KI-Automatisierung, Datenschutz und Implementierung.
+      </p>
+    </div>
+
+    <!-- Accordion items -->
+    <div class="space-y-4 stagger-children">
+
+      <!-- FAQ 1: DSGVO -->
+      <details class="faq-item reveal-scale">
+        <summary>
+          Ist die Lösung DSGVO-konform?
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <div class="faq-answer">
+          Ja, Datenschutz hat für uns höchste Priorität. Alle Daten werden ausschließlich auf europäischen Servern verarbeitet, und unsere Prozesse sind vollständig DSGVO-konform. Wir arbeiten nur mit Anbietern zusammen, die den strengsten europäischen Datenschutzstandards entsprechen — einschließlich Auftragsverarbeitungsverträgen und verschlüsselter Datenübertragung.
+        </div>
+      </details>
+
+      <!-- FAQ 2: KI ersetzt Menschen? -->
+      <details class="faq-item reveal-scale">
+        <summary>
+          Ersetzt die KI meine Mitarbeiter?
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <div class="faq-answer">
+          Nein — die KI ersetzt keine Menschen, sondern entlastet sie. Wiederkehrende, zeitraubende Aufgaben werden automatisiert, sodass Ihr Team sich auf das konzentrieren kann, was wirklich zählt: Kundenbeziehungen, Verhandlungen und strategische Entscheidungen. Das Ergebnis ist ein produktiveres Team, nicht ein kleineres.
+        </div>
+      </details>
+
+      <!-- FAQ 3: Neue Tools lernen? -->
+      <details class="faq-item reveal-scale">
+        <summary>
+          Muss mein Team ein neues Tool lernen?
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <div class="faq-answer">
+          Nein. Unsere Automatisierungen arbeiten im Hintergrund mit Ihren bestehenden Systemen. Ihr Team nutzt weiterhin die gewohnten Tools — CRM, E-Mail, Portale — nur eben mit deutlich weniger manueller Arbeit. Eine Umschulung ist nicht nötig.
+        </div>
+      </details>
+
+      <!-- FAQ 4: Implementierungsdauer -->
+      <details class="faq-item reveal-scale">
+        <summary>
+          Wie lange dauert die Implementierung?
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <div class="faq-answer">
+          Die meisten Automatisierungen sind innerhalb von 1–2 Wochen einsatzbereit. Nach dem Erstgespräch analysieren wir Ihre Abläufe, priorisieren die wirkungsvollsten Prozesse und starten mit der Umsetzung — Sie spüren den Unterschied oft schon in der ersten Woche.
+        </div>
+      </details>
+
+      <!-- FAQ 5: Kosten / ROI -->
+      <details class="faq-item reveal-scale">
+        <summary>
+          Was kostet die Lösung — und lohnt sich das?
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <div class="faq-answer">
+          Die Kosten richten sich nach dem Umfang der Automatisierung. In einem kostenlosen Erstgespräch analysieren wir Ihre Abläufe und erstellen ein transparentes, individuelles Angebot. Die meisten Kunden sparen bereits im ersten Monat mehr Zeit und Kosten, als die Lösung kostet — ein positiver ROI ist typischerweise sofort spürbar.
+        </div>
+      </details>
+
+      <!-- FAQ 6: Integration bestehende Systeme -->
+      <details class="faq-item reveal-scale">
+        <summary>
+          Lässt sich das in unsere bestehenden Systeme integrieren?
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <div class="faq-answer">
+          Ja. Wir integrieren uns nahtlos in gängige Immobilien-Software — CRM-Systeme, Immobilienportale wie ImmoScout24, E-Mail-Dienste und Dokumentenmanagement-Tools. Im Erstgespräch prüfen wir genau, welche Ihrer bestehenden Systeme wir direkt anbinden können, damit nichts umgestellt werden muss.
+        </div>
+      </details>
+
+      <!-- FAQ 7: Welche Prozesse automatisierbar? -->
+      <details class="faq-item reveal-scale">
+        <summary>
+          Welche Prozesse lassen sich automatisieren?
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <div class="faq-answer">
+          Typische Beispiele sind: automatische Lead-Qualifizierung und Follow-ups, Mieterkommunikation, Dokumentenverarbeitung, Terminkoordination und Reporting. Grundsätzlich eignet sich jeder wiederkehrende, regelbasierte Prozess — im Erstgespräch identifizieren wir gemeinsam, wo bei Ihnen das größte Potenzial liegt.
+        </div>
+      </details>
+
+      <!-- FAQ 8: Was wenn KI Fehler macht? -->
+      <details class="faq-item reveal-scale">
+        <summary>
+          Was passiert, wenn die KI einen Fehler macht?
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <div class="faq-answer">
+          Bevor eine Automatisierung live geht, wird sie ausgiebig mit separaten Testdaten geprüft — so lange, bis alles zuverlässig läuft. Routineaufgaben wie Follow-up-E-Mails oder Terminbestätigungen laufen danach vollautomatisch. Bei besonders sensiblen Prozessen setzen wir auf Human-in-the-Loop: Dort prüft Ihr Team den letzten Schritt, bevor er ausgeführt wird. So bekommen Sie das Beste aus beiden Welten — Geschwindigkeit im Alltag und Kontrolle, wo es zählt.
+        </div>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<!-- Section separator -->
+<div class="section-sep max-w-[1200px] mx-auto" aria-hidden="true"></div>
+
 <!-- ──────── CTA SECTION ──────── -->
 <section id="kontakt" class="relative py-28 sm:py-36 overflow-hidden" aria-label="Kontakt aufnehmen">
 
@@ -1403,7 +1606,7 @@
         <h4 class="font-display text-[13px] font-semibold text-arc-white uppercase tracking-[0.1em] mb-5">Ressourcen</h4>
         <ul class="space-y-3">
           <li><a href="#" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Blog</a></li>
-          <li><a href="#" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">FAQ</a></li>
+          <li><a href="#faq" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">FAQ</a></li>
           <li><a href="#" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Datenschutz</a></li>
         </ul>
       </div>
@@ -1510,6 +1713,48 @@
     });
   }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
   revealElements.forEach(el => revealObserver.observe(el));
+
+  // ── FAQ smooth accordion animation ──
+  (function() {
+    const faqItems = document.querySelectorAll('.faq-item');
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    faqItems.forEach(function(details) {
+      const summary = details.querySelector('summary');
+      const answer = details.querySelector('.faq-answer');
+      if (!summary || !answer) return;
+
+      // If reduced motion preferred, let native <details> handle everything
+      if (prefersReduced) return;
+
+      summary.addEventListener('click', function(e) {
+        e.preventDefault();
+
+        if (details.open) {
+          // ── CLOSING ──
+          answer.classList.remove('faq-answer--visible');
+          answer.classList.add('faq-answer--closing');
+
+          answer.addEventListener('transitionend', function handler(ev) {
+            if (ev.propertyName !== 'opacity') return;
+            answer.removeEventListener('transitionend', handler);
+            answer.classList.remove('faq-answer--closing');
+            details.open = false;
+          });
+        } else {
+          // ── OPENING ──
+          details.open = true;
+
+          // Double rAF to ensure browser has committed the layout
+          requestAnimationFrame(function() {
+            requestAnimationFrame(function() {
+              answer.classList.add('faq-answer--visible');
+            });
+          });
+        }
+      });
+    });
+  })();
 
   // ── Hero image parallax ──
   const heroVisual = document.getElementById('heroVisual');
