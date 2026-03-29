@@ -217,18 +217,58 @@
 <!-- ══════════════════════════════════ NAVIGATION ══════════════════════════════════ -->
 <nav class="fixed top-0 left-0 right-0 z-50 border-b border-white/[0.06]" style="background:rgba(10,14,31,0.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);">
   <div class="max-w-[1200px] mx-auto px-5 lg:px-8 h-[72px] flex items-center justify-between">
-    <a href="/" class="flex items-center gap-3">
-      <svg viewBox="0 0 16 16" width="32" height="32"><polygon fill="#FDFDFE" points="14.747553,2.699218 15.149305,1.987466 16,3.263507 9.710892,14.12395 8.944087,14.12395 8.588211,13.541965 9.263917,12.364232 9.277024,12.38586"/><polygon fill="#A9B0C7" points="15.075247,1.87605 15.149305,1.987466 14.747553,2.699218 14.214067,1.87605"/><path fill="#FDFDFE" d="M7.997706,10.202761l3.553517-6.032196h-7.31348L7.997706,10.202761z M8.796625,11.484045l-0.040634,0.070127l0.507926,0.810061l-0.675706,1.177733L1.568345,2.060869c0.05833-0.084545,0.095031-0.154672,0.095031-0.154672V1.87605h12.502847v0.383402L8.796625,11.484045z"/><polygon fill="#466DCA" points="0.860525,2.347929 8.044894,14.12395 6.554541,14.12395 0,3.233359 0.665875,2.029411"/><path fill="#244AA0" d="M1.455618,1.87605l0.112727,0.18482C1.482489,2.186049,1.34879,2.342031,1.217057,2.342031c-0.133044,0-0.269365,0.003277-0.356531,0.005898l-0.19465-0.318519L0.751075,1.87605H1.455618z"/></svg>
-      <div class="flex flex-col leading-none"><span class="font-display text-[18px] font-bold tracking-[-0.02em] text-[#FDFDFE]">arcena</span><span class="font-display text-[9px] font-medium tracking-[0.28em] text-[#A9B0C7] uppercase mt-[1px]">systems</span></div>
+
+    <!-- Logo -->
+    <a href="/" class="flex items-center gap-3 group" aria-label="Arcena Systems - Startseite">
+      <svg viewBox="0 0 16 16" width="32" height="32" aria-hidden="true" class="flex-shrink-0">
+        <polygon fill="#FDFDFE" points="14.747553,2.699218 15.149305,1.987466 16,3.263507 9.710892,14.12395 8.944087,14.12395 8.588211,13.541965 9.263917,12.364232 9.277024,12.38586"/>
+        <polygon fill="#A9B0C7" points="15.075247,1.87605 15.149305,1.987466 14.747553,2.699218 14.214067,1.87605"/>
+        <path fill="#FDFDFE" d="M7.997706,10.202761l3.553517-6.032196h-7.31348L7.997706,10.202761z M8.796625,11.484045l-0.040634,0.070127l0.507926,0.810061l-0.675706,1.177733L1.568345,2.060869c0.05833-0.084545,0.095031-0.154672,0.095031-0.154672V1.87605h12.502847v0.383402L8.796625,11.484045z"/>
+        <polygon fill="#466DCA" points="0.860525,2.347929 8.044894,14.12395 6.554541,14.12395 0,3.233359 0.665875,2.029411"/>
+        <path fill="#FDFDFE" d="M1.663376,1.87605v0.030148c0,0-0.036702,0.070127-0.095031,0.154672L1.455618,1.87605h0.057019H1.663376z"/>
+        <path fill="#244AA0" d="M1.455618,1.87605l0.112727,0.18482C1.482489,2.186049,1.34879,2.342031,1.217057,2.342031c-0.133044,0-0.269365,0.003277-0.356531,0.005898l-0.19465-0.318519L0.751075,1.87605H1.455618z"/>
+      </svg>
+      <div class="flex flex-col leading-none">
+        <span class="font-display text-[18px] font-bold tracking-[-0.02em] text-arc-white group-hover:text-white transition-colors duration-200">arcena</span>
+        <span class="font-display text-[9px] font-medium tracking-[0.28em] text-silver uppercase mt-[1px]">systems</span>
+      </div>
     </a>
+
+    <!-- Desktop links -->
     <div class="hidden md:flex items-center gap-8">
-      <a href="/" class="font-body text-[14px] font-medium text-[#A9B0C7] hover:text-[#FDFDFE] transition-colors">Startseite</a>
-      <a href="/#usecases" class="font-body text-[14px] font-medium text-[#A9B0C7] hover:text-[#FDFDFE] transition-colors">Anwendungsfälle</a>
-      <a href="/#kontakt" class="font-body text-[14px] font-medium text-[#A9B0C7] hover:text-[#FDFDFE] transition-colors">Kontakt</a>
+      <a href="/" class="font-body text-[14px] font-medium text-silver hover:text-arc-white transition-colors duration-200">Startseite</a>
+      <a href="/#problem" class="font-body text-[14px] font-medium text-silver hover:text-arc-white transition-colors duration-200">Problem</a>
+      <a href="/#loesung" class="font-body text-[14px] font-medium text-silver hover:text-arc-white transition-colors duration-200">Lösung</a>
+      <a href="/#usecases" class="font-body text-[14px] font-medium text-silver hover:text-arc-white transition-colors duration-200">Anwendungsfälle</a>
+      <a href="/#kontakt" class="font-body text-[14px] font-medium text-silver hover:text-arc-white transition-colors duration-200">Kontakt</a>
     </div>
-    <a href="/#kontakt" class="hidden md:inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#466DCA] text-white text-[14px] font-semibold hover:bg-[#244AA0] transition-all duration-300">Erstgespräch buchen <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+
+    <!-- Desktop CTA -->
+    <a href="/#kontakt" class="hidden md:inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-arc-blue text-white text-[14px] font-semibold font-body transition-[background-color,box-shadow,transform] duration-300 hover:bg-deep-blue hover:shadow-[0_4px_20px_rgba(70,109,202,0.35)] active:scale-[0.97]">
+      Erstgespräch buchen
+      <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+
+    <!-- Mobile hamburger -->
+    <button id="navToggle" class="md:hidden flex flex-col gap-[5px] p-2 -mr-2" aria-label="Menü öffnen" aria-expanded="false">
+      <span class="block w-5 h-[2px] bg-arc-white rounded-full transition-transform duration-300 origin-center" id="bar1"></span>
+      <span class="block w-5 h-[2px] bg-arc-white rounded-full transition-opacity duration-300" id="bar2"></span>
+      <span class="block w-5 h-[2px] bg-arc-white rounded-full transition-transform duration-300 origin-center" id="bar3"></span>
+    </button>
   </div>
 </nav>
+
+<!-- Mobile nav overlay -->
+<div class="mobile-nav" id="mobileNav" aria-hidden="true">
+  <a href="/" onclick="closeMobileNav()">Startseite</a>
+  <a href="/#problem" onclick="closeMobileNav()">Problem</a>
+  <a href="/#loesung" onclick="closeMobileNav()">Lösung</a>
+  <a href="/#usecases" onclick="closeMobileNav()">Anwendungsfälle</a>
+  <a href="/#kontakt" onclick="closeMobileNav()">Kontakt</a>
+  <a href="/#kontakt" onclick="closeMobileNav()" class="mt-4 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-arc-blue text-white text-[16px] font-semibold">
+    Erstgespräch buchen
+  </a>
+</div>
 
 
 <!-- ══════════════════════════════════ HERO SECTION ══════════════════════════════════ -->
@@ -780,14 +820,25 @@
 
     </div>
 
-    <!-- CTA -->
-    <div class="reveal text-center mt-14">
-      <a href="/#kontakt" class="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-arc-blue text-white text-[15px] font-semibold font-body transition-[background-color,box-shadow,transform] duration-300 hover:bg-deep-blue hover:shadow-[0_6px_24px_rgba(70,109,202,0.4)] active:scale-[0.97]">
-        Jetzt unverbindlich beraten lassen
-        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  </div>
+</section>
+
+
+<!-- ──────── CTA SECTION ──────── -->
+<section class="py-16 sm:py-24">
+  <div class="max-w-[800px] mx-auto px-5 lg:px-8 text-center">
+    <div class="reveal-scale rounded-2xl p-10 sm:p-14 border border-white/[0.12]" style="background: linear-gradient(180deg, #121635 0%, #0B0E23 100%);">
+      <h2 class="font-display text-[24px] sm:text-[32px] font-bold tracking-[-0.02em] leading-[1.15] text-arc-white mb-4">
+        Bereit für Ihren eigenen Anwendungsfall?
+      </h2>
+      <p class="font-body text-[16px] leading-[1.7] text-silver mb-8 max-w-[520px] mx-auto">
+        Lassen Sie uns in einem kostenlosen Erstgespräch herausfinden, wie KI-Automatisierung Ihre Prozesse transformieren kann.
+      </p>
+      <a href="/#kontakt" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-arc-blue text-white text-[15px] font-semibold hover:bg-deep-blue transition-[background-color,box-shadow,transform] duration-300">
+        Erstgespräch buchen
+        <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
     </div>
-
   </div>
 </section>
 
@@ -885,6 +936,42 @@
 
 <!-- ════════ SCRIPTS ════════ -->
 <script>
+  // -- Mobile nav toggle --
+  const navToggle = document.getElementById('navToggle');
+  const mobileNav = document.getElementById('mobileNav');
+  const bar1 = document.getElementById('bar1');
+  const bar2 = document.getElementById('bar2');
+  const bar3 = document.getElementById('bar3');
+  let navOpen = false;
+
+  navToggle.addEventListener('click', () => {
+    navOpen = !navOpen;
+    mobileNav.classList.toggle('open', navOpen);
+    mobileNav.setAttribute('aria-hidden', !navOpen);
+    navToggle.setAttribute('aria-expanded', navOpen);
+    navToggle.setAttribute('aria-label', navOpen ? 'Menü schließen' : 'Menü öffnen');
+    if (navOpen) {
+      bar1.style.transform = 'translateY(7px) rotate(45deg)';
+      bar2.style.opacity = '0';
+      bar3.style.transform = 'translateY(-7px) rotate(-45deg)';
+    } else {
+      bar1.style.transform = '';
+      bar2.style.opacity = '';
+      bar3.style.transform = '';
+    }
+  });
+
+  function closeMobileNav() {
+    navOpen = false;
+    mobileNav.classList.remove('open');
+    mobileNav.setAttribute('aria-hidden', 'true');
+    navToggle.setAttribute('aria-expanded', 'false');
+    navToggle.setAttribute('aria-label', 'Menü öffnen');
+    bar1.style.transform = '';
+    bar2.style.opacity = '';
+    bar3.style.transform = '';
+  }
+
   // ── Scroll reveal (IntersectionObserver) — all reveal variants ──
   const revealSelectors = '.reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-up-lg';
   const revealElements = document.querySelectorAll(revealSelectors);
