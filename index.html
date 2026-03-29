@@ -6,35 +6,8 @@
   <title>Arcena Systems — Immobilienprozesse automatisieren, Zeit sparen</title>
   <meta name="description" content="Immobilienunternehmen sparen 10+ Stunden pro Woche mit unseren KI-Automatisierungen. DSGVO-konform, ohne Tool-Wechsel. Jetzt Erstgespräch buchen." />
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet" />
-
-  <!-- Tailwind CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            navy: '#292F4D',
-            'arc-blue': '#466DCA',
-            'deep-blue': '#244AA0',
-            silver: '#A9B0C7',
-            'arc-white': '#FDFDFE',
-            'bg-dark': '#0A0E1F',
-            'card-top': '#121635',
-            'card-bottom': '#0B0E23',
-          },
-          fontFamily: {
-            display: ['Geist', 'sans-serif'],
-            body: ['"Plus Jakarta Sans"', 'sans-serif'],
-          },
-        },
-      },
-    }
-  </script>
+  <!-- Styles (self-hosted fonts + Tailwind, no external CDN) -->
+  <link rel="stylesheet" href="/styles.css" />
 
   <style>
     /* ── Base ── */
@@ -1615,7 +1588,7 @@
 
     <!-- CTA button -->
     <div class="reveal" style="transition-delay: 300ms;">
-      <a href="mailto:dani.halabi55@gmail.com" class="inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-arc-blue text-white text-[16px] font-semibold font-body transition-[background-color,box-shadow,transform] duration-300 hover:bg-deep-blue hover:shadow-[0_8px_32px_rgba(70,109,202,0.45)] active:scale-[0.97]">
+      <a href="mailto:Dani@arcenasystems.de" class="inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-arc-blue text-white text-[16px] font-semibold font-body transition-[background-color,box-shadow,transform] duration-300 hover:bg-deep-blue hover:shadow-[0_8px_32px_rgba(70,109,202,0.45)] active:scale-[0.97]">
         Jetzt kostenloses Erstgespräch sichern
         <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
@@ -1671,24 +1644,49 @@
 
       <!-- Column 3: Kontakt -->
       <div>
+        <h4 class="font-display text-[13px] font-semibold text-arc-white uppercase tracking-[0.1em] mb-5">Unternehmen</h4>
+        <ul class="space-y-3">
+          <li><a href="#" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Über uns</a></li>
+          <li><a href="#kontakt" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Kontakt</a></li>
+          <li><a href="#" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Karriere</a></li>
+          <li><a href="/impressum.html" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Impressum</a></li>
+        </ul>
+      </div>
+
+      <!-- Kontakt / Subscribe -->
+      <div class="col-span-2 sm:col-span-3 lg:col-span-1">
         <h4 class="font-display text-[13px] font-semibold text-arc-white uppercase tracking-[0.1em] mb-5">Kontakt</h4>
         <p class="font-body text-[14px] text-silver/60 leading-[1.7] mb-4">
           Haben Sie Fragen? Schreiben Sie uns direkt.
         </p>
-        <a href="mailto:dani.halabi55@gmail.com" class="inline-flex items-center gap-2 font-body text-[14px] font-medium text-arc-blue hover:text-white transition-colors duration-200">
-          dani.halabi55@gmail.com
+        <a href="mailto:Dani@arcenasystems.de" class="inline-flex items-center gap-2 font-body text-[14px] font-medium text-arc-blue hover:text-white transition-colors duration-200">
+          Dani@arcenasystems.de
           <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
       </div>
     </div>
 
     <!-- Divider -->
-    <div class="h-px bg-white/[0.06] mb-8"></div>
+    <div class="h-px bg-white/[0.06] mb-10"></div>
 
-    <!-- Bottom bar: copyright + legal links -->
-    <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
-      <span class="font-body text-[12px] text-silver/30">&copy; 2026 Arcena Systems. Alle Rechte vorbehalten.</span>
-      <div class="flex items-center gap-6">
+    <!-- Bottom bar: logo + copyright -->
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-3" aria-label="Arcena Systems">
+        <svg viewBox="0 0 16 16" width="24" height="24" aria-hidden="true">
+          <polygon fill="#FDFDFE" points="14.747553,2.699218 15.149305,1.987466 16,3.263507 9.710892,14.12395 8.944087,14.12395 8.588211,13.541965 9.263917,12.364232 9.277024,12.38586"/>
+          <polygon fill="#A9B0C7" points="15.075247,1.87605 15.149305,1.987466 14.747553,2.699218 14.214067,1.87605"/>
+          <path fill="#FDFDFE" d="M7.997706,10.202761l3.553517-6.032196h-7.31348L7.997706,10.202761z M8.796625,11.484045l-0.040634,0.070127l0.507926,0.810061l-0.675706,1.177733L1.568345,2.060869c0.05833-0.084545,0.095031-0.154672,0.095031-0.154672V1.87605h12.502847v0.383402L8.796625,11.484045z"/>
+          <polygon fill="#466DCA" points="0.860525,2.347929 8.044894,14.12395 6.554541,14.12395 0,3.233359 0.665875,2.029411"/>
+          <path fill="#244AA0" d="M1.455618,1.87605l0.112727,0.18482C1.482489,2.186049,1.34879,2.342031,1.217057,2.342031c-0.133044,0-0.269365,0.003277-0.356531,0.005898l-0.19465-0.318519L0.751075,1.87605H1.455618z"/>
+        </svg>
+        <span class="font-display text-[15px] font-bold tracking-[-0.01em] text-silver/40">arcena systems</span>
+      </a>
+
+      <!-- Copyright + links -->
+      <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+        <span class="font-body text-[12px] text-silver/30">&copy; 2026 Arcena Systems. Alle Rechte vorbehalten.</span>
         <a href="/datenschutz.html" class="font-body text-[12px] text-silver/30 hover:text-silver/60 transition-colors duration-200">Datenschutz</a>
         <a href="/impressum.html" class="font-body text-[12px] text-silver/30 hover:text-silver/60 transition-colors duration-200">Impressum</a>
       </div>

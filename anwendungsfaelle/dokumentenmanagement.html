@@ -6,35 +6,8 @@
   <title>KI-Dokumentenmanagement für Immobilienverwaltung — Arcena Systems</title>
   <meta name="description" content="Wie KI-Automatisierung die Dokumentenbearbeitung um 80% beschleunigte und Prüfprozesse um 50% verkürzte — ein Anwendungsfall von Arcena Systems." />
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet" />
-
-  <!-- Tailwind CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            navy: '#292F4D',
-            'arc-blue': '#466DCA',
-            'deep-blue': '#244AA0',
-            silver: '#A9B0C7',
-            'arc-white': '#FDFDFE',
-            'bg-dark': '#0A0E1F',
-            'card-top': '#121635',
-            'card-bottom': '#0B0E23',
-          },
-          fontFamily: {
-            display: ['Geist', 'sans-serif'],
-            body: ['"Plus Jakarta Sans"', 'sans-serif'],
-          },
-        },
-      },
-    }
-  </script>
+  <!-- Styles (self-hosted fonts + Tailwind, no external CDN) -->
+  <link rel="stylesheet" href="/styles.css" />
 
   <style>
     /* ── Base ── */
@@ -830,7 +803,7 @@
         <ul class="space-y-3">
           <li><a href="#" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Blog</a></li>
           <li><a href="#" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">FAQ</a></li>
-          <li><a href="#" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Datenschutz</a></li>
+          <li><a href="/datenschutz.html" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Datenschutz</a></li>
         </ul>
       </div>
 
@@ -841,7 +814,7 @@
           <li><a href="#" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Über uns</a></li>
           <li><a href="/#kontakt" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Kontakt</a></li>
           <li><a href="#" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Karriere</a></li>
-          <li><a href="#" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Impressum</a></li>
+          <li><a href="/impressum.html" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Impressum</a></li>
         </ul>
       </div>
 
@@ -879,8 +852,8 @@
       <!-- Copyright -->
       <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
         <span class="font-body text-[12px] text-silver/30">&copy; 2026 Arcena Systems. Alle Rechte vorbehalten.</span>
-        <a href="#" class="font-body text-[12px] text-silver/30 hover:text-silver/60 transition-colors duration-200">Datenschutz</a>
-        <a href="#" class="font-body text-[12px] text-silver/30 hover:text-silver/60 transition-colors duration-200">Impressum</a>
+        <a href="/datenschutz.html" class="font-body text-[12px] text-silver/30 hover:text-silver/60 transition-colors duration-200">Datenschutz</a>
+        <a href="/impressum.html" class="font-body text-[12px] text-silver/30 hover:text-silver/60 transition-colors duration-200">Impressum</a>
       </div>
     </div>
   </div>

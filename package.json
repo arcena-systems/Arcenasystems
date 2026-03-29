@@ -4,12 +4,16 @@
   "description": "Corporate website for Arcena Systems",
   "type": "module",
   "scripts": {
+    "build:css": "tailwindcss -i src/input.css -o styles.css --content './*.html,./anwendungsfaelle/*.html' --minify",
+    "dev:css": "tailwindcss -i src/input.css -o styles.css --content './*.html,./anwendungsfaelle/*.html' --watch",
     "start": "node serve.mjs",
     "screenshot": "node screenshot.mjs http://localhost:3000"
   },
   "author": "Arcena Systems",
   "license": "ISC",
   "devDependencies": {
-    "puppeteer": "^24.40.0"
+    "@tailwindcss/cli": "^4.2.2",
+    "puppeteer": "^24.37.5",
+    "tailwindcss": "^4.2.2"
   }
 }
