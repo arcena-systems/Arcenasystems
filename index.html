@@ -1606,8 +1606,8 @@
 <footer class="relative py-16 sm:py-20" style="background: #060A18;" aria-label="Footer">
   <div class="max-w-[1200px] mx-auto px-5 lg:px-8">
 
-    <!-- Footer columns: Logo+Tagline | Navigation | Kontakt -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-16 mb-14">
+    <!-- Footer columns: Logo+Tagline | Navigation | Unternehmen | Kontakt -->
+    <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-14">
 
       <!-- Column 1: Logo + tagline -->
       <div>
@@ -1653,12 +1653,9 @@
         </ul>
       </div>
 
-      <!-- Kontakt / Subscribe -->
-      <div class="col-span-2 sm:col-span-3 lg:col-span-1">
+      <!-- Column 4: Kontakt -->
+      <div>
         <h4 class="font-display text-[13px] font-semibold text-arc-white uppercase tracking-[0.1em] mb-5">Kontakt</h4>
-        <p class="font-body text-[14px] text-silver/60 leading-[1.7] mb-4">
-          Haben Sie Fragen? Schreiben Sie uns direkt.
-        </p>
         <a href="mailto:Dani@arcenasystems.de" class="inline-flex items-center gap-2 font-body text-[14px] font-medium text-arc-blue hover:text-white transition-colors duration-200">
           Dani@arcenasystems.de
           <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -1669,24 +1666,10 @@
     <!-- Divider -->
     <div class="h-px bg-white/[0.06] mb-10"></div>
 
-    <!-- Bottom bar: logo + copyright -->
-    <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
-
-      <!-- Logo -->
-      <a href="#" class="flex items-center gap-3" aria-label="Arcena Systems">
-        <svg viewBox="0 0 16 16" width="24" height="24" aria-hidden="true">
-          <polygon fill="#FDFDFE" points="14.747553,2.699218 15.149305,1.987466 16,3.263507 9.710892,14.12395 8.944087,14.12395 8.588211,13.541965 9.263917,12.364232 9.277024,12.38586"/>
-          <polygon fill="#A9B0C7" points="15.075247,1.87605 15.149305,1.987466 14.747553,2.699218 14.214067,1.87605"/>
-          <path fill="#FDFDFE" d="M7.997706,10.202761l3.553517-6.032196h-7.31348L7.997706,10.202761z M8.796625,11.484045l-0.040634,0.070127l0.507926,0.810061l-0.675706,1.177733L1.568345,2.060869c0.05833-0.084545,0.095031-0.154672,0.095031-0.154672V1.87605h12.502847v0.383402L8.796625,11.484045z"/>
-          <polygon fill="#466DCA" points="0.860525,2.347929 8.044894,14.12395 6.554541,14.12395 0,3.233359 0.665875,2.029411"/>
-          <path fill="#244AA0" d="M1.455618,1.87605l0.112727,0.18482C1.482489,2.186049,1.34879,2.342031,1.217057,2.342031c-0.133044,0-0.269365,0.003277-0.356531,0.005898l-0.19465-0.318519L0.751075,1.87605H1.455618z"/>
-        </svg>
-        <span class="font-display text-[15px] font-bold tracking-[-0.01em] text-silver/40">arcena systems</span>
-      </a>
-
-      <!-- Copyright + links -->
-      <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
-        <span class="font-body text-[12px] text-silver/30">&copy; 2026 Arcena Systems. Alle Rechte vorbehalten.</span>
+    <!-- Bottom bar: copyright + legal links -->
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+      <span class="font-body text-[12px] text-silver/30">&copy; 2026 Arcena Systems. Alle Rechte vorbehalten.</span>
+      <div class="flex items-center gap-6">
         <a href="/datenschutz.html" class="font-body text-[12px] text-silver/30 hover:text-silver/60 transition-colors duration-200">Datenschutz</a>
         <a href="/impressum.html" class="font-body text-[12px] text-silver/30 hover:text-silver/60 transition-colors duration-200">Impressum</a>
       </div>
