@@ -55,7 +55,7 @@ await page.addStyleTag({
 
 // Trigger all reveal elements to visible state
 await page.evaluate(() => {
-  document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-up-lg').forEach(el => {
+  document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-up-lg, .reveal-card').forEach(el => {
     el.classList.add('visible');
   });
 });
