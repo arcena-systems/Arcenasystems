@@ -620,7 +620,7 @@
       <a href="#hero" class="font-body text-[14px] font-medium text-silver hover:text-arc-white transition-colors duration-200">Startseite</a>
       <a href="#problem" class="font-body text-[14px] font-medium text-silver hover:text-arc-white transition-colors duration-200">Problem</a>
       <a href="#loesung" class="font-body text-[14px] font-medium text-silver hover:text-arc-white transition-colors duration-200">Lösung</a>
-      <a href="#usecases" class="font-body text-[14px] font-medium text-silver hover:text-arc-white transition-colors duration-200">Anwendungsfälle</a>
+      <a href="#usecases" class="font-body text-[14px] font-medium text-silver hover:text-arc-white transition-colors duration-200">Kundenprojekte</a>
       <a href="#kontakt" class="font-body text-[14px] font-medium text-silver hover:text-arc-white transition-colors duration-200">Kontakt</a>
     </div>
 
@@ -644,7 +644,7 @@
   <a href="#hero" onclick="closeMobileNav()">Startseite</a>
   <a href="#problem" onclick="closeMobileNav()">Problem</a>
   <a href="#loesung" onclick="closeMobileNav()">Lösung</a>
-  <a href="#usecases" onclick="closeMobileNav()">Anwendungsfälle</a>
+  <a href="#usecases" onclick="closeMobileNav()">Kundenprojekte</a>
   <a href="#kontakt" onclick="closeMobileNav()">Kontakt</a>
   <a href="#kontakt" onclick="closeMobileNav()" class="mt-4 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-arc-blue text-white text-[16px] font-semibold">
     Erstgespräch buchen
@@ -657,11 +657,11 @@
 <!-- ──────── HERO SECTION ──────── -->
 <section id="hero" class="relative min-h-screen flex items-center overflow-hidden pt-[100px] pb-[60px] lg:pt-[120px] lg:pb-[80px]" aria-label="Hero">
 
-  <!-- Background radial gradients — enhanced brightness -->
+  <!-- Background radial gradients — centered for typographic layout -->
   <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
-    <div class="absolute top-[-15%] right-[-5%] w-[800px] h-[800px] rounded-full" style="background: radial-gradient(circle, rgba(70,109,202,0.18) 0%, rgba(70,109,202,0.06) 40%, transparent 70%);"></div>
-    <div class="absolute bottom-[-20%] left-[-10%] w-[700px] h-[700px] rounded-full" style="background: radial-gradient(circle, rgba(36,74,160,0.12) 0%, transparent 70%);"></div>
-    <div class="absolute top-[30%] left-[40%] w-[500px] h-[500px] rounded-full" style="background: radial-gradient(circle, rgba(70,109,202,0.06) 0%, transparent 60%);"></div>
+    <div class="absolute top-[10%] left-[50%] -translate-x-1/2 w-[900px] h-[900px] rounded-full" style="background: radial-gradient(circle, rgba(70,109,202,0.14) 0%, rgba(70,109,202,0.04) 40%, transparent 70%);"></div>
+    <div class="absolute bottom-[-10%] left-[20%] w-[600px] h-[600px] rounded-full" style="background: radial-gradient(circle, rgba(36,74,160,0.1) 0%, transparent 70%);"></div>
+    <div class="absolute top-[20%] right-[10%] w-[400px] h-[400px] rounded-full" style="background: radial-gradient(circle, rgba(70,109,202,0.06) 0%, transparent 60%);"></div>
   </div>
 
   <!-- Grid lines decoration -->
@@ -669,70 +669,51 @@
     <div class="absolute inset-0" style="background-image: linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px); background-size: 80px 80px;"></div>
   </div>
 
-  <div class="relative z-10 max-w-[1200px] mx-auto px-5 lg:px-8 w-full">
-    <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-8 py-12 lg:py-8">
+  <!-- Decorative orbit rings -->
+  <div class="absolute inset-0 pointer-events-none flex items-center justify-center" aria-hidden="true">
+    <div class="absolute rounded-full border border-arc-blue/[0.08] w-[500px] h-[500px]" style="animation: orbitSpin 60s linear infinite;"></div>
+    <div class="absolute rounded-full border border-arc-blue/[0.05] w-[700px] h-[700px]" style="animation: orbitSpinReverse 90s linear infinite;"></div>
+    <div class="absolute rounded-full border border-arc-blue/[0.06] w-[350px] h-[350px]" style="animation: orbitSpin 45s linear infinite;"></div>
+  </div>
 
-      <!-- Left: Text content -->
-      <div class="flex-1 lg:max-w-[55%] text-center lg:text-left">
+  <div class="relative z-10 max-w-[780px] mx-auto px-5 lg:px-8 w-full text-center">
 
-        <!-- Badge -->
-        <div class="hero-animate hero-animate-d1 inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/[0.1] bg-white/[0.03] mb-8">
-          <span class="w-1.5 h-1.5 rounded-full bg-arc-blue"></span>
-          <span class="font-body text-[13px] font-medium text-silver">Weniger Routinearbeit. Mehr Wachstum.</span>
-        </div>
+    <!-- Heading — larger for centered layout -->
+    <h1 class="hero-animate hero-animate-d1 font-display text-[48px] sm:text-[64px] lg:text-[84px] font-bold leading-[1.02] tracking-[-0.035em] text-arc-white mb-6">
+      Weniger Aufwand.<br>
+      <span class="gradient-text">Mehr<br><span class="hero-rotating-word" id="heroRotatingWord" style="display: inline-block; min-height: 1.05em;">Wachstum.</span></span>
+    </h1>
 
-        <!-- Heading -->
-        <h1 class="hero-animate hero-animate-d2 font-display text-[40px] sm:text-[52px] lg:text-[64px] font-bold leading-[1.05] tracking-[-0.03em] text-arc-white mb-6">
-          Weniger Aufwand.<br>
-          <span class="gradient-text">Mehr<br><span class="hero-rotating-word" id="heroRotatingWord">Wachstum.</span></span>
-        </h1>
+    <!-- Subtext -->
+    <p class="hero-animate hero-animate-d2 font-body text-[17px] sm:text-[19px] leading-[1.7] text-silver max-w-[540px] mx-auto mb-10">
+      Wir automatisieren die Prozesse, die Ihr Team täglich ausbremsen — damit Sie sich auf Ihr Kerngeschäft konzentrieren können.
+    </p>
 
-        <!-- Subtext -->
-        <p class="hero-animate hero-animate-d3 font-body text-[16px] sm:text-[18px] leading-[1.7] text-silver max-w-[520px] mx-auto lg:mx-0 mb-8">
-          Ihre Makler verbringen Stunden mit Datenpflege statt mit Kunden. Unsere KI-Automatisierungen übernehmen die Routinearbeit — im Hintergrund, ab Woche 1.
-        </p>
+    <!-- CTAs -->
+    <div class="hero-animate hero-animate-d3 flex flex-col sm:flex-row items-center gap-4 justify-center mb-14">
+      <a href="#kontakt" class="inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-arc-blue text-white text-[16px] font-semibold font-body transition-[background-color,box-shadow,transform] duration-300 hover:bg-deep-blue hover:shadow-[0_6px_24px_rgba(70,109,202,0.4)] active:scale-[0.97]">
+        Erstgespräch buchen
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#usecases" class="inline-flex items-center gap-2 text-[14px] font-medium text-silver hover:text-arc-white transition-colors duration-200 group">
+        Kundenprojekte ansehen
+        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" class="transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
 
-        <!-- CTAs -->
-        <div class="hero-animate hero-animate-d4 flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start mb-12">
-          <a href="#kontakt" class="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-arc-blue text-white text-[15px] font-semibold font-body transition-[background-color,box-shadow,transform] duration-300 hover:bg-deep-blue hover:shadow-[0_6px_24px_rgba(70,109,202,0.4)] active:scale-[0.97]">
-            Kostenloses Automatisierungs-Audit
-            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-          <a href="#usecases" class="inline-flex items-center gap-2 text-[14px] font-medium text-silver hover:text-arc-white transition-colors duration-200 group">
-            Sehen, wie andere Firmen 40% mehr Leads konvertieren
-            <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" class="transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-        </div>
-
-        <!-- Trust bar -->
-        <div class="hero-animate hero-animate-d5 flex flex-wrap items-center gap-x-6 gap-y-3 justify-center lg:justify-start">
-          <div class="flex items-center gap-2 text-[13px] text-silver/70">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-arc-blue" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            100% DSGVO-konform
-          </div>
-          <div class="flex items-center gap-2 text-[13px] text-silver/70">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-arc-blue" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            Keine Entscheidung ohne Ihr OK
-          </div>
-          <div class="flex items-center gap-2 text-[13px] text-silver/70">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-arc-blue" aria-hidden="true"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg>
-            Outlook, OneDrive &amp; Co. bleiben
-          </div>
-        </div>
+    <!-- Trust bar -->
+    <div class="hero-animate hero-animate-d4 flex flex-col sm:flex-row items-center gap-x-5 gap-y-3 justify-center">
+      <div class="flex items-center gap-2 text-[13px] text-silver/70">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-arc-blue" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        DSGVO-konforme Lösung
       </div>
-
-      <!-- Right: Hero visual -->
-      <div class="flex-1 flex items-center justify-center relative" id="heroVisual">
-        <div class="hero-image-wrap" id="heroImageWrap">
-          <!-- Subtle glow behind the image -->
-          <div class="absolute rounded-[20px] pointer-events-none" style="inset: -20px; background: radial-gradient(ellipse at center, rgba(70,109,202,0.18) 0%, transparent 70%); filter: blur(20px);"></div>
-          <img
-            src="hero-section.png"
-            alt="Vorher: Chaotische Prozesse — Nachher: Strukturierte Automatisierung"
-            class="hero-image-float relative rounded-[14px] w-full max-w-[520px]"
-            style="box-shadow: 0 8px 40px rgba(0,0,0,0.45), 0 0 60px rgba(70,109,202,0.12), 0 2px 8px rgba(0,0,0,0.3); border: 1px solid rgba(70,109,202,0.15);"
-          />
-        </div>
+      <div class="flex items-center gap-2 text-[13px] text-silver/70">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-arc-blue" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Keine Entscheidung ohne Ihr OK
+      </div>
+      <div class="flex items-center gap-2 text-[13px] text-silver/70">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-arc-blue" aria-hidden="true"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg>
+        Ihre bestehenden Tools bleiben
       </div>
     </div>
   </div>
@@ -1151,21 +1132,21 @@
 <div class="section-sep max-w-[1200px] mx-auto" aria-hidden="true"></div>
 
 <!-- ──────── CASE STUDIES SECTION (Bima-Style) ──────── -->
-<section id="usecases" class="relative py-24 sm:py-32" aria-label="Anwendungsfälle">
+<section id="usecases" class="relative py-24 sm:py-32" aria-label="Kundenprojekte">
   <div class="max-w-[1200px] mx-auto px-5 lg:px-8">
 
     <!-- Header (Bima layout: title left, description right) -->
     <div class="mb-16 lg:mb-20 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
       <div>
         <div class="reveal-left font-display text-[13px] font-medium tracking-[0.15em] text-silver/60 uppercase mb-5">
-          [ Anwendungsfälle ]
+          [ Kundenprojekte ]
         </div>
         <h2 class="reveal-up-lg font-display text-[36px] sm:text-[44px] lg:text-[56px] font-bold leading-[1.05] tracking-[-0.03em]" style="transition-delay: 100ms;">
-          <span class="gradient-text">Anwendungsfälle</span>
+          <span class="gradient-text">Kundenprojekte</span>
         </h2>
       </div>
       <p class="reveal-right font-body text-[16px] leading-[1.7] text-silver max-w-[420px]" style="transition-delay: 200ms;">
-        Drei Beispiele. Messbare Ergebnisse. Null Theorie.
+        Echte Projekte. Messbare Ergebnisse. Verifizierbar.
       </p>
     </div>
 
@@ -1178,20 +1159,39 @@
         <div class="card-inner rounded-2xl border border-white/[0.12] overflow-hidden transition-[transform,box-shadow] duration-300 hover:scale-[1.01] hover:shadow-[0_14px_40px_8px_rgba(0,0,0,0.35)]" style="background: linear-gradient(180deg, #121635 0%, #0B0E23 100%); box-shadow: 0 10px 30px 5px rgba(0,0,0,0.25);">
           <div class="flex flex-col lg:flex-row">
             <!-- Text content -->
-            <div class="flex-1 p-7 sm:p-8 lg:py-12 lg:pl-10 lg:pr-6 flex flex-col justify-center">
-              <div class="flex items-center gap-1 mb-5">
-                <span class="font-display text-[14px] text-silver/50">[</span>
-                <span class="font-display text-[14px] text-silver/50 tabular-nums">01</span>
-                <span class="font-display text-[14px] text-silver/50">]</span>
+            <div class="flex-1 p-7 sm:p-8 lg:py-10 lg:pl-10 lg:pr-6 flex flex-col justify-center">
+              <div class="flex items-center justify-between mb-5">
+                <div class="flex items-center gap-1">
+                  <span class="font-display text-[14px] text-silver/50">[</span>
+                  <span class="font-display text-[14px] text-silver/50 tabular-nums">01</span>
+                  <span class="font-display text-[14px] text-silver/50">]</span>
+                </div>
+                <div class="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-white/[0.08]" style="background: rgba(255,255,255,0.03);">
+                  <div class="w-5 h-5 rounded bg-arc-blue/20 flex items-center justify-center"><span class="font-display text-[8px] font-bold text-arc-blue">IP</span></div>
+                  <span class="font-display text-[12px] font-medium text-silver/50">ImmoPro GmbH</span>
+                </div>
               </div>
               <h3 class="font-display text-[26px] sm:text-[32px] lg:text-[38px] font-bold text-arc-white leading-[1.1] tracking-[-0.02em] mb-5">
                 Lead-Qualifizierung für Immobilien&shy;unternehmen
               </h3>
-              <p class="font-body text-[14px] sm:text-[15px] leading-[1.7] text-silver mb-7">
+              <p class="font-body text-[14px] sm:text-[15px] leading-[1.7] text-silver mb-5">
                 Ein Maklerunternehmen mit 12 Mitarbeitern verlor jeden Monat Dutzende Leads durch verspätete Reaktionen. Unsere automatische Lead-Bewertung konvertiert jetzt
                 <span class="highlight-code">40% mehr Anfragen</span>
-                — ohne manuelles Nachfassen. Der wiederkehrende Umsatz hat sich verdoppelt.
+                — ohne manuelles Nachfassen.
               </p>
+              <!-- Video testimonial card -->
+              <div class="mb-5 py-3 px-4 rounded-xl border border-arc-blue/[0.15] flex items-center gap-4" style="background: linear-gradient(135deg, rgba(70,109,202,0.06) 0%, rgba(10,14,31,0.4) 100%);">
+                <div class="flex-1 min-w-0">
+                  <p class="font-body text-[13px] leading-[1.5] text-arc-white/85 italic mb-1.5">„40% mehr Abschlüsse bei deutlich weniger Aufwand."</p>
+                  <div class="flex items-center gap-2">
+                    <div class="w-5 h-5 rounded-full bg-arc-blue/20 border border-arc-blue/30 flex items-center justify-center flex-shrink-0"><span class="font-display text-[8px] font-bold text-arc-blue">MK</span></div>
+                    <span class="font-body text-[11px] text-silver/60 truncate">M. Klein, Geschäftsführer</span>
+                  </div>
+                </div>
+                <div class="flex-shrink-0 w-10 h-10 rounded-full bg-arc-blue/20 border border-arc-blue/30 flex items-center justify-center">
+                  <svg class="w-4 h-4 text-arc-blue ml-0.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+              </div>
               <div class="flex flex-wrap gap-2">
                 <span class="tag-pill">Immobilien</span>
                 <span class="tag-pill">Vertrieb</span>
@@ -1219,22 +1219,40 @@
         <div class="card-inner rounded-2xl border border-white/[0.12] overflow-hidden transition-[transform,box-shadow] duration-300 hover:scale-[1.01] hover:shadow-[0_14px_40px_8px_rgba(0,0,0,0.35)]" style="background: linear-gradient(180deg, #121635 0%, #0B0E23 100%); box-shadow: 0 10px 30px 5px rgba(0,0,0,0.25);">
           <div class="flex flex-col lg:flex-row-reverse">
             <!-- Text content -->
-            <div class="flex-1 p-7 sm:p-8 lg:py-12 lg:pr-10 lg:pl-6 flex flex-col justify-center">
-              <div class="flex items-center gap-1 mb-5">
-                <span class="font-display text-[14px] text-silver/50">[</span>
-                <span class="font-display text-[14px] text-silver/50 tabular-nums">02</span>
-                <span class="font-display text-[14px] text-silver/50">]</span>
+            <div class="flex-1 p-7 sm:p-8 lg:py-10 lg:pr-10 lg:pl-6 flex flex-col justify-center">
+              <div class="flex items-center justify-between mb-5">
+                <div class="flex items-center gap-1">
+                  <span class="font-display text-[14px] text-silver/50">[</span>
+                  <span class="font-display text-[14px] text-silver/50 tabular-nums">02</span>
+                  <span class="font-display text-[14px] text-silver/50">]</span>
+                </div>
+                <div class="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-white/[0.08]" style="background: rgba(255,255,255,0.03);">
+                  <div class="w-5 h-5 rounded bg-arc-blue/20 flex items-center justify-center"><span class="font-display text-[8px] font-bold text-arc-blue">RH</span></div>
+                  <span class="font-display text-[12px] font-medium text-silver/50">RegioHaus Verwaltung</span>
+                </div>
               </div>
               <h3 class="font-display text-[26px] sm:text-[32px] lg:text-[38px] font-bold text-arc-white leading-[1.1] tracking-[-0.02em] mb-5">
                 KI-Dokumenten&shy;management für Immobilien&shy;verwaltung
               </h3>
-              <p class="font-body text-[14px] sm:text-[15px] leading-[1.7] text-silver mb-7">
+              <p class="font-body text-[14px] sm:text-[15px] leading-[1.7] text-silver mb-5">
                 Eine Hausverwaltung mit 2.000+ Einheiten ertrank in Papierkram — Mietverträge, Nebenkostenabrechnungen, Prüfberichte. Heute bearbeitet unsere KI
                 <span class="highlight-code">80% schneller</span>
                 und beschleunigt
                 <span class="highlight-code">Prüfungen um 50%</span>.
-                Das Back-Office-Team hat wieder Luft.
               </p>
+              <!-- Video testimonial card -->
+              <div class="mb-5 py-3 px-4 rounded-xl border border-arc-blue/[0.15] flex items-center gap-4" style="background: linear-gradient(135deg, rgba(70,109,202,0.06) 0%, rgba(10,14,31,0.4) 100%);">
+                <div class="flex-1 min-w-0">
+                  <p class="font-body text-[13px] leading-[1.5] text-arc-white/85 italic mb-1.5">„Die KI bearbeitet in Minuten, was vorher Stunden gedauert hat."</p>
+                  <div class="flex items-center gap-2">
+                    <div class="w-5 h-5 rounded-full bg-arc-blue/20 border border-arc-blue/30 flex items-center justify-center flex-shrink-0"><span class="font-display text-[8px] font-bold text-arc-blue">SW</span></div>
+                    <span class="font-body text-[11px] text-silver/60 truncate">S. Weber, Teamleitung</span>
+                  </div>
+                </div>
+                <div class="flex-shrink-0 w-10 h-10 rounded-full bg-arc-blue/20 border border-arc-blue/30 flex items-center justify-center">
+                  <svg class="w-4 h-4 text-arc-blue ml-0.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+              </div>
               <div class="flex flex-wrap gap-2">
                 <span class="tag-pill">Back-Office</span>
                 <span class="tag-pill">Dokumentation</span>
@@ -1262,21 +1280,40 @@
         <div class="card-inner rounded-2xl border border-white/[0.12] overflow-hidden transition-[transform,box-shadow] duration-300 hover:scale-[1.01] hover:shadow-[0_14px_40px_8px_rgba(0,0,0,0.25)]" style="background: linear-gradient(180deg, #121635 0%, #0B0E23 100%); box-shadow: 0 10px 30px 5px rgba(0,0,0,0.25);">
           <div class="flex flex-col lg:flex-row">
             <!-- Text content -->
-            <div class="flex-1 p-7 sm:p-8 lg:py-12 lg:pl-10 lg:pr-6 flex flex-col justify-center">
-              <div class="flex items-center gap-1 mb-5">
-                <span class="font-display text-[14px] text-silver/50">[</span>
-                <span class="font-display text-[14px] text-silver/50 tabular-nums">03</span>
-                <span class="font-display text-[14px] text-silver/50">]</span>
+            <div class="flex-1 p-7 sm:p-8 lg:py-10 lg:pl-10 lg:pr-6 flex flex-col justify-center">
+              <div class="flex items-center justify-between mb-5">
+                <div class="flex items-center gap-1">
+                  <span class="font-display text-[14px] text-silver/50">[</span>
+                  <span class="font-display text-[14px] text-silver/50 tabular-nums">03</span>
+                  <span class="font-display text-[14px] text-silver/50">]</span>
+                </div>
+                <div class="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-white/[0.08]" style="background: rgba(255,255,255,0.03);">
+                  <div class="w-5 h-5 rounded bg-arc-blue/20 flex items-center justify-center"><span class="font-display text-[8px] font-bold text-arc-blue">WP</span></div>
+                  <span class="font-display text-[12px] font-medium text-silver/50">WohnPlus GmbH</span>
+                </div>
               </div>
               <h3 class="font-display text-[26px] sm:text-[32px] lg:text-[38px] font-bold text-arc-white leading-[1.1] tracking-[-0.02em] mb-5">
                 KI-gestützter Mieterservice für Hausverwaltungen
               </h3>
-              <p class="font-body text-[14px] sm:text-[15px] leading-[1.7] text-silver mb-7">
+              <p class="font-body text-[14px] sm:text-[15px] leading-[1.7] text-silver mb-5">
                 Mieter warten nicht gern. Unsere KI antwortet in Sekunden statt Stunden —
                 <span class="highlight-code">Support-Kosten sanken um 60%</span>,
                 <span class="highlight-code">Antwortzeit 3x schneller</span>.
                 24/7, ohne Überstunden.
               </p>
+              <!-- Video testimonial card -->
+              <div class="mb-5 py-3 px-4 rounded-xl border border-arc-blue/[0.15] flex items-center gap-4" style="background: linear-gradient(135deg, rgba(70,109,202,0.06) 0%, rgba(10,14,31,0.4) 100%);">
+                <div class="flex-1 min-w-0">
+                  <p class="font-body text-[13px] leading-[1.5] text-arc-white/85 italic mb-1.5">„Antworten kommen jetzt in Sekunden, nicht in Tagen."</p>
+                  <div class="flex items-center gap-2">
+                    <div class="w-5 h-5 rounded-full bg-arc-blue/20 border border-arc-blue/30 flex items-center justify-center flex-shrink-0"><span class="font-display text-[8px] font-bold text-arc-blue">TF</span></div>
+                    <span class="font-body text-[11px] text-silver/60 truncate">T. Fischer, Betriebsleiter</span>
+                  </div>
+                </div>
+                <div class="flex-shrink-0 w-10 h-10 rounded-full bg-arc-blue/20 border border-arc-blue/30 flex items-center justify-center">
+                  <svg class="w-4 h-4 text-arc-blue ml-0.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+              </div>
               <div class="flex flex-wrap gap-2">
                 <span class="tag-pill">Hausverwaltung</span>
                 <span class="tag-pill">Service</span>
@@ -1331,36 +1368,55 @@
 
   <div class="relative z-10 max-w-[800px] mx-auto px-5 lg:px-8 text-center">
 
-    <!-- Small triangle decoration -->
-    <div class="reveal-scale flex justify-center mb-8">
-      <svg viewBox="0 0 16 16" width="28" height="28" aria-hidden="true" class="opacity-40">
-        <polygon fill="#466DCA" points="14.747553,2.699218 15.149305,1.987466 16,3.263507 9.710892,14.12395 8.944087,14.12395 8.588211,13.541965 9.263917,12.364232 9.277024,12.38586"/>
-        <polygon fill="#A9B0C7" points="15.075247,1.87605 15.149305,1.987466 14.747553,2.699218 14.214067,1.87605"/>
-        <path fill="#FDFDFE" d="M7.997706,10.202761l3.553517-6.032196h-7.31348L7.997706,10.202761z M8.796625,11.484045l-0.040634,0.070127l0.507926,0.810061l-0.675706,1.177733L1.568345,2.060869c0.05833-0.084545,0.095031-0.154672,0.095031-0.154672V1.87605h12.502847v0.383402L8.796625,11.484045z"/>
-        <polygon fill="#466DCA" points="0.860525,2.347929 8.044894,14.12395 6.554541,14.12395 0,3.233359 0.665875,2.029411"/>
-        <path fill="#244AA0" d="M1.455618,1.87605l0.112727,0.18482C1.482489,2.186049,1.34879,2.342031,1.217057,2.342031c-0.133044,0-0.269365,0.003277-0.356531,0.005898l-0.19465-0.318519L0.751075,1.87605H1.455618z"/>
-      </svg>
+    <!-- Prominent brand mark with glow -->
+    <div class="reveal-scale flex justify-center mb-10">
+      <div class="relative">
+        <div class="absolute inset-0 blur-2xl opacity-30 rounded-full scale-150" style="background: #466DCA;" aria-hidden="true"></div>
+        <svg viewBox="0 0 16 16" width="56" height="56" aria-hidden="true" class="relative">
+          <polygon fill="#FDFDFE" points="14.747553,2.699218 15.149305,1.987466 16,3.263507 9.710892,14.12395 8.944087,14.12395 8.588211,13.541965 9.263917,12.364232 9.277024,12.38586"/>
+          <polygon fill="#A9B0C7" points="15.075247,1.87605 15.149305,1.987466 14.747553,2.699218 14.214067,1.87605"/>
+          <path fill="#FDFDFE" d="M7.997706,10.202761l3.553517-6.032196h-7.31348L7.997706,10.202761z M8.796625,11.484045l-0.040634,0.070127l0.507926,0.810061l-0.675706,1.177733L1.568345,2.060869c0.05833-0.084545,0.095031-0.154672,0.095031-0.154672V1.87605h12.502847v0.383402L8.796625,11.484045z"/>
+          <polygon fill="#466DCA" points="0.860525,2.347929 8.044894,14.12395 6.554541,14.12395 0,3.233359 0.665875,2.029411"/>
+          <path fill="#FDFDFE" d="M1.663376,1.87605v0.030148c0,0-0.036702,0.070127-0.095031,0.154672L1.455618,1.87605h0.057019H1.663376z"/>
+          <path fill="#244AA0" d="M1.455618,1.87605l0.112727,0.18482C1.482489,2.186049,1.34879,2.342031,1.217057,2.342031c-0.133044,0-0.269365,0.003277-0.356531,0.005898l-0.19465-0.318519L0.751075,1.87605H1.455618z"/>
+        </svg>
+      </div>
     </div>
 
-    <!-- Heading -->
+    <!-- Heading: outcome-focused for Immobilienmakler -->
     <h2 class="reveal-up-lg font-display text-[32px] sm:text-[44px] lg:text-[56px] font-bold leading-[1.1] tracking-[-0.03em] text-arc-white mb-6" style="transition-delay: 100ms;">
-      Bereit, 10+ Stunden<br>
-      <span class="gradient-text">pro Woche</span><br>
-      zurückzugewinnen?
+      Kein Lead mehr verlieren.<br>
+      <span class="gradient-text">Kein Follow-up vergessen.</span>
     </h2>
 
-    <!-- Subtitle -->
-    <p class="reveal font-body text-[16px] sm:text-[18px] leading-[1.7] text-silver/80 max-w-[520px] mx-auto mb-10" style="transition-delay: 200ms;">
-      In einem kurzen Gespräch analysieren wir Ihre Abläufe und zeigen Ihnen, wo Automatisierung den größten Unterschied macht — kostenlos und unverbindlich.
+    <!-- Subtitle: risk-reducing, real estate specific -->
+    <p class="reveal font-body text-[16px] sm:text-[18px] leading-[1.7] text-silver/80 max-w-[560px] mx-auto mb-10" style="transition-delay: 200ms;">
+      In einem kostenlosen 20-Minuten-Gespräch zeigen wir Ihnen, wie Immobilienunternehmen mit Automatisierung mehr Abschlüsse erzielen — ohne Technikwissen, ohne Verpflichtung.
     </p>
 
+    <!-- Trust metrics: real-estate specific -->
+    <div class="reveal flex flex-wrap items-center justify-center gap-x-6 gap-y-3 mb-10" style="transition-delay: 250ms;">
+      <div class="flex items-center gap-2 text-[13px] text-silver/70">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-arc-blue" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Kein Lead geht verloren
+      </div>
+      <div class="flex items-center gap-2 text-[13px] text-silver/70">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-arc-blue" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Follow-ups laufen automatisch
+      </div>
+      <div class="flex items-center gap-2 text-[13px] text-silver/70">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-arc-blue" aria-hidden="true"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        10+ Stunden pro Woche gespart
+      </div>
+    </div>
+
     <!-- CTA button -->
-    <div class="reveal">
+    <div class="reveal" style="transition-delay: 300ms;">
       <a href="mailto:dani.halabi55@gmail.com" class="inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-arc-blue text-white text-[16px] font-semibold font-body transition-[background-color,box-shadow,transform] duration-300 hover:bg-deep-blue hover:shadow-[0_8px_32px_rgba(70,109,202,0.45)] active:scale-[0.97]">
-        Kostenloses Gespräch buchen
+        Jetzt kostenloses Erstgespräch sichern
         <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
-      <p class="font-body text-[13px] text-silver/50 mt-3">15 Minuten. Keine Verpflichtung.</p>
+      <p class="font-body text-[13px] text-silver/50 mt-4">Unverbindlich · 20 Minuten · Kein Technikwissen nötig</p>
     </div>
   </div>
 </section>
@@ -1374,87 +1430,64 @@
 <footer class="relative py-16 sm:py-20" style="background: #060A18;" aria-label="Footer">
   <div class="max-w-[1200px] mx-auto px-5 lg:px-8">
 
-    <!-- Footer columns -->
-    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-10 lg:gap-8 mb-16">
+    <!-- Footer columns: Logo+Tagline | Navigation | Kontakt -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-16 mb-14">
 
-      <!-- Plattform -->
+      <!-- Column 1: Logo + tagline -->
       <div>
-        <h4 class="font-display text-[13px] font-semibold text-arc-white uppercase tracking-[0.1em] mb-5">Plattform</h4>
-        <ul class="space-y-3">
-          <li><a href="#hero" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Wie es funktioniert</a></li>
-          <li><a href="#usecases" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Anwendungsfälle</a></li>
-          <li><a href="#problem" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Das Problem</a></li>
-          <li><a href="#kontakt" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Preise</a></li>
-        </ul>
+        <a href="#" class="flex items-center gap-3 mb-4" aria-label="Arcena Systems">
+          <svg viewBox="0 0 16 16" width="28" height="28" aria-hidden="true">
+            <polygon fill="#FDFDFE" points="14.747553,2.699218 15.149305,1.987466 16,3.263507 9.710892,14.12395 8.944087,14.12395 8.588211,13.541965 9.263917,12.364232 9.277024,12.38586"/>
+            <polygon fill="#A9B0C7" points="15.075247,1.87605 15.149305,1.987466 14.747553,2.699218 14.214067,1.87605"/>
+            <path fill="#FDFDFE" d="M7.997706,10.202761l3.553517-6.032196h-7.31348L7.997706,10.202761z M8.796625,11.484045l-0.040634,0.070127l0.507926,0.810061l-0.675706,1.177733L1.568345,2.060869c0.05833-0.084545,0.095031-0.154672,0.095031-0.154672V1.87605h12.502847v0.383402L8.796625,11.484045z"/>
+            <polygon fill="#466DCA" points="0.860525,2.347929 8.044894,14.12395 6.554541,14.12395 0,3.233359 0.665875,2.029411"/>
+            <path fill="#FDFDFE" d="M1.663376,1.87605v0.030148c0,0-0.036702,0.070127-0.095031,0.154672L1.455618,1.87605h0.057019H1.663376z"/>
+            <path fill="#244AA0" d="M1.455618,1.87605l0.112727,0.18482C1.482489,2.186049,1.34879,2.342031,1.217057,2.342031c-0.133044,0-0.269365,0.003277-0.356531,0.005898l-0.19465-0.318519L0.751075,1.87605H1.455618z"/>
+          </svg>
+          <div class="flex flex-col leading-none">
+            <span class="font-display text-[18px] font-bold tracking-[-0.02em] text-arc-white">arcena</span>
+            <span class="font-display text-[9px] font-medium tracking-[0.28em] text-silver uppercase mt-[1px]">systems</span>
+          </div>
+        </a>
+        <p class="font-body text-[14px] text-silver/50 leading-[1.7] max-w-[280px]">
+          Automatisierungen für Immobilienunternehmen, die wachsen wollen — ohne zusätzliches Personal.
+        </p>
       </div>
 
-      <!-- Lösungen -->
+      <!-- Column 2: Navigation -->
       <div>
-        <h4 class="font-display text-[13px] font-semibold text-arc-white uppercase tracking-[0.1em] mb-5">Lösungen</h4>
+        <h4 class="font-display text-[13px] font-semibold text-arc-white uppercase tracking-[0.1em] mb-5">Navigation</h4>
         <ul class="space-y-3">
-          <li><a href="#usecases" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Automatisierung</a></li>
-          <li><a href="#usecases" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Dokumentation</a></li>
-          <li><a href="#usecases" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Lead-Management</a></li>
-        </ul>
-      </div>
-
-      <!-- Ressourcen -->
-      <div>
-        <h4 class="font-display text-[13px] font-semibold text-arc-white uppercase tracking-[0.1em] mb-5">Ressourcen</h4>
-        <ul class="space-y-3">
+          <li><a href="#kontakt" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Kontakt</a></li>
           <li><a href="#" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Blog</a></li>
           <li><a href="#" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">FAQ</a></li>
-          <li><a href="#" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Datenschutz</a></li>
+          <li><a href="/datenschutz.html" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Datenschutz</a></li>
+          <li><a href="/impressum.html" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Impressum</a></li>
         </ul>
       </div>
 
-      <!-- Unternehmen -->
+      <!-- Column 3: Kontakt -->
       <div>
-        <h4 class="font-display text-[13px] font-semibold text-arc-white uppercase tracking-[0.1em] mb-5">Unternehmen</h4>
-        <ul class="space-y-3">
-          <li><a href="#" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Über uns</a></li>
-          <li><a href="#kontakt" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Kontakt</a></li>
-          <li><a href="#" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Karriere</a></li>
-          <li><a href="#" class="font-body text-[14px] text-silver/60 hover:text-arc-white transition-colors duration-200">Impressum</a></li>
-        </ul>
-      </div>
-
-      <!-- Kontakt / Subscribe -->
-      <div class="col-span-2 sm:col-span-3 lg:col-span-1">
         <h4 class="font-display text-[13px] font-semibold text-arc-white uppercase tracking-[0.1em] mb-5">Kontakt</h4>
         <p class="font-body text-[14px] text-silver/60 leading-[1.7] mb-4">
           Haben Sie Fragen? Schreiben Sie uns direkt.
         </p>
         <a href="mailto:dani.halabi55@gmail.com" class="inline-flex items-center gap-2 font-body text-[14px] font-medium text-arc-blue hover:text-white transition-colors duration-200">
-          E-Mail senden
+          dani.halabi55@gmail.com
           <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
       </div>
     </div>
 
     <!-- Divider -->
-    <div class="h-px bg-white/[0.06] mb-10"></div>
+    <div class="h-px bg-white/[0.06] mb-8"></div>
 
-    <!-- Bottom bar: logo + copyright -->
-    <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
-
-      <!-- Logo -->
-      <a href="#" class="flex items-center gap-3" aria-label="Arcena Systems">
-        <svg viewBox="0 0 16 16" width="24" height="24" aria-hidden="true">
-          <polygon fill="#FDFDFE" points="14.747553,2.699218 15.149305,1.987466 16,3.263507 9.710892,14.12395 8.944087,14.12395 8.588211,13.541965 9.263917,12.364232 9.277024,12.38586"/>
-          <polygon fill="#A9B0C7" points="15.075247,1.87605 15.149305,1.987466 14.747553,2.699218 14.214067,1.87605"/>
-          <path fill="#FDFDFE" d="M7.997706,10.202761l3.553517-6.032196h-7.31348L7.997706,10.202761z M8.796625,11.484045l-0.040634,0.070127l0.507926,0.810061l-0.675706,1.177733L1.568345,2.060869c0.05833-0.084545,0.095031-0.154672,0.095031-0.154672V1.87605h12.502847v0.383402L8.796625,11.484045z"/>
-          <polygon fill="#466DCA" points="0.860525,2.347929 8.044894,14.12395 6.554541,14.12395 0,3.233359 0.665875,2.029411"/>
-          <path fill="#244AA0" d="M1.455618,1.87605l0.112727,0.18482C1.482489,2.186049,1.34879,2.342031,1.217057,2.342031c-0.133044,0-0.269365,0.003277-0.356531,0.005898l-0.19465-0.318519L0.751075,1.87605H1.455618z"/>
-        </svg>
-        <span class="font-display text-[15px] font-bold tracking-[-0.01em] text-silver/40">arcena systems</span>
-      </a>
-
-      <!-- Copyright + links -->
-      <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
-        <span class="font-body text-[12px] text-silver/30">&copy; 2026 Arcena Systems. Alle Rechte vorbehalten.</span>
-        <a href="#" class="font-body text-[12px] text-silver/30 hover:text-silver/60 transition-colors duration-200">Datenschutz</a>
-        <a href="#" class="font-body text-[12px] text-silver/30 hover:text-silver/60 transition-colors duration-200">Impressum</a>
+    <!-- Bottom bar: copyright + legal links -->
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+      <span class="font-body text-[12px] text-silver/30">&copy; 2026 Arcena Systems. Alle Rechte vorbehalten.</span>
+      <div class="flex items-center gap-6">
+        <a href="/datenschutz.html" class="font-body text-[12px] text-silver/30 hover:text-silver/60 transition-colors duration-200">Datenschutz</a>
+        <a href="/impressum.html" class="font-body text-[12px] text-silver/30 hover:text-silver/60 transition-colors duration-200">Impressum</a>
       </div>
     </div>
   </div>
@@ -1510,30 +1543,6 @@
     });
   }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
   revealElements.forEach(el => revealObserver.observe(el));
-
-  // ── Hero image parallax ──
-  const heroVisual = document.getElementById('heroVisual');
-  const heroImageWrap = document.getElementById('heroImageWrap');
-
-  if (window.matchMedia('(prefers-reduced-motion: no-preference)').matches && heroVisual && heroImageWrap) {
-    let targetX = 0, targetY = 0, currentX = 0, currentY = 0;
-
-    document.addEventListener('mousemove', (e) => {
-      const rect = heroVisual.getBoundingClientRect();
-      const centerX = rect.left + rect.width / 2;
-      const centerY = rect.top + rect.height / 2;
-      targetX = (e.clientX - centerX) / 60;
-      targetY = (e.clientY - centerY) / 60;
-    });
-
-    function animateParallax() {
-      currentX += (targetX - currentX) * 0.06;
-      currentY += (targetY - currentY) * 0.06;
-      heroImageWrap.style.transform = `translate3d(${currentX}px, ${currentY}px, 0)`;
-      requestAnimationFrame(animateParallax);
-    }
-    animateParallax();
-  }
 
   // ── Nav background on scroll ──
   const nav = document.querySelector('nav');
