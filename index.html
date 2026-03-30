@@ -17,16 +17,16 @@
     /* ── Base ── */
     *, *::before, *::after { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-    body { margin: 0; background: #0A0E1F; color: #FDFDFE; font-family: 'Plus Jakarta Sans', sans-serif; -webkit-font-smoothing: antialiased; }
+    body { margin: 0; background: #0F1428; color: #FDFDFE; font-family: 'Plus Jakarta Sans', sans-serif; -webkit-font-smoothing: antialiased; }
 
     /* ── CSS Variables ── */
     :root {
       --navy: #292F4D;
       --blue: #466DCA;
       --deep-blue: #244AA0;
-      --silver: #A9B0C7;
+      --silver: #BFC5D6;
       --white: #FDFDFE;
-      --bg-dark: #0A0E1F;
+      --bg-dark: #0F1428;
     }
 
     /* ── Noise/Grain overlay ── */
@@ -123,7 +123,7 @@
       position: absolute;
       width: 44px; height: 44px;
       border-radius: 12px;
-      background: linear-gradient(135deg, rgba(18,22,53,0.95) 0%, rgba(11,14,35,0.95) 100%);
+      background: linear-gradient(135deg, rgba(23,29,66,0.95) 0%, rgba(16,21,48,0.95) 100%);
       border: 1px solid rgba(70,109,202,0.25);
       display: flex; align-items: center; justify-content: center;
       box-shadow: 0 4px 16px rgba(0,0,0,0.4), 0 0 12px rgba(70,109,202,0.15);
@@ -194,11 +194,11 @@
        ═══════════════════════════════════════════ */
 
     /* Contrast grid (Vorher/Nachher Zahlen) */
-    .contrast-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; max-width: 900px; margin: 0 auto; position: relative; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.06); }
+    .contrast-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; max-width: 900px; margin: 0 auto; position: relative; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08); }
     .contrast-grid::before { content: ''; position: absolute; top: 0; bottom: 0; left: 50%; width: 1px; background: linear-gradient(180deg, transparent, rgba(255,255,255,0.08) 20%, rgba(255,255,255,0.08) 80%, transparent); z-index: 1; }
     .contrast-col { padding: 36px 32px; }
-    .contrast-col-left { background: linear-gradient(135deg, rgba(248,113,113,0.04) 0%, rgba(10,14,31,0.5) 100%); }
-    .contrast-col-right { background: linear-gradient(135deg, rgba(10,14,31,0.5) 0%, rgba(74,222,128,0.04) 100%); }
+    .contrast-col-left { background: linear-gradient(135deg, rgba(248,113,113,0.04) 0%, rgba(15,20,40,0.5) 100%); }
+    .contrast-col-right { background: linear-gradient(135deg, rgba(15,20,40,0.5) 0%, rgba(74,222,128,0.04) 100%); }
     .contrast-label { font-family: 'Geist', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 28px; }
     .contrast-item { margin-bottom: 24px; }
     .contrast-item:last-child { margin-bottom: 0; }
@@ -208,16 +208,16 @@
       .contrast-grid { grid-template-columns: 1fr; }
       .contrast-grid::before { display: none; }
       .contrast-col { padding: 28px 24px; }
-      .contrast-col-right { border-top: 1px solid rgba(255,255,255,0.06); }
+      .contrast-col-right { border-top: 1px solid rgba(255,255,255,0.08); }
       .contrast-stat { font-size: 24px; }
     }
 
     /* Side-by-side grid */
     .ba-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 1100px; margin: 0 auto; }
-    .ba-card { position: relative; border-radius: 20px; padding: 32px 28px 28px; min-height: 420px; overflow: hidden; border: 1px solid rgba(255,255,255,0.06); opacity: 0; transform: translateY(24px); transition: opacity 0.8s cubic-bezier(0.33,1.53,0.69,0.99), transform 0.8s cubic-bezier(0.33,1.53,0.69,0.99); }
-    .ba-card-left { background: linear-gradient(160deg, rgba(28,18,18,0.5) 0%, rgba(10,14,31,0.7) 100%); border-color: rgba(248,113,113,0.08); }
+    .ba-card { position: relative; border-radius: 20px; padding: 32px 28px 28px; min-height: 420px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08); opacity: 0; transform: translateY(24px); transition: opacity 0.8s cubic-bezier(0.33,1.53,0.69,0.99), transform 0.8s cubic-bezier(0.33,1.53,0.69,0.99); }
+    .ba-card-left { background: linear-gradient(160deg, rgba(28,18,18,0.5) 0%, rgba(15,20,40,0.7) 100%); border-color: rgba(248,113,113,0.08); }
     .ba-card-left::before { content: ''; position: absolute; top: -40%; left: -20%; width: 80%; height: 80%; border-radius: 50%; background: radial-gradient(ellipse, rgba(248,113,113,0.04) 0%, transparent 70%); pointer-events: none; }
-    .ba-card-right { background: linear-gradient(160deg, rgba(14,20,42,0.5) 0%, rgba(10,14,31,0.7) 100%); border-color: rgba(70,109,202,0.1); transition-delay: 200ms; }
+    .ba-card-right { background: linear-gradient(160deg, rgba(14,20,42,0.5) 0%, rgba(15,20,40,0.7) 100%); border-color: rgba(70,109,202,0.1); transition-delay: 200ms; }
     .ba-card-right::before { content: ''; position: absolute; bottom: -30%; right: -20%; width: 80%; height: 80%; border-radius: 50%; background: radial-gradient(ellipse, rgba(70,109,202,0.05) 0%, transparent 70%); pointer-events: none; }
     .ba-grid.phase-1 .ba-card-left { opacity: 1; transform: translateY(0); }
     .ba-grid.phase-2 .ba-card-right { opacity: 1; transform: translateY(0); }
@@ -232,7 +232,7 @@
 
     /* Chaos zone (left) */
     .chaos-zone { position: relative; width: 100%; aspect-ratio: 4 / 3; }
-    .chaos-pill { position: absolute; display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 10px; background: linear-gradient(135deg, rgba(18,22,53,0.85), rgba(11,14,35,0.85)); border: 1px solid rgba(255,255,255,0.06); font-family: 'Plus Jakarta Sans', sans-serif; font-size: 12px; font-weight: 600; color: rgba(169,176,199,0.55); white-space: nowrap; box-shadow: 0 2px 10px rgba(0,0,0,0.3); z-index: 2; opacity: 0; transform: scale(0.6) rotate(var(--rot, 0deg)); transition: opacity 0.5s cubic-bezier(0.33,1.53,0.69,0.99), transform 0.5s cubic-bezier(0.33,1.53,0.69,0.99); }
+    .chaos-pill { position: absolute; display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 10px; background: linear-gradient(135deg, rgba(23,29,66,0.85), rgba(16,21,48,0.85)); border: 1px solid rgba(255,255,255,0.08); font-family: 'Plus Jakarta Sans', sans-serif; font-size: 12px; font-weight: 600; color: rgba(169,176,199,0.55); white-space: nowrap; box-shadow: 0 2px 10px rgba(0,0,0,0.3); z-index: 2; opacity: 0; transform: scale(0.6) rotate(var(--rot, 0deg)); transition: opacity 0.5s cubic-bezier(0.33,1.53,0.69,0.99), transform 0.5s cubic-bezier(0.33,1.53,0.69,0.99); }
     .chaos-pill svg { width: 14px; height: 14px; flex-shrink: 0; color: rgba(169,176,199,0.3); }
     .chaos-pill:nth-child(1) { transition-delay: 0ms; } .chaos-pill:nth-child(2) { transition-delay: 80ms; } .chaos-pill:nth-child(3) { transition-delay: 160ms; } .chaos-pill:nth-child(4) { transition-delay: 240ms; } .chaos-pill:nth-child(5) { transition-delay: 320ms; } .chaos-pill:nth-child(6) { transition-delay: 400ms; } .chaos-pill:nth-child(7) { transition-delay: 480ms; } .chaos-pill:nth-child(8) { transition-delay: 560ms; }
     .chaos-pill[data-tool="crm"]        { top: 36%; left: 30%;  --rot: 0deg; }
@@ -266,7 +266,7 @@
     @keyframes hubPulse { 0%, 100% { box-shadow: 0 0 24px rgba(70,109,202,0.15), 0 0 60px rgba(70,109,202,0.06); } 50% { box-shadow: 0 0 32px rgba(70,109,202,0.25), 0 0 80px rgba(70,109,202,0.1); } }
     .ba-grid.phase-4 .hub-node { animation: hubPulse 3s ease-in-out infinite; }
 
-    .conn-pill { position: absolute; display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 10px; background: linear-gradient(135deg, rgba(18,22,53,0.92), rgba(11,14,35,0.92)); border: 1px solid rgba(70,109,202,0.12); font-family: 'Plus Jakarta Sans', sans-serif; font-size: 12px; font-weight: 600; color: rgba(169,176,199,0.85); white-space: nowrap; box-shadow: 0 2px 10px rgba(0,0,0,0.3); z-index: 2; opacity: 0; transform: scale(0.7); transition: opacity 0.6s cubic-bezier(0.33,1.53,0.69,0.99), transform 0.6s cubic-bezier(0.33,1.53,0.69,0.99), border-color 0.8s ease, box-shadow 0.8s ease; }
+    .conn-pill { position: absolute; display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 10px; background: linear-gradient(135deg, rgba(23,29,66,0.92), rgba(16,21,48,0.92)); border: 1px solid rgba(70,109,202,0.12); font-family: 'Plus Jakarta Sans', sans-serif; font-size: 12px; font-weight: 600; color: rgba(169,176,199,0.85); white-space: nowrap; box-shadow: 0 2px 10px rgba(0,0,0,0.3); z-index: 2; opacity: 0; transform: scale(0.7); transition: opacity 0.6s cubic-bezier(0.33,1.53,0.69,0.99), transform 0.6s cubic-bezier(0.33,1.53,0.69,0.99), border-color 0.8s ease, box-shadow 0.8s ease; }
     .conn-pill svg { width: 14px; height: 14px; flex-shrink: 0; color: rgba(70,109,202,0.5); }
     .conn-pill:nth-child(1) { transition-delay: 0ms; } .conn-pill:nth-child(2) { transition-delay: 100ms; } .conn-pill:nth-child(3) { transition-delay: 200ms; } .conn-pill:nth-child(4) { transition-delay: 300ms; } .conn-pill:nth-child(5) { transition-delay: 400ms; } .conn-pill:nth-child(6) { transition-delay: 500ms; } .conn-pill:nth-child(7) { transition-delay: 600ms; } .conn-pill:nth-child(8) { transition-delay: 700ms; }
     .ba-grid.phase-2 .conn-pill { opacity: 1; transform: scale(1); }
@@ -306,7 +306,7 @@
     /* Center arrow */
     .ba-arrow { display: none; }
     @media (min-width: 640px) {
-      .ba-arrow { display: flex; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); z-index: 10; width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, rgba(18,22,53,0.95), rgba(11,14,35,0.95)); border: 1px solid rgba(70,109,202,0.2); align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.4), 0 0 20px rgba(70,109,202,0.08); opacity: 0; transition: opacity 0.6s ease; }
+      .ba-arrow { display: flex; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); z-index: 10; width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, rgba(23,29,66,0.95), rgba(16,21,48,0.95)); border: 1px solid rgba(70,109,202,0.2); align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.4), 0 0 20px rgba(70,109,202,0.08); opacity: 0; transition: opacity 0.6s ease; }
       .ba-grid.phase-2 .ba-arrow { opacity: 1; }
       @keyframes arrowPulse { 0%, 100% { transform: translate(-50%,-50%); } 50% { transform: translate(-50%,-50%) translateX(3px); } }
       .ba-grid.phase-4 .ba-arrow { animation: arrowPulse 2s ease-in-out infinite; }
@@ -510,7 +510,7 @@
 
     /* ── Nav ── */
     .nav-blur {
-      background: rgba(10, 14, 31, 0.85);
+      background: rgba(15, 20, 40, 0.87);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
     }
@@ -522,8 +522,8 @@
     .tool-pill {
       display: inline-flex; align-items: center; gap: 6px;
       padding: 6px 14px; border-radius: 20px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.14);
       font-size: 13px; font-weight: 500; color: var(--silver);
       white-space: nowrap;
       transition: transform 0.3s ease, opacity 0.3s ease;
@@ -532,8 +532,8 @@
     /* ── Speech bubble ── */
     .speech-bubble {
       padding: 8px 14px; border-radius: 12px;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
       font-size: 12px; font-style: italic; color: var(--silver);
       white-space: nowrap;
     }
@@ -542,7 +542,7 @@
     .tag-pill {
       display: inline-flex; align-items: center;
       padding: 5px 14px; border-radius: 50px;
-      border: 1px solid rgba(255,255,255,0.25);
+      border: 1px solid rgba(255,255,255,0.3);
       font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.7);
       transition: border-color 0.3s ease, color 0.3s ease;
     }
@@ -590,7 +590,7 @@
     /* ── Mobile nav overlay ── */
     .mobile-nav {
       position: fixed; inset: 0; z-index: 100;
-      background: rgba(10, 14, 31, 0.97);
+      background: rgba(15, 20, 40, 0.97);
       backdrop-filter: blur(20px);
       display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 32px;
       opacity: 0; pointer-events: none;
@@ -607,9 +607,9 @@
 
     /* ── FAQ Accordion ── */
     .faq-item {
-      border: 1px solid rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.1);
       border-radius: 16px;
-      background: linear-gradient(180deg, rgba(18,22,53,0.6) 0%, rgba(11,14,35,0.5) 100%);
+      background: linear-gradient(180deg, rgba(23,29,66,0.65) 0%, rgba(16,21,48,0.55) 100%);
       transition: border-color 0.4s ease, box-shadow 0.4s ease;
       overflow: hidden;
     }
@@ -654,7 +654,7 @@
       font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 15px;
       line-height: 1.75;
-      color: rgba(169,176,199,0.85);
+      color: rgba(191,197,214,0.9);
     }
     @media (max-width: 639px) {
       .faq-item summary { padding: 18px 20px; font-size: 15px; }
@@ -692,7 +692,7 @@
 </a>
 
 <!-- ════════ NAVIGATION ════════ -->
-<nav class="nav-blur fixed top-0 left-0 right-0 z-50 border-b border-white/[0.06]" aria-label="Hauptnavigation">
+<nav class="nav-blur fixed top-0 left-0 right-0 z-50 border-b border-white/[0.08]" aria-label="Hauptnavigation">
   <div class="max-w-[1200px] mx-auto px-5 lg:px-8 h-[72px] flex items-center justify-between">
 
     <!-- Logo -->
@@ -764,7 +764,7 @@
   </div>
 
   <!-- Grid lines decoration -->
-  <div class="absolute inset-0 pointer-events-none opacity-[0.03]" aria-hidden="true">
+  <div class="absolute inset-0 pointer-events-none opacity-[0.04]" aria-hidden="true">
     <div class="absolute inset-0" style="background-image: linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px); background-size: 80px 80px;"></div>
   </div>
 
@@ -979,8 +979,8 @@
       <!-- Card 1: Leads gehen an die Konkurrenz -->
       <div class="reveal-scale case-card lg:col-span-2">
         <div class="card-glow" aria-hidden="true"></div>
-        <div class="card-inner rounded-2xl border border-white/[0.12] overflow-hidden" style="background: linear-gradient(180deg, #121635 0%, #0B0E23 100%); box-shadow: 0 10px 30px 5px rgba(0,0,0,0.25);">
-          <div class="mx-5 mt-5 sm:mx-6 sm:mt-6 h-[180px] sm:h-[200px] rounded-xl border border-white/[0.08] overflow-hidden relative" style="background: linear-gradient(135deg, rgba(70,109,202,0.04) 0%, rgba(10,14,31,0.9) 100%);">
+        <div class="card-inner rounded-2xl border border-white/[0.12] overflow-hidden" style="background: linear-gradient(180deg, #171D42 0%, #101530 100%); box-shadow: 0 10px 30px 5px rgba(0,0,0,0.25);">
+          <div class="mx-5 mt-5 sm:mx-6 sm:mt-6 h-[180px] sm:h-[200px] rounded-xl border border-white/[0.08] overflow-hidden relative" style="background: linear-gradient(135deg, rgba(70,109,202,0.04) 0%, rgba(15,20,40,0.9) 100%);">
             <!-- Stat badge -->
             <div class="absolute top-3 right-3 px-2.5 py-1 rounded-full border border-arc-blue/[0.25] font-display text-[11px] font-bold text-arc-blue" style="background: rgba(70,109,202,0.1);">
               21× mehr Abschlüsse
@@ -989,7 +989,7 @@
             <div class="absolute inset-0 flex items-center justify-center">
               <div class="relative">
                 <div class="absolute -inset-10 rounded-full opacity-15" style="background: radial-gradient(circle, rgba(70,109,202,0.5) 0%, transparent 70%);"></div>
-                <div class="w-20 h-20 rounded-full border-2 border-white/[0.12] flex items-center justify-center relative" style="background: linear-gradient(180deg, rgba(25,30,65,0.95), rgba(15,18,42,0.95)); box-shadow: 0 8px 32px rgba(0,0,0,0.4);">
+                <div class="w-20 h-20 rounded-full border-2 border-white/[0.12] flex items-center justify-center relative" style="background: linear-gradient(180deg, rgba(30,36,75,0.95), rgba(20,24,52,0.95)); box-shadow: 0 8px 32px rgba(0,0,0,0.4);">
                   <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#466DCA" stroke-width="1.5" stroke-linecap="round">
                     <circle cx="12" cy="12" r="10" stroke-opacity="0.3"/>
                     <polyline points="12 6 12 12 16 14"/>
@@ -1011,8 +1011,8 @@
       <!-- Card 2: 40% der Zeit geht für Admin drauf -->
       <div class="reveal-scale case-card lg:col-span-2" style="transition-delay: 100ms;">
         <div class="card-glow" aria-hidden="true"></div>
-        <div class="card-inner rounded-2xl border border-white/[0.12] overflow-hidden" style="background: linear-gradient(180deg, #121635 0%, #0B0E23 100%); box-shadow: 0 10px 30px 5px rgba(0,0,0,0.25);">
-          <div class="mx-5 mt-5 sm:mx-6 sm:mt-6 h-[180px] sm:h-[200px] rounded-xl border border-white/[0.08] overflow-hidden relative" style="background: linear-gradient(135deg, rgba(70,109,202,0.04) 0%, rgba(10,14,31,0.9) 100%);">
+        <div class="card-inner rounded-2xl border border-white/[0.12] overflow-hidden" style="background: linear-gradient(180deg, #171D42 0%, #101530 100%); box-shadow: 0 10px 30px 5px rgba(0,0,0,0.25);">
+          <div class="mx-5 mt-5 sm:mx-6 sm:mt-6 h-[180px] sm:h-[200px] rounded-xl border border-white/[0.08] overflow-hidden relative" style="background: linear-gradient(135deg, rgba(70,109,202,0.04) 0%, rgba(15,20,40,0.9) 100%);">
             <!-- Stat badge -->
             <div class="absolute top-3 right-3 px-2.5 py-1 rounded-full border border-arc-blue/[0.25] font-display text-[11px] font-bold text-arc-blue" style="background: rgba(70,109,202,0.1);">
               40 % Zeitersparnis
@@ -1020,19 +1020,19 @@
             <!-- Task list visual -->
             <div class="absolute inset-0 flex items-center justify-center">
               <div class="flex flex-col gap-2.5 w-[180px]">
-                <div class="flex items-center gap-2.5 px-3 py-2 rounded-lg border border-white/[0.06] opacity-40" style="background: linear-gradient(135deg, rgba(25,30,65,0.6), rgba(15,18,42,0.6));">
+                <div class="flex items-center gap-2.5 px-3 py-2 rounded-lg border border-white/[0.08] opacity-40" style="background: linear-gradient(135deg, rgba(30,36,75,0.6), rgba(20,24,52,0.6));">
                   <div class="w-4 h-4 rounded border border-arc-blue/[0.4] flex items-center justify-center flex-shrink-0" style="background: rgba(70,109,202,0.15);">
                     <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#466DCA" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
                   </div>
                   <div class="h-[6px] w-full rounded-full bg-white/[0.08]"></div>
                 </div>
-                <div class="flex items-center gap-2.5 px-3 py-2 rounded-lg border border-white/[0.06] opacity-30" style="background: linear-gradient(135deg, rgba(25,30,65,0.6), rgba(15,18,42,0.6));">
+                <div class="flex items-center gap-2.5 px-3 py-2 rounded-lg border border-white/[0.08] opacity-30" style="background: linear-gradient(135deg, rgba(30,36,75,0.6), rgba(20,24,52,0.6));">
                   <div class="w-4 h-4 rounded border border-arc-blue/[0.4] flex items-center justify-center flex-shrink-0" style="background: rgba(70,109,202,0.15);">
                     <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#466DCA" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
                   </div>
                   <div class="h-[6px] w-[70%] rounded-full bg-white/[0.08]"></div>
                 </div>
-                <div class="flex items-center gap-2.5 px-3 py-2 rounded-lg border border-arc-blue/[0.2]" style="background: linear-gradient(135deg, rgba(25,30,65,0.95), rgba(40,45,90,0.9)); box-shadow: 0 4px 16px rgba(70,109,202,0.12);">
+                <div class="flex items-center gap-2.5 px-3 py-2 rounded-lg border border-arc-blue/[0.2]" style="background: linear-gradient(135deg, rgba(30,36,75,0.95), rgba(45,51,98,0.9)); box-shadow: 0 4px 16px rgba(70,109,202,0.12);">
                   <div class="w-4 h-4 rounded border border-arc-blue/[0.5] flex items-center justify-center flex-shrink-0" style="background: rgba(70,109,202,0.2);">
                     <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#466DCA" stroke-width="2.5"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg>
                   </div>
@@ -1051,15 +1051,15 @@
       <!-- Card 3: Dokumente verschwinden im Chaos -->
       <div class="reveal-scale case-card lg:col-span-2" style="transition-delay: 200ms;">
         <div class="card-glow" aria-hidden="true"></div>
-        <div class="card-inner rounded-2xl border border-white/[0.12] overflow-hidden" style="background: linear-gradient(180deg, #121635 0%, #0B0E23 100%); box-shadow: 0 10px 30px 5px rgba(0,0,0,0.25);">
-          <div class="mx-5 mt-5 sm:mx-6 sm:mt-6 h-[180px] sm:h-[200px] rounded-xl border border-white/[0.08] overflow-hidden relative" style="background: linear-gradient(135deg, rgba(70,109,202,0.04) 0%, rgba(10,14,31,0.9) 100%);">
+        <div class="card-inner rounded-2xl border border-white/[0.12] overflow-hidden" style="background: linear-gradient(180deg, #171D42 0%, #101530 100%); box-shadow: 0 10px 30px 5px rgba(0,0,0,0.25);">
+          <div class="mx-5 mt-5 sm:mx-6 sm:mt-6 h-[180px] sm:h-[200px] rounded-xl border border-white/[0.08] overflow-hidden relative" style="background: linear-gradient(135deg, rgba(70,109,202,0.04) 0%, rgba(15,20,40,0.9) 100%);">
             <div class="absolute inset-0 flex items-center justify-center" style="perspective: 600px;">
               <div class="relative w-[260px] h-[140px]" style="transform-style: preserve-3d;">
                 <!-- Scattered docs (left) -->
-                <div class="absolute top-[10px] left-[10px] w-[50px] h-[65px] rounded border border-white/[0.08] flex items-center justify-center opacity-40" style="background: linear-gradient(180deg, rgba(25,30,65,0.8), rgba(15,18,42,0.8)); transform: rotate(-12deg);">
+                <div class="absolute top-[10px] left-[10px] w-[50px] h-[65px] rounded border border-white/[0.08] flex items-center justify-center opacity-40" style="background: linear-gradient(180deg, rgba(30,36,75,0.8), rgba(20,24,52,0.8)); transform: rotate(-12deg);">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#A9B0C7" stroke-width="1.5" opacity="0.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
                 </div>
-                <div class="absolute top-[30px] left-[35px] w-[50px] h-[65px] rounded border border-white/[0.08] flex items-center justify-center opacity-30" style="background: linear-gradient(180deg, rgba(25,30,65,0.8), rgba(15,18,42,0.8)); transform: rotate(8deg);">
+                <div class="absolute top-[30px] left-[35px] w-[50px] h-[65px] rounded border border-white/[0.08] flex items-center justify-center opacity-30" style="background: linear-gradient(180deg, rgba(30,36,75,0.8), rgba(20,24,52,0.8)); transform: rotate(8deg);">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#A9B0C7" stroke-width="1.5" opacity="0.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
                 </div>
                 <!-- Arrow -->
@@ -1067,7 +1067,7 @@
                   <path d="M0 8h32M28 3l6 5-6 5" stroke="#466DCA" stroke-width="1.5" opacity="0.5"/>
                 </svg>
                 <!-- Organized folder (right) -->
-                <div class="absolute top-[15px] right-[10px] px-3 py-3 rounded-lg border border-arc-blue/[0.25]" style="background: linear-gradient(135deg, rgba(25,30,65,0.95), rgba(40,45,90,0.9)); box-shadow: 0 6px 24px rgba(70,109,202,0.15);">
+                <div class="absolute top-[15px] right-[10px] px-3 py-3 rounded-lg border border-arc-blue/[0.25]" style="background: linear-gradient(135deg, rgba(30,36,75,0.95), rgba(45,51,98,0.9)); box-shadow: 0 6px 24px rgba(70,109,202,0.15);">
                   <div class="flex items-center gap-2 mb-2">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#466DCA" stroke-width="1.5"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
                     <span class="font-body text-[9px] text-arc-blue font-medium">Sortiert</span>
@@ -1100,8 +1100,8 @@
       <!-- Card 4: Kein Service nach Feierabend -->
       <div class="reveal-scale case-card lg:col-span-2 lg:col-start-2" style="transition-delay: 300ms;">
         <div class="card-glow" aria-hidden="true"></div>
-        <div class="card-inner rounded-2xl border border-white/[0.12] overflow-hidden" style="background: linear-gradient(180deg, #121635 0%, #0B0E23 100%); box-shadow: 0 10px 30px 5px rgba(0,0,0,0.25);">
-          <div class="mx-5 mt-5 sm:mx-6 sm:mt-6 h-[180px] sm:h-[200px] rounded-xl border border-white/[0.08] overflow-hidden relative" style="background: linear-gradient(135deg, rgba(70,109,202,0.04) 0%, rgba(10,14,31,0.9) 100%);">
+        <div class="card-inner rounded-2xl border border-white/[0.12] overflow-hidden" style="background: linear-gradient(180deg, #171D42 0%, #101530 100%); box-shadow: 0 10px 30px 5px rgba(0,0,0,0.25);">
+          <div class="mx-5 mt-5 sm:mx-6 sm:mt-6 h-[180px] sm:h-[200px] rounded-xl border border-white/[0.08] overflow-hidden relative" style="background: linear-gradient(135deg, rgba(70,109,202,0.04) 0%, rgba(15,20,40,0.9) 100%);">
             <!-- Stat badge -->
             <div class="absolute top-3 right-3 px-2.5 py-1 rounded-full border border-arc-blue/[0.25] font-display text-[11px] font-bold text-arc-blue" style="background: rgba(70,109,202,0.1);">
               62 % der Anfragen
@@ -1110,13 +1110,13 @@
             <div class="absolute inset-0 flex items-center justify-center">
               <div class="relative">
                 <div class="absolute -inset-10 rounded-full opacity-10" style="background: radial-gradient(circle, rgba(70,109,202,0.5) 0%, transparent 70%);"></div>
-                <div class="w-16 h-16 rounded-full border border-white/[0.12] flex items-center justify-center relative" style="background: linear-gradient(180deg, rgba(25,30,65,0.95), rgba(15,18,42,0.95)); box-shadow: 0 8px 32px rgba(0,0,0,0.4);">
+                <div class="w-16 h-16 rounded-full border border-white/[0.12] flex items-center justify-center relative" style="background: linear-gradient(180deg, rgba(30,36,75,0.95), rgba(20,24,52,0.95)); box-shadow: 0 8px 32px rgba(0,0,0,0.4);">
                   <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#466DCA" stroke-width="1.5">
                     <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
                   </svg>
                 </div>
                 <!-- Chat bubble -->
-                <div class="absolute -right-8 -top-3 px-2.5 py-1.5 rounded-lg border border-arc-blue/[0.3]" style="background: linear-gradient(135deg, rgba(25,30,65,0.95), rgba(40,45,90,0.9)); box-shadow: 0 4px 16px rgba(70,109,202,0.15);">
+                <div class="absolute -right-8 -top-3 px-2.5 py-1.5 rounded-lg border border-arc-blue/[0.3]" style="background: linear-gradient(135deg, rgba(30,36,75,0.95), rgba(45,51,98,0.9)); box-shadow: 0 4px 16px rgba(70,109,202,0.15);">
                   <div class="flex items-center gap-1.5">
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#466DCA" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
                     <span class="font-body text-[9px] text-arc-blue">23:14</span>
@@ -1139,8 +1139,8 @@
       <!-- Card 5: Interessenten werden nicht nachgefasst -->
       <div class="reveal-scale case-card lg:col-span-2" style="transition-delay: 400ms;">
         <div class="card-glow" aria-hidden="true"></div>
-        <div class="card-inner rounded-2xl border border-white/[0.12] overflow-hidden" style="background: linear-gradient(180deg, #121635 0%, #0B0E23 100%); box-shadow: 0 10px 30px 5px rgba(0,0,0,0.25);">
-          <div class="mx-5 mt-5 sm:mx-6 sm:mt-6 h-[180px] sm:h-[200px] rounded-xl border border-white/[0.08] overflow-hidden relative" style="background: linear-gradient(135deg, rgba(70,109,202,0.04) 0%, rgba(10,14,31,0.9) 100%);">
+        <div class="card-inner rounded-2xl border border-white/[0.12] overflow-hidden" style="background: linear-gradient(180deg, #171D42 0%, #101530 100%); box-shadow: 0 10px 30px 5px rgba(0,0,0,0.25);">
+          <div class="mx-5 mt-5 sm:mx-6 sm:mt-6 h-[180px] sm:h-[200px] rounded-xl border border-white/[0.08] overflow-hidden relative" style="background: linear-gradient(135deg, rgba(70,109,202,0.04) 0%, rgba(15,20,40,0.9) 100%);">
             <!-- Stat badge -->
             <div class="absolute top-3 right-3 px-2.5 py-1 rounded-full border border-arc-blue/[0.25] font-display text-[11px] font-bold text-arc-blue" style="background: rgba(70,109,202,0.1);">
               5+ Kontakte nötig
@@ -1150,7 +1150,7 @@
               <div class="flex items-center gap-0">
                 <!-- Day 1 -->
                 <div class="flex flex-col items-center">
-                  <div class="w-10 h-10 rounded-full border border-arc-blue/[0.4] flex items-center justify-center" style="background: linear-gradient(180deg, rgba(25,30,65,0.95), rgba(40,45,90,0.9)); box-shadow: 0 4px 16px rgba(70,109,202,0.2);">
+                  <div class="w-10 h-10 rounded-full border border-arc-blue/[0.4] flex items-center justify-center" style="background: linear-gradient(180deg, rgba(30,36,75,0.95), rgba(45,51,98,0.9)); box-shadow: 0 4px 16px rgba(70,109,202,0.2);">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#466DCA" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                   </div>
                   <span class="font-body text-[9px] text-silver/50 mt-1.5">Tag 1</span>
@@ -1158,7 +1158,7 @@
                 <div class="w-6 h-[1.5px] bg-arc-blue/30 -mt-4"></div>
                 <!-- Day 3 -->
                 <div class="flex flex-col items-center">
-                  <div class="w-10 h-10 rounded-full border border-arc-blue/[0.3] flex items-center justify-center" style="background: linear-gradient(180deg, rgba(25,30,65,0.95), rgba(35,40,80,0.9)); box-shadow: 0 4px 12px rgba(70,109,202,0.12);">
+                  <div class="w-10 h-10 rounded-full border border-arc-blue/[0.3] flex items-center justify-center" style="background: linear-gradient(180deg, rgba(30,36,75,0.95), rgba(40,46,88,0.9)); box-shadow: 0 4px 12px rgba(70,109,202,0.12);">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#466DCA" stroke-width="1.5" opacity="0.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
                   </div>
                   <span class="font-body text-[9px] text-silver/50 mt-1.5">Tag 3</span>
@@ -1166,7 +1166,7 @@
                 <div class="w-6 h-[1.5px] bg-arc-blue/30 -mt-4"></div>
                 <!-- Day 7 -->
                 <div class="flex flex-col items-center">
-                  <div class="w-10 h-10 rounded-full border border-arc-blue/[0.2] flex items-center justify-center" style="background: linear-gradient(180deg, rgba(25,30,65,0.95), rgba(30,35,70,0.9)); box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
+                  <div class="w-10 h-10 rounded-full border border-arc-blue/[0.2] flex items-center justify-center" style="background: linear-gradient(180deg, rgba(30,36,75,0.95), rgba(35,41,78,0.9)); box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#466DCA" stroke-width="1.5" opacity="0.6"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
                   </div>
                   <span class="font-body text-[9px] text-silver/50 mt-1.5">Tag 7</span>
@@ -1193,12 +1193,12 @@
 
     <!-- Trust bar — 3 small comfort points -->
     <div class="mt-14 lg:mt-16 reveal" style="transition-delay: 500ms;">
-      <div class="rounded-2xl border border-white/[0.08] px-6 py-5 sm:py-6" style="background: linear-gradient(135deg, rgba(18,22,53,0.5) 0%, rgba(11,14,35,0.5) 100%);">
+      <div class="rounded-2xl border border-white/[0.08] px-6 py-5 sm:py-6" style="background: linear-gradient(135deg, rgba(23,29,66,0.55) 0%, rgba(16,21,48,0.55) 100%);">
         <div class="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-8 lg:gap-16">
 
           <!-- DSGVO-konform -->
           <div class="flex items-center gap-3">
-            <div class="w-9 h-9 rounded-lg border border-white/[0.08] flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, rgba(25,30,65,0.6), rgba(15,18,42,0.6));">
+            <div class="w-9 h-9 rounded-lg border border-white/[0.08] flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, rgba(30,36,75,0.6), rgba(20,24,52,0.6));">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#466DCA" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
             </div>
             <div>
@@ -1207,11 +1207,11 @@
             </div>
           </div>
 
-          <div class="hidden sm:block w-[1px] h-8 bg-white/[0.06]"></div>
+          <div class="hidden sm:block w-[1px] h-8 bg-white/[0.08]"></div>
 
           <!-- Keine Tool-Umstellung -->
           <div class="flex items-center gap-3">
-            <div class="w-9 h-9 rounded-lg border border-white/[0.08] flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, rgba(25,30,65,0.6), rgba(15,18,42,0.6));">
+            <div class="w-9 h-9 rounded-lg border border-white/[0.08] flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, rgba(30,36,75,0.6), rgba(20,24,52,0.6));">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#466DCA" stroke-width="1.5"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg>
             </div>
             <div>
@@ -1220,11 +1220,11 @@
             </div>
           </div>
 
-          <div class="hidden sm:block w-[1px] h-8 bg-white/[0.06]"></div>
+          <div class="hidden sm:block w-[1px] h-8 bg-white/[0.08]"></div>
 
           <!-- Sie behalten die Kontrolle -->
           <div class="flex items-center gap-3">
-            <div class="w-9 h-9 rounded-lg border border-white/[0.08] flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, rgba(25,30,65,0.6), rgba(15,18,42,0.6));">
+            <div class="w-9 h-9 rounded-lg border border-white/[0.08] flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, rgba(30,36,75,0.6), rgba(20,24,52,0.6));">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#466DCA" stroke-width="1.5"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
             </div>
             <div>
@@ -1268,7 +1268,7 @@
       <!-- ====== CARD-01-START: B&P Immobilien ====== -->
       <div class="reveal-card case-card block" data-card-id="01">
         <div class="card-glow" aria-hidden="true"></div>
-        <div class="card-inner rounded-2xl border border-white/[0.12] overflow-hidden transition-[transform,box-shadow] duration-300 hover:scale-[1.01] hover:shadow-[0_14px_40px_8px_rgba(0,0,0,0.35)]" style="background: linear-gradient(180deg, #121635 0%, #0B0E23 100%); box-shadow: 0 10px 30px 5px rgba(0,0,0,0.25);">
+        <div class="card-inner rounded-2xl border border-white/[0.12] overflow-hidden transition-[transform,box-shadow] duration-300 hover:scale-[1.01] hover:shadow-[0_14px_40px_8px_rgba(0,0,0,0.35)]" style="background: linear-gradient(180deg, #171D42 0%, #101530 100%); box-shadow: 0 10px 30px 5px rgba(0,0,0,0.25);">
           <div class="flex flex-col lg:flex-row">
             <!-- Video area -->
             <div class="flex-1 p-5 sm:p-6 lg:p-5">
@@ -1304,7 +1304,7 @@
                 und ein professionellerer Außenauftritt.
               </p>
               <!-- Testimonial quote -->
-              <div class="mb-5 py-3 px-4 rounded-xl border border-arc-blue/[0.15] flex items-center gap-4" style="background: linear-gradient(135deg, rgba(70,109,202,0.06) 0%, rgba(10,14,31,0.4) 100%);">
+              <div class="mb-5 py-3 px-4 rounded-xl border border-arc-blue/[0.15] flex items-center gap-4" style="background: linear-gradient(135deg, rgba(70,109,202,0.06) 0%, rgba(15,20,40,0.4) 100%);">
                 <div class="flex-1 min-w-0">
                   <p class="font-body text-[13px] leading-[1.5] text-arc-white/85 italic mb-1.5">„Der erste Eindruck zählt. Seitdem alles automatisch aufbereitet wird, ist die Resonanz einfach eine andere."</p>
                   <div class="flex items-center gap-2">
@@ -1330,7 +1330,7 @@
       <!-- ====== CARD-02-START: immo.klara ====== -->
       <div class="reveal-card case-card block" data-card-id="02">
         <div class="card-glow" aria-hidden="true"></div>
-        <div class="card-inner rounded-2xl border border-white/[0.12] overflow-hidden transition-[transform,box-shadow] duration-300 hover:scale-[1.01] hover:shadow-[0_14px_40px_8px_rgba(0,0,0,0.35)]" style="background: linear-gradient(180deg, #121635 0%, #0B0E23 100%); box-shadow: 0 10px 30px 5px rgba(0,0,0,0.25);">
+        <div class="card-inner rounded-2xl border border-white/[0.12] overflow-hidden transition-[transform,box-shadow] duration-300 hover:scale-[1.01] hover:shadow-[0_14px_40px_8px_rgba(0,0,0,0.35)]" style="background: linear-gradient(180deg, #171D42 0%, #101530 100%); box-shadow: 0 10px 30px 5px rgba(0,0,0,0.25);">
           <div class="flex flex-col lg:flex-row-reverse">
             <!-- Video area -->
             <div class="flex-1 p-5 sm:p-6 lg:p-5">
@@ -1366,7 +1366,7 @@
                 und professionellere Kommunikation.
               </p>
               <!-- Testimonial quote -->
-              <div class="mb-5 py-3 px-4 rounded-xl border border-arc-blue/[0.15] flex items-center gap-4" style="background: linear-gradient(135deg, rgba(70,109,202,0.06) 0%, rgba(10,14,31,0.4) 100%);">
+              <div class="mb-5 py-3 px-4 rounded-xl border border-arc-blue/[0.15] flex items-center gap-4" style="background: linear-gradient(135deg, rgba(70,109,202,0.06) 0%, rgba(15,20,40,0.4) 100%);">
                 <div class="flex-1 min-w-0">
                   <p class="font-body text-[13px] leading-[1.5] text-arc-white/85 italic mb-1.5">„Alle sind auf dem Laufenden, unsere Serviceleistung ist gestiegen, und wir können effektiver arbeiten."</p>
                   <div class="flex items-center gap-2">
@@ -1392,7 +1392,7 @@
       <!-- ====== CARD-03-START: Calava Recruiting ====== -->
       <div class="reveal-card case-card block" data-card-id="03">
         <div class="card-glow" aria-hidden="true"></div>
-        <div class="card-inner rounded-2xl border border-white/[0.12] overflow-hidden transition-[transform,box-shadow] duration-300 hover:scale-[1.01] hover:shadow-[0_14px_40px_8px_rgba(0,0,0,0.25)]" style="background: linear-gradient(180deg, #121635 0%, #0B0E23 100%); box-shadow: 0 10px 30px 5px rgba(0,0,0,0.25);">
+        <div class="card-inner rounded-2xl border border-white/[0.12] overflow-hidden transition-[transform,box-shadow] duration-300 hover:scale-[1.01] hover:shadow-[0_14px_40px_8px_rgba(0,0,0,0.25)]" style="background: linear-gradient(180deg, #171D42 0%, #101530 100%); box-shadow: 0 10px 30px 5px rgba(0,0,0,0.25);">
           <div class="flex flex-col lg:flex-row">
             <!-- Video area -->
             <div class="flex-1 p-5 sm:p-6 lg:p-5">
@@ -1428,7 +1428,7 @@
                 — deutlich bessere Lead-Qualität.
               </p>
               <!-- Testimonial quote -->
-              <div class="mb-5 py-3 px-4 rounded-xl border border-arc-blue/[0.15] flex items-center gap-4" style="background: linear-gradient(135deg, rgba(70,109,202,0.06) 0%, rgba(10,14,31,0.4) 100%);">
+              <div class="mb-5 py-3 px-4 rounded-xl border border-arc-blue/[0.15] flex items-center gap-4" style="background: linear-gradient(135deg, rgba(70,109,202,0.06) 0%, rgba(15,20,40,0.4) 100%);">
                 <div class="flex-1 min-w-0">
                   <p class="font-body text-[13px] leading-[1.5] text-arc-white/85 italic mb-1.5">„Die Ergebnisse nach eineinhalb Wochen haben mich überzeugt — drei Termine, die ich selbst so nicht geschafft hätte."</p>
                   <div class="flex items-center gap-2">
@@ -1455,7 +1455,7 @@
       <!--
       <a href="/anwendungsfaelle/anwendungsfall-04" class="reveal-card case-card block no-underline text-inherit" data-card-id="04">
         <div class="card-glow" aria-hidden="true"></div>
-        <div class="card-inner rounded-2xl border border-white/[0.12] overflow-hidden transition-[transform,box-shadow] duration-300 hover:scale-[1.01] hover:shadow-[0_14px_40px_8px_rgba(0,0,0,0.35)]" style="background: linear-gradient(180deg, #121635 0%, #0B0E23 100%); box-shadow: 0 10px 30px 5px rgba(0,0,0,0.25);">
+        <div class="card-inner rounded-2xl border border-white/[0.12] overflow-hidden transition-[transform,box-shadow] duration-300 hover:scale-[1.01] hover:shadow-[0_14px_40px_8px_rgba(0,0,0,0.35)]" style="background: linear-gradient(180deg, #171D42 0%, #101530 100%); box-shadow: 0 10px 30px 5px rgba(0,0,0,0.25);">
           <div class="flex flex-col lg:flex-row-reverse">
             <div class="flex-1 p-7 sm:p-8 lg:py-12 lg:pr-10 lg:pl-6 flex flex-col justify-center">
               <div class="flex items-center gap-1 mb-5">
@@ -1475,7 +1475,7 @@
               </div>
             </div>
             <div class="flex-1 p-5 sm:p-6 lg:p-5">
-              <div class="h-[220px] sm:h-[280px] lg:h-full lg:min-h-[360px] rounded-xl border border-white/[0.12] overflow-hidden relative" style="background: linear-gradient(135deg, #121635 0%, #1a2340 100%);">
+              <div class="h-[220px] sm:h-[280px] lg:h-full lg:min-h-[360px] rounded-xl border border-white/[0.12] overflow-hidden relative" style="background: linear-gradient(135deg, #171D42 0%, #1a2340 100%);">
                 <div class="absolute inset-0 flex items-center justify-center">
                   <span class="font-display text-[48px] font-bold text-white/10">04</span>
                 </div>
@@ -1628,7 +1628,7 @@
 <section id="kontakt" class="relative py-28 sm:py-36 overflow-hidden" aria-label="Kontakt aufnehmen">
 
   <!-- Deep blue gradient background -->
-  <div class="absolute inset-0" aria-hidden="true" style="background: linear-gradient(180deg, #0A0E1F 0%, #0F1A3A 25%, #1A2E5C 50%, #152650 75%, #0D1530 100%);">
+  <div class="absolute inset-0" aria-hidden="true" style="background: linear-gradient(180deg, #0F1428 0%, #0F1A3A 25%, #1A2E5C 50%, #152650 75%, #0D1530 100%);">
     <!-- Geometric light effects -->
     <div class="absolute top-[10%] left-[15%] w-[500px] h-[500px] rounded-full" style="background: radial-gradient(circle, rgba(70,109,202,0.2) 0%, transparent 60%);"></div>
     <div class="absolute bottom-[10%] right-[10%] w-[400px] h-[400px] rounded-full" style="background: radial-gradient(circle, rgba(36,74,160,0.15) 0%, transparent 60%);"></div>
@@ -1703,7 +1703,7 @@
 </main>
 
 <!-- ──────── FOOTER ──────── -->
-<footer class="relative py-16 sm:py-20" style="background: #060A18;" aria-label="Footer">
+<footer class="relative py-16 sm:py-20" style="background: #0B0F20;" aria-label="Footer">
   <div class="max-w-[1200px] mx-auto px-5 lg:px-8">
 
     <!-- Footer columns: Logo+Tagline | Navigation | Unternehmen | Kontakt -->
@@ -1767,7 +1767,7 @@
     </div>
 
     <!-- Divider -->
-    <div class="h-px bg-white/[0.06] mb-10"></div>
+    <div class="h-px bg-white/[0.08] mb-10"></div>
 
     <!-- Bottom bar: copyright + legal links -->
     <div class="flex flex-col sm:flex-row items-center justify-between gap-4">

@@ -17,16 +17,16 @@
     /* ── Base ── */
     *, *::before, *::after { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-    body { margin: 0; background: #0A0E1F; color: #FDFDFE; font-family: 'Plus Jakarta Sans', sans-serif; -webkit-font-smoothing: antialiased; }
+    body { margin: 0; background: #0F1428; color: #FDFDFE; font-family: 'Plus Jakarta Sans', sans-serif; -webkit-font-smoothing: antialiased; }
 
     /* ── CSS Variables ── */
     :root {
       --navy: #292F4D;
       --blue: #466DCA;
       --deep-blue: #244AA0;
-      --silver: #A9B0C7;
+      --silver: #BFC5D6;
       --white: #FDFDFE;
-      --bg-dark: #0A0E1F;
+      --bg-dark: #0F1428;
     }
 
     /* ── Noise/Grain overlay ── */
@@ -47,7 +47,7 @@
     .font-body { font-family: 'Plus Jakarta Sans', sans-serif; }
 
     .gradient-text {
-      background: linear-gradient(135deg, #FDFDFE 0%, #A9B0C7 100%);
+      background: linear-gradient(135deg, #FDFDFE 0%, #BFC5D6 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -183,7 +183,7 @@
       overflow: hidden;
       cursor: pointer;
       border: 1px solid rgba(255,255,255,0.12);
-      background: linear-gradient(180deg, #121635 0%, #0B0E23 100%);
+      background: linear-gradient(180deg, #171D42 0%, #101530 100%);
     }
     .play-btn {
       position: absolute;
@@ -242,7 +242,7 @@
 <body>
 
 <!-- ──────── NAVIGATION ──────── -->
-<nav class="fixed top-0 left-0 right-0 z-50 border-b border-white/[0.06]" style="background:rgba(10,14,31,0.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);">
+<nav class="fixed top-0 left-0 right-0 z-50 border-b border-white/[0.08]" style="background:rgba(15,20,40,0.87);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);">
   <div class="max-w-[1200px] mx-auto px-5 lg:px-8 h-[72px] flex items-center justify-between">
 
     <!-- Logo -->
@@ -362,19 +362,19 @@
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 stagger-children">
 
       <!-- Stat 1 -->
-      <div class="stat-card reveal rounded-2xl p-8 text-center border border-white/[0.12]" style="background: linear-gradient(180deg, #121635 0%, #0B0E23 100%);">
+      <div class="stat-card reveal rounded-2xl p-8 text-center border border-white/[0.12]" style="background: linear-gradient(180deg, #171D42 0%, #101530 100%);">
         <span class="font-display text-[48px] sm:text-[56px] font-bold tracking-[-0.03em] text-arc-blue block leading-none">2</span>
         <span class="font-body text-[15px] text-silver mt-3 block">Automatisierungen</span>
       </div>
 
       <!-- Stat 2 -->
-      <div class="stat-card reveal rounded-2xl p-8 text-center border border-white/[0.12]" style="background: linear-gradient(180deg, #121635 0%, #0B0E23 100%);">
+      <div class="stat-card reveal rounded-2xl p-8 text-center border border-white/[0.12]" style="background: linear-gradient(180deg, #171D42 0%, #101530 100%);">
         <span class="font-display text-[44px] sm:text-[50px] font-bold tracking-[-0.03em] text-arc-blue block leading-none">Std/Wo</span>
         <span class="font-body text-[15px] text-silver mt-3 block">Zeitersparnis</span>
       </div>
 
       <!-- Stat 3 -->
-      <div class="stat-card reveal rounded-2xl p-8 text-center border border-white/[0.12]" style="background: linear-gradient(180deg, #121635 0%, #0B0E23 100%);">
+      <div class="stat-card reveal rounded-2xl p-8 text-center border border-white/[0.12]" style="background: linear-gradient(180deg, #171D42 0%, #101530 100%);">
         <span class="font-display text-[48px] sm:text-[56px] font-bold tracking-[-0.03em] text-arc-blue block leading-none">0</span>
         <span class="font-body text-[15px] text-silver mt-3 block">Vergessene Updates</span>
       </div>
@@ -402,7 +402,7 @@
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 stagger-children">
 
       <!-- Card 1: Eigentümer-Statusupdates -->
-      <div class="reveal rounded-2xl p-8 sm:p-10 border border-white/[0.12]" style="background: linear-gradient(180deg, #121635 0%, #0B0E23 100%);">
+      <div class="reveal rounded-2xl p-8 sm:p-10 border border-white/[0.12]" style="background: linear-gradient(180deg, #171D42 0%, #101530 100%);">
         <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-6" style="background: rgba(70,109,202,0.15);">
           <!-- Mail/Send icon -->
           <svg class="w-6 h-6 text-arc-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
@@ -418,7 +418,7 @@
       </div>
 
       <!-- Card 2: Unterlagen-Vollständigkeitsprüfung -->
-      <div class="reveal rounded-2xl p-8 sm:p-10 border border-white/[0.12]" style="background: linear-gradient(180deg, #121635 0%, #0B0E23 100%);">
+      <div class="reveal rounded-2xl p-8 sm:p-10 border border-white/[0.12]" style="background: linear-gradient(180deg, #171D42 0%, #101530 100%);">
         <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-6" style="background: rgba(70,109,202,0.15);">
           <!-- Document check icon -->
           <svg class="w-6 h-6 text-arc-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
@@ -448,7 +448,7 @@
   <div class="max-w-[900px] mx-auto px-5 lg:px-8">
     <div class="reveal-scale">
 
-      <div class="rounded-2xl p-8 sm:p-12 border border-white/[0.12]" style="background: linear-gradient(180deg, #121635 0%, #0B0E23 100%);">
+      <div class="rounded-2xl p-8 sm:p-12 border border-white/[0.12]" style="background: linear-gradient(180deg, #171D42 0%, #101530 100%);">
 
         <!-- Quote icon -->
         <svg class="w-10 h-10 text-arc-blue/30 mb-6" fill="currentColor" viewBox="0 0 24 24">
@@ -486,7 +486,7 @@
 <!-- ──────── 6. CTA ──────── -->
 <section class="py-16 sm:py-24">
   <div class="max-w-[800px] mx-auto px-5 lg:px-8 text-center">
-    <div class="reveal-scale rounded-2xl p-10 sm:p-14 border border-white/[0.12]" style="background: linear-gradient(180deg, #121635 0%, #0B0E23 100%);">
+    <div class="reveal-scale rounded-2xl p-10 sm:p-14 border border-white/[0.12]" style="background: linear-gradient(180deg, #171D42 0%, #101530 100%);">
       <h2 class="font-display text-[24px] sm:text-[32px] font-bold tracking-[-0.02em] leading-[1.15] text-arc-white mb-4">
         Ähnliche Ergebnisse erzielen
       </h2>
@@ -505,7 +505,7 @@
 
 
 <!-- ──────── FOOTER ──────── -->
-<footer class="relative py-16 sm:py-20" style="background: #060A18;" aria-label="Footer">
+<footer class="relative py-16 sm:py-20" style="background: #0B0F20;" aria-label="Footer">
   <div class="max-w-[1200px] mx-auto px-5 lg:px-8">
 
     <!-- Footer columns -->
@@ -570,7 +570,7 @@
     </div>
 
     <!-- Divider -->
-    <div class="h-px bg-white/[0.06] mb-10"></div>
+    <div class="h-px bg-white/[0.08] mb-10"></div>
 
     <!-- Bottom bar: logo + copyright -->
     <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
