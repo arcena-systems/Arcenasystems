@@ -23,6 +23,7 @@ const MIME = {
   '.woff2':'font/woff2',
   '.ttf':  'font/ttf',
   '.otf':  'font/otf',
+  '.mp4':  'video/mp4',
 };
 
 const server = createServer(async (req, res) => {
