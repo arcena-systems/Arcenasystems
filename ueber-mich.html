@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Über mich — Arcena Systems</title>
+  <meta name="description" content="Dani Halabi — Systemingenieur, Maschinenbauer und Gründer von Arcena Systems. Ich helfe Unternehmen, Prozesse zu automatisieren." />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" href="/favicon.png">
+
+  <!-- Styles (self-hosted fonts + Tailwind, no external CDN) -->
+  <link rel="stylesheet" href="/styles.css" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: #0A0E1F; color: #FDFDFE; font-family: 'Plus Jakarta Sans', sans-serif; -webkit-font-smoothing: antialiased; }
+
+    /* Reveal animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Photo glow effect */
+    .photo-glow {
+      position: relative;
+    }
+    .photo-glow::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(70, 109, 202, 0.4), rgba(36, 74, 160, 0.1));
+      z-index: -1;
+      filter: blur(20px);
+      opacity: 0.6;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════ NAV ════════ -->
+<nav class="fixed top-0 left-0 right-0 z-50 bg-bg-dark/80 backdrop-blur-md border-b border-white/[0.06]">
+  <div class="max-w-[1200px] mx-auto px-5 lg:px-8 flex items-center justify-between h-16">
+    <a href="/" class="flex items-center gap-3" aria-label="Arcena Systems — Startseite">
+      <svg viewBox="0 0 16 16" width="24" height="24" aria-hidden="true">
+        <polygon fill="#FDFDFE" points="14.747553,2.699218 15.149305,1.987466 16,3.263507 9.710892,14.12395 8.944087,14.12395 8.588211,13.541965 9.263917,12.364232 9.277024,12.38586"/>
+        <polygon fill="#A9B0C7" points="15.075247,1.87605 15.149305,1.987466 14.747553,2.699218 14.214067,1.87605"/>
+        <path fill="#FDFDFE" d="M7.997706,10.202761l3.553517-6.032196h-7.31348L7.997706,10.202761z M8.796625,11.484045l-0.040634,0.070127l0.507926,0.810061l-0.675706,1.177733L1.568345,2.060869c0.05833-0.084545,0.095031-0.154672,0.095031-0.154672V1.87605h12.502847v0.383402L8.796625,11.484045z"/>
+        <polygon fill="#466DCA" points="0.860525,2.347929 8.044894,14.12395 6.554541,14.12395 0,3.233359 0.665875,2.029411"/>
+        <path fill="#244AA0" d="M1.455618,1.87605l0.112727,0.18482C1.482489,2.186049,1.34879,2.342031,1.217057,2.342031c-0.133044,0-0.269365,0.003277-0.356531,0.005898l-0.19465-0.318519L0.751075,1.87605H1.455618z"/>
+      </svg>
+      <span class="font-display text-[15px] font-bold tracking-[-0.01em] text-arc-white">arcena systems</span>
+    </a>
+    <a href="/" class="font-body text-[14px] text-silver hover:text-arc-white transition-colors duration-200">
+      &larr; Zurück zur Startseite
+    </a>
+  </div>
+</nav>
+
+<!-- ════════ CONTENT ════════ -->
+<main class="pt-28 sm:pt-36 pb-20 px-5 lg:px-8">
+  <div class="max-w-[960px] mx-auto">
+
+    <!-- ── Hero: Photo + Intro ── -->
+    <section class="grid grid-cols-1 md:grid-cols-[280px_1fr] lg:grid-cols-[320px_1fr] gap-10 md:gap-14 items-start mb-20 reveal">
+
+      <!-- Photo -->
+      <div class="flex justify-center md:justify-start">
+        <div class="photo-glow">
+          <img
+            src="/images/dani-halabi.jpeg"
+            alt="Dani Halabi — Gründer von Arcena Systems"
+            width="320"
+            height="320"
+            class="w-[240px] sm:w-[280px] lg:w-[320px] aspect-square object-cover object-top rounded-2xl"
+            loading="eager"
+          />
+        </div>
+      </div>
+
+      <!-- Intro text -->
+      <div class="flex flex-col justify-center">
+        <p class="font-display text-[13px] font-semibold text-arc-blue uppercase tracking-[0.15em] mb-4">Über mich</p>
+        <h1 class="font-display text-[32px] sm:text-[40px] lg:text-[44px] font-bold tracking-[-0.02em] text-arc-white leading-[1.15] mb-6">
+          Dani Halabi
+        </h1>
+        <p class="font-body text-[17px] sm:text-[18px] text-silver/80 leading-[1.8] max-w-[520px]">
+          Ich helfe Unternehmen dabei, manuelle Prozesse zu automatisieren — damit Ihre Teams sich auf das konzentrieren können, was wirklich zählt.
+        </p>
+      </div>
+    </section>
+
+    <!-- ── Bio / Story ── -->
+    <section class="max-w-[680px] mx-auto mb-20 reveal" style="transition-delay: 0.15s;">
+
+      <h2 class="font-display text-[22px] sm:text-[26px] font-bold tracking-[-0.02em] text-arc-white mb-6">Mein Weg</h2>
+
+      <div class="font-body text-[16px] text-silver/70 leading-[1.9] space-y-5">
+        <p>
+          Angefangen hat alles mit einem Maschinenbau-Studium — und der Erkenntnis, dass selbst in
+          hochkomplexen Umgebungen erstaunlich viel Zeit für repetitive, manuelle Arbeit verloren geht.
+        </p>
+        <p>
+          Seit über einem Jahr arbeite ich als Systemingenieur bei Lufthansa Technik. Dort konfiguriere ich
+          die In-Flight-Entertainment-Systeme für Privatjets und bereite die dazugehörige Software vor.
+          Die Luftfahrt verzeiht keine Fehler — und genau in diesem Umfeld habe ich gelernt, wie
+          entscheidend durchdachte Systeme und klare Prozesse sind.
+        </p>
+        <p>
+          Parallel dazu habe ich über die Jahre im Bereich Ausbau und Automatisierung umfangreiche
+          Erfahrungen gesammelt. Was ich dabei immer wieder gesehen habe: Unternehmen verlieren jeden
+          Tag wertvolle Stunden an Aufgaben, die Software längst übernehmen könnte — von der
+          Dokumentenverwaltung über Lead-Qualifizierung bis hin zur internen Kommunikation.
+        </p>
+        <p>
+          Heute helfe ich Firmen dabei, genau diese Prozesse zu automatisieren. Ich analysiere bestehende
+          Workflows, identifiziere die größten Engpässe und baue maßgeschneiderte Lösungen — damit
+          Ihr Team effizienter arbeiten kann und sich das Arbeitsleben spürbar vereinfacht.
+        </p>
+      </div>
+    </section>
+
+    <!-- ── CTA ── -->
+    <section class="text-center reveal" style="transition-delay: 0.3s;">
+      <div class="inline-block rounded-2xl border border-white/[0.06] bg-white/[0.02] px-8 sm:px-14 py-10 sm:py-12">
+
+        <h3 class="font-display text-[20px] sm:text-[24px] font-bold tracking-[-0.02em] text-arc-white mb-3">
+          Bereit, Ihre Prozesse zu automatisieren?
+        </h3>
+        <p class="font-body text-[15px] text-silver/60 mb-8 max-w-[400px] mx-auto">
+          In einem kostenlosen Erstgespräch finden wir heraus, wo bei Ihnen das größte Potenzial liegt.
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href="https://cal.com/dani-arcena-systems/erstgesprach" target="_blank" rel="noopener noreferrer"
+             class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-display text-[15px] font-semibold text-white bg-arc-blue hover:bg-deep-blue transition-colors duration-200">
+            Erstgespräch vereinbaren
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="mailto:Dani@arcenasystems.de"
+             class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-display text-[15px] font-semibold text-silver/70 border border-white/[0.1] hover:text-arc-white hover:border-white/[0.2] transition-colors duration-200">
+            E-Mail schreiben
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<!-- ════════ FOOTER ════════ -->
+<footer class="py-10" style="background: #060A18;">
+  <div class="max-w-[720px] mx-auto px-5 lg:px-8">
+    <div class="h-px bg-white/[0.06] mb-8"></div>
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+      <span class="font-body text-[12px] text-silver/30">&copy; 2026 Arcena Systems. Alle Rechte vorbehalten.</span>
+      <div class="flex items-center gap-6">
+        <a href="/datenschutz.html" class="font-body text-[12px] text-silver/30 hover:text-silver/60 transition-colors duration-200">Datenschutz</a>
+        <a href="/impressum.html" class="font-body text-[12px] text-silver/30 hover:text-silver/60 transition-colors duration-200">Impressum</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ════════ SCRIPTS ════════ -->
+<script>
+  // Scroll-reveal observer
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => revealObs.observe(el));
+</script>
+
+</body>
+</html>
