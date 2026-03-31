@@ -1,0 +1,39 @@
+name: Deploy to Hetzner
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install dependencies & build CSS
+        run: |
+          npm ci
+          npm run build:css
+
+      - name: Deploy via rsync
+        uses: burnett01/rsync-deployments@7.0.1
+        with:
+          switches: -avz --delete --exclude='node_modules' --exclude='.git' --exclude='screenshot.mjs' --exclude='serve.mjs' --exclude='package*.json' --exclude='src/' --exclude='temporary screenshots/' --exclude='brand_assets/' --exclude='worktree.sh' --exclude='CLAUDE.md' --exclude='.github' --exclude='.gitignore'
+          path: ./
+          remote_path: /home/deploy/arcena-website/site/
+          remote_host: ${{ secrets.SERVER_IP }}
+          remote_user: deploy
+          remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Restart nginx
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.SERVER_IP }}
+          username: deploy
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: docker restart arcena-website
