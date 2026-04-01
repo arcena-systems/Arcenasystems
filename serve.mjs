@@ -2,6 +2,7 @@ import { createServer } from 'node:http';
 import { readFile } from 'node:fs/promises';
 import { extname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { createReadStream, statSync } from 'node:fs';
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
 const PORT = parseInt(process.env.PORT, 10) || 3000;
@@ -43,9 +44,40 @@ const server = createServer(async (req, res) => {
   const contentType = MIME[ext] || 'application/octet-stream';
 
   try {
-    const data = await readFile(filePath);
-    res.writeHead(200, { 'Content-Type': contentType });
-    res.end(data);
+    const stats = statSync(filePath);
+    const fileSize = stats.size;
+
+    // Handle Range Requests for video files
+    const range = req.headers.range;
+    if (range && ext === '.mp4') {
+      const parts = range.replace(/bytes=/, '').split('-');
+      const start = parseInt(parts[0], 10);
+      const end = parts[1] ? parseInt(parts[1], 10) : fileSize - 1;
+      const chunkSize = end - start + 1;
+
+      res.writeHead(206, {
+        'Content-Range': `bytes ${start}-${end}/${fileSize}`,
+        'Accept-Ranges': 'bytes',
+        'Content-Length': chunkSize,
+        'Content-Type': contentType,
+      });
+      createReadStream(filePath, { start, end }).pipe(res);
+    } else {
+      // Non-range requests or non-video files
+      res.writeHead(200, {
+        'Content-Length': fileSize,
+        'Accept-Ranges': 'bytes',
+        'Content-Type': contentType,
+      });
+
+      // Stream videos, load small files into memory
+      if (ext === '.mp4') {
+        createReadStream(filePath).pipe(res);
+      } else {
+        const data = await readFile(filePath);
+        res.end(data);
+      }
+    }
   } catch {
     // Fallback: try without /index.html suffix (e.g. /anwendungsfaelle/lead-qualifizierung.html)
     try {
