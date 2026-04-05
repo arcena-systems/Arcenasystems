@@ -10,6 +10,15 @@
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="icon" type="image/png" href="/favicon.png">
 
+  <!-- Microsoft Clarity — cookieless, DSGVO-konform -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window,document,"clarity","script","w59m3j2ypk");
+  </script>
+
   <!-- Styles (self-hosted fonts + Tailwind, no external CDN) -->
   <link rel="stylesheet" href="/styles.css" />
 
@@ -152,7 +161,7 @@
     <section class="mb-10">
       <h2 class="font-display text-[20px] font-semibold text-arc-white mb-4">7. Cookies</h2>
       <p class="font-body text-[15px] text-silver/80 leading-[1.8]">
-        Diese Website verwendet keine Cookies. Es werden weder technisch notwendige noch analytische oder werbliche Cookies eingesetzt.
+        Diese Website verwendet keine Cookies. Es werden weder technisch notwendige noch analytische oder werbliche Cookies eingesetzt. Die eingesetzte Webanalyse (Microsoft Clarity) arbeitet im cookieless Modus und setzt keine Cookies.
       </p>
     </section>
 
@@ -171,9 +180,29 @@
       </p>
     </section>
 
-    <!-- 9. Ihre Rechte -->
+    <!-- 9. Webanalyse -->
     <section class="mb-10">
-      <h2 class="font-display text-[20px] font-semibold text-arc-white mb-4">9. Ihre Rechte als betroffene Person</h2>
+      <h2 class="font-display text-[20px] font-semibold text-arc-white mb-4">9. Webanalyse — Microsoft Clarity</h2>
+      <p class="font-body text-[15px] text-silver/80 leading-[1.8]">
+        Diese Website nutzt <strong class="text-arc-white">Microsoft Clarity</strong>, einen Webanalysedienst der Microsoft Corporation, One Microsoft Way, Redmond, WA 98052-6399, USA („Microsoft"). Clarity erstellt anonymisierte Heatmaps und Session-Aufzeichnungen, um das Nutzungsverhalten auf unserer Website zu analysieren und die Benutzerfreundlichkeit zu verbessern.
+      </p>
+      <p class="font-body text-[15px] text-silver/80 leading-[1.8] mt-3">
+        Dabei werden folgende anonymisierte Daten erfasst: besuchte Seiten, Klickverhalten, Scroll-Tiefe, Gerätetyp, Bildschirmauflösung und Verweildauer. <strong class="text-arc-white">Es werden keine Cookies gesetzt</strong> — Clarity wird im cookieless Modus betrieben. IP-Adressen werden von Microsoft anonymisiert und nicht gespeichert.
+      </p>
+      <p class="font-body text-[15px] text-silver/80 leading-[1.8] mt-3">
+        Die Verarbeitung erfolgt auf Grundlage unseres berechtigten Interesses an der Optimierung unseres Webauftritts gemäß Art. 6 Abs. 1 lit. f DSGVO.
+      </p>
+      <p class="font-body text-[15px] text-silver/80 leading-[1.8] mt-3">
+        Microsoft ist unter dem <strong class="text-arc-white">EU-US Data Privacy Framework</strong> zertifiziert, wodurch ein angemessenes Datenschutzniveau für die Übermittlung personenbezogener Daten in die USA gewährleistet wird.
+      </p>
+      <p class="font-body text-[15px] text-silver/80 leading-[1.8] mt-3">
+        Sie können der Datenerfassung durch Microsoft Clarity widersprechen, indem Sie die Opt-out-Möglichkeit unter <a href="https://choice.microsoft.com" target="_blank" rel="noopener noreferrer" class="text-arc-blue hover:text-white transition-colors duration-200">choice.microsoft.com</a> nutzen. Weitere Informationen finden Sie in der <a href="https://privacy.microsoft.com/de-de/privacystatement" target="_blank" rel="noopener noreferrer" class="text-arc-blue hover:text-white transition-colors duration-200">Datenschutzerklärung von Microsoft</a>.
+      </p>
+    </section>
+
+    <!-- 10. Ihre Rechte -->
+    <section class="mb-10">
+      <h2 class="font-display text-[20px] font-semibold text-arc-white mb-4">10. Ihre Rechte als betroffene Person</h2>
       <p class="font-body text-[15px] text-silver/80 leading-[1.8] mb-3">
         Sie haben gegenüber uns folgende Rechte hinsichtlich der Sie betreffenden personenbezogenen Daten:
       </p>
@@ -194,7 +223,7 @@
 
     <!-- 10. SSL/TLS -->
     <section>
-      <h2 class="font-display text-[20px] font-semibold text-arc-white mb-4">10. SSL- bzw. TLS-Verschlüsselung</h2>
+      <h2 class="font-display text-[20px] font-semibold text-arc-white mb-4">11. SSL- bzw. TLS-Verschlüsselung</h2>
       <p class="font-body text-[15px] text-silver/80 leading-[1.8]">
         Diese Seite nutzt aus Sicherheitsgründen und zum Schutz der Übertragung vertraulicher Inhalte, wie zum Beispiel Anfragen, die Sie an uns als Seitenbetreiber senden, eine SSL- bzw. TLS-Verschlüsselung. Eine verschlüsselte Verbindung erkennen Sie daran, dass die Adresszeile des Browsers von „http://" auf „https://" wechselt und an dem Schloss-Symbol in Ihrer Browserzeile.
       </p>
@@ -221,5 +250,6 @@
   </div>
 </footer>
 
+<script src="/chat-widget.js"></script>
 </body>
 </html>

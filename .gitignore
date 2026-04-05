@@ -19,3 +19,7 @@ Images for Prompt/
 
 # Logs
 *.log
+
+# Internal documentation (not for public repo)
+CLAUDE.md
+Info.txt
