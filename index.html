@@ -13,14 +13,17 @@
   <!-- Cookiebot Consent Banner -->
   <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="b974d1f5-47d4-41c7-a9f3-8b498b636d5f" data-blockingmode="auto" type="text/javascript"></script>
 
-  <!-- Microsoft Clarity — cookieless, DSGVO-konform -->
-  <script type="text/javascript">
+  <!-- Microsoft Clarity — erst nach Cookie-Consent (Statistik) -->
+  <script data-cookieconsent="statistics" type="text/plain">
     (function(c,l,a,r,i,t,y){
       c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
       t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
       y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window,document,"clarity","script","w59m3j2ypk");
   </script>
+
+  <!-- Plausible Analytics — self-hosted, cookieless, DSGVO-konform -->
+  <script defer data-domain="arcenasystems.de" src="https://analytics.arcenasystems.de/js/script.js"></script>
 
   <!-- Styles (self-hosted fonts + Tailwind, no external CDN) -->
   <link rel="stylesheet" href="/styles.css" />
@@ -2231,6 +2234,5 @@
   });
 </script>
 
-<script src="/chat-widget.js"></script>
 </body>
 </html>
