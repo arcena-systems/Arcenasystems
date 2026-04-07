@@ -13,14 +13,17 @@
   <!-- Cookiebot Consent Banner -->
   <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="b974d1f5-47d4-41c7-a9f3-8b498b636d5f" data-blockingmode="auto" type="text/javascript"></script>
 
-  <!-- Microsoft Clarity — cookieless, DSGVO-konform -->
-  <script type="text/javascript">
+  <!-- Microsoft Clarity — erst nach Cookie-Consent (Statistik) -->
+  <script data-cookieconsent="statistics" type="text/plain">
     (function(c,l,a,r,i,t,y){
       c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
       t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
       y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window,document,"clarity","script","w59m3j2ypk");
   </script>
+
+  <!-- Plausible Analytics — self-hosted, cookieless, DSGVO-konform -->
+  <script defer data-domain="arcenasystems.de" src="https://analytics.arcenasystems.de/js/script.js"></script>
 
   <!-- Styles (self-hosted fonts + Tailwind, no external CDN) -->
   <link rel="stylesheet" href="/styles.css" />
@@ -57,7 +60,7 @@
   <div class="max-w-[720px] mx-auto">
 
     <h1 class="font-display text-[36px] sm:text-[44px] font-bold tracking-[-0.02em] text-arc-white mb-4">Datenschutzerklärung</h1>
-    <p class="font-body text-[15px] text-silver/60 mb-12">Stand: März 2026</p>
+    <p class="font-body text-[15px] text-silver/60 mb-12">Stand: April 2026</p>
 
     <!-- 1. Verantwortlicher -->
     <section class="mb-10">
@@ -134,18 +137,10 @@
 
       <h3 class="font-display text-[17px] font-semibold text-arc-white mt-6 mb-3">Server-Log-Dateien</h3>
       <p class="font-body text-[15px] text-silver/80 leading-[1.8]">
-        Der Provider der Seiten erhebt und speichert automatisch Informationen in so genannten Server-Log-Dateien, die Ihr Browser automatisch an uns übermittelt. Dies sind:
+        Wir haben die Speicherung von Server-Logdateien (Access Logs) auf unserem Webserver <strong class="text-arc-white">deaktiviert</strong>. Es werden keine IP-Adressen oder Zugriffsdaten protokolliert. Lediglich Fehler-Logs (Error Logs) werden zur technischen Fehlerbehebung gespeichert und enthalten keine personenbezogenen Daten.
       </p>
-      <ul class="font-body text-[15px] text-silver/80 leading-[1.8] mt-2 list-disc list-inside space-y-1">
-        <li>Browsertyp und Browserversion</li>
-        <li>Verwendetes Betriebssystem</li>
-        <li>Referrer URL</li>
-        <li>Hostname des zugreifenden Rechners</li>
-        <li>Uhrzeit der Serveranfrage</li>
-        <li>IP-Adresse</li>
-      </ul>
       <p class="font-body text-[15px] text-silver/80 leading-[1.8] mt-3">
-        Eine Zusammenführung dieser Daten mit anderen Datenquellen wird nicht vorgenommen. Die Erfassung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Der Websitebetreiber hat ein berechtigtes Interesse an der technisch fehlerfreien Darstellung und der Optimierung seiner Website — hierzu müssen die Server-Log-Dateien erfasst werden. Die Server-Log-Dateien werden nach 30 Tagen automatisch gelöscht.
+        Die Bereitstellung der Website erfolgt auf Grundlage von Art.&thinsp;6 Abs.&thinsp;1 lit.&thinsp;f DSGVO (berechtigtes Interesse an einer sicheren und funktionsfähigen Webpräsenz).
       </p>
 
       <h3 class="font-display text-[17px] font-semibold text-arc-white mt-6 mb-3">Kontaktaufnahme per E-Mail</h3>
@@ -193,21 +188,37 @@
 
     <!-- 9. Webanalyse -->
     <section class="mb-10">
-      <h2 class="font-display text-[20px] font-semibold text-arc-white mb-4">9. Webanalyse — Microsoft Clarity</h2>
+      <h2 class="font-display text-[20px] font-semibold text-arc-white mb-4">9. Webanalyse</h2>
+
+      <h3 class="font-display text-[17px] font-semibold text-arc-white mt-6 mb-3">Plausible Analytics (selbst gehostet)</h3>
+      <p class="font-body text-[15px] text-silver/80 leading-[1.8]">
+        Diese Website nutzt <strong class="text-arc-white">Plausible Analytics</strong>, eine datenschutzfreundliche, quelloffene Webanalyse-Software. Plausible wird von uns selbst auf unserem eigenen Server in Deutschland (Hetzner, Standort Nürnberg) betrieben. <strong class="text-arc-white">Es werden keine Daten an Dritte übermittelt.</strong>
+      </p>
+      <p class="font-body text-[15px] text-silver/80 leading-[1.8] mt-3">
+        Plausible arbeitet vollständig <strong class="text-arc-white">ohne Cookies</strong> und erhebt keine personenbezogenen Daten. Es werden ausschließlich aggregierte, anonyme Daten erfasst, darunter: Seitenaufrufe, Verweisquelle (Referrer), Gerätetyp, Browser und Land. IP-Adressen werden nicht gespeichert — Plausible verwendet einen täglichen Hash, der nicht zurückverfolgt werden kann und am Ende des Tages automatisch verworfen wird.
+      </p>
+      <p class="font-body text-[15px] text-silver/80 leading-[1.8] mt-3">
+        Da Plausible selbst gehostet wird und keine personenbezogenen Daten verarbeitet, ist <strong class="text-arc-white">keine Einwilligung gemäß DSGVO oder TTDSG erforderlich</strong>. Die Nutzung erfolgt auf Grundlage unseres berechtigten Interesses an der Analyse und Optimierung unseres Webauftritts gemäß Art.&thinsp;6 Abs.&thinsp;1 lit.&thinsp;f DSGVO.
+      </p>
+      <p class="font-body text-[15px] text-silver/80 leading-[1.8] mt-3">
+        Weitere Informationen zu Plausible Analytics finden Sie unter <a href="https://plausible.io/data-policy" target="_blank" rel="noopener noreferrer" class="text-arc-blue hover:text-white transition-colors duration-200">plausible.io/data-policy</a>.
+      </p>
+
+      <h3 class="font-display text-[17px] font-semibold text-arc-white mt-6 mb-3">Microsoft Clarity</h3>
       <p class="font-body text-[15px] text-silver/80 leading-[1.8]">
         Diese Website nutzt <strong class="text-arc-white">Microsoft Clarity</strong>, einen Webanalysedienst der Microsoft Corporation, One Microsoft Way, Redmond, WA 98052-6399, USA („Microsoft"). Clarity erstellt anonymisierte Heatmaps und Session-Aufzeichnungen, um das Nutzungsverhalten auf unserer Website zu analysieren und die Benutzerfreundlichkeit zu verbessern.
       </p>
       <p class="font-body text-[15px] text-silver/80 leading-[1.8] mt-3">
-        Dabei werden folgende anonymisierte Daten erfasst: besuchte Seiten, Klickverhalten, Scroll-Tiefe, Gerätetyp, Bildschirmauflösung und Verweildauer. <strong class="text-arc-white">Es werden keine Cookies gesetzt</strong> — Clarity wird im cookieless Modus betrieben. IP-Adressen werden von Microsoft anonymisiert und nicht gespeichert.
+        <strong class="text-arc-white">Clarity wird erst nach Ihrer ausdrücklichen Einwilligung über unser Consent-Banner geladen.</strong> Ohne Ihre Zustimmung werden keine Daten an Microsoft übermittelt. Clarity wird im cookieless Modus betrieben — es werden keine Cookies gesetzt. Dabei werden folgende anonymisierte Daten erfasst: besuchte Seiten, Klickverhalten, Scroll-Tiefe, Gerätetyp, Bildschirmauflösung und Verweildauer. IP-Adressen werden von Microsoft anonymisiert und nicht gespeichert.
       </p>
       <p class="font-body text-[15px] text-silver/80 leading-[1.8] mt-3">
-        Die Verarbeitung erfolgt auf Grundlage unseres berechtigten Interesses an der Optimierung unseres Webauftritts gemäß Art. 6 Abs. 1 lit. f DSGVO.
+        Die Verarbeitung erfolgt auf Grundlage Ihrer <strong class="text-arc-white">Einwilligung gemäß Art.&thinsp;6 Abs.&thinsp;1 lit.&thinsp;a DSGVO i.&thinsp;V.&thinsp;m. §&thinsp;25 Abs.&thinsp;1 TTDSG</strong>. Sie können Ihre Einwilligung jederzeit über das Cookie-Symbol unten rechts auf der Website widerrufen.
       </p>
       <p class="font-body text-[15px] text-silver/80 leading-[1.8] mt-3">
         Microsoft ist unter dem <strong class="text-arc-white">EU-US Data Privacy Framework</strong> zertifiziert, wodurch ein angemessenes Datenschutzniveau für die Übermittlung personenbezogener Daten in die USA gewährleistet wird.
       </p>
       <p class="font-body text-[15px] text-silver/80 leading-[1.8] mt-3">
-        Sie können der Datenerfassung durch Microsoft Clarity widersprechen, indem Sie die Opt-out-Möglichkeit unter <a href="https://choice.microsoft.com" target="_blank" rel="noopener noreferrer" class="text-arc-blue hover:text-white transition-colors duration-200">choice.microsoft.com</a> nutzen. Weitere Informationen finden Sie in der <a href="https://privacy.microsoft.com/de-de/privacystatement" target="_blank" rel="noopener noreferrer" class="text-arc-blue hover:text-white transition-colors duration-200">Datenschutzerklärung von Microsoft</a>.
+        Weitere Informationen finden Sie in der <a href="https://privacy.microsoft.com/de-de/privacystatement" target="_blank" rel="noopener noreferrer" class="text-arc-blue hover:text-white transition-colors duration-200">Datenschutzerklärung von Microsoft</a>.
       </p>
     </section>
 
