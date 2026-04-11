@@ -23,7 +23,7 @@ jobs:
       - name: Deploy via rsync
         uses: burnett01/rsync-deployments@7.0.1
         with:
-          switches: -avz --delete --exclude='node_modules' --exclude='.git' --exclude='screenshot.mjs' --exclude='serve.mjs' --exclude='package*.json' --exclude='src/' --exclude='temporary screenshots/' --exclude='brand_assets/' --exclude='worktree.sh' --exclude='CLAUDE.md' --exclude='.github' --exclude='.gitignore'
+          switches: -avz --delete --exclude='node_modules' --exclude='.git' --exclude='screenshot.mjs' --exclude='serve.mjs' --exclude='package*.json' --exclude='src/' --exclude='temporary screenshots/' --exclude='worktree.sh' --exclude='CLAUDE.md' --exclude='.github' --exclude='.gitignore'
           path: ./
           remote_path: /home/deploy/arcena-website/site/
           remote_host: ${{ secrets.SERVER_IP }}
