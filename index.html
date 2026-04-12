@@ -375,6 +375,15 @@
     }
     .reveal-scale.visible { opacity: 1; transform: scale(1); }
 
+    /* ── Hover lift for reveal cards ── */
+    .hover-lift.visible:hover {
+      transform: translateY(-3px) !important;
+      box-shadow: 0 12px 32px 4px rgba(0, 0, 0, 0.3) !important;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+                  box-shadow 0.3s ease,
+                  opacity 0.3s ease !important;
+    }
+
     /* Variant: fade up large (section headings, hero-like) */
     .reveal-up-lg {
       opacity: 0; transform: translateY(40px);
@@ -469,7 +478,7 @@
       transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
     }
     .case-card:hover .card-inner {
-      transform: translateY(-4px);
+      transform: translateY(-2px);
       box-shadow: 0 16px 40px 8px rgba(0, 0, 0, 0.35);
     }
 
@@ -1270,19 +1279,19 @@
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-10">
 
       <!-- Cost 1 -->
-      <div class="reveal-scale rounded-2xl border border-white/[0.08] p-6 text-center" style="background: linear-gradient(160deg, rgba(24,30,66,0.8) 0%, rgba(16,21,48,0.8) 100%); transition-delay: 100ms;">
+      <div class="reveal-scale hover-lift rounded-2xl border border-white/[0.08] p-6 text-center" style="background: linear-gradient(160deg, rgba(24,30,66,0.8) 0%, rgba(16,21,48,0.8) 100%); transition-delay: 100ms;">
         <div class="font-display text-[28px] sm:text-[32px] font-bold text-arc-white leading-none mb-2">40.000–55.000 €</div>
         <div class="font-body text-[13px] text-silver/60 leading-[1.5]">Personalkosten pro Jahr<br>für eine zusätzliche Verwaltungskraft</div>
       </div>
 
       <!-- Cost 2 -->
-      <div class="reveal-scale rounded-2xl border border-white/[0.08] p-6 text-center" style="background: linear-gradient(160deg, rgba(24,30,66,0.8) 0%, rgba(16,21,48,0.8) 100%); transition-delay: 200ms;">
+      <div class="reveal-scale hover-lift rounded-2xl border border-white/[0.08] p-6 text-center" style="background: linear-gradient(160deg, rgba(24,30,66,0.8) 0%, rgba(16,21,48,0.8) 100%); transition-delay: 200ms;">
         <div class="font-display text-[32px] sm:text-[36px] font-bold text-arc-white leading-none mb-2">25.000 €</div>
         <div class="font-body text-[13px] text-silver/60 leading-[1.5]">entgangener Umsatz pro Jahr<br>durch verpasste Anfragen</div>
       </div>
 
       <!-- Cost 3 -->
-      <div class="reveal-scale rounded-2xl border border-white/[0.08] p-6 text-center" style="background: linear-gradient(160deg, rgba(24,30,66,0.8) 0%, rgba(16,21,48,0.8) 100%); transition-delay: 300ms;">
+      <div class="reveal-scale hover-lift rounded-2xl border border-white/[0.08] p-6 text-center" style="background: linear-gradient(160deg, rgba(24,30,66,0.8) 0%, rgba(16,21,48,0.8) 100%); transition-delay: 300ms;">
         <div class="font-display text-[28px] sm:text-[32px] font-bold text-silver/50 leading-none mb-2">Unkalkulierbar</div>
         <div class="font-body text-[13px] text-silver/60 leading-[1.5]">Wachstumsbremse durch<br>fehlende Kapazität</div>
       </div>
@@ -1320,7 +1329,7 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
 
       <!-- Step 1 -->
-      <div class="reveal-left rounded-2xl border border-white/[0.08] p-7 sm:p-8 text-center" style="background: linear-gradient(135deg, rgba(20,25,55,0.6), rgba(15,20,40,0.8)); transition-delay: 100ms;">
+      <div class="reveal-left hover-lift rounded-2xl border border-white/[0.08] p-7 sm:p-8 text-center" style="background: linear-gradient(135deg, rgba(20,25,55,0.6), rgba(15,20,40,0.8)); transition-delay: 100ms;">
         <div class="w-12 h-12 rounded-full bg-arc-blue/10 border border-arc-blue/20 flex items-center justify-center mx-auto mb-5">
           <span class="font-display text-[18px] font-bold text-arc-blue">1</span>
         </div>
@@ -1331,7 +1340,7 @@
       </div>
 
       <!-- Step 2 -->
-      <div class="reveal-left rounded-2xl border border-white/[0.08] p-7 sm:p-8 text-center" style="background: linear-gradient(135deg, rgba(20,25,55,0.6), rgba(15,20,40,0.8)); transition-delay: 200ms;">
+      <div class="reveal-left hover-lift rounded-2xl border border-white/[0.08] p-7 sm:p-8 text-center" style="background: linear-gradient(135deg, rgba(20,25,55,0.6), rgba(15,20,40,0.8)); transition-delay: 200ms;">
         <div class="w-12 h-12 rounded-full bg-arc-blue/10 border border-arc-blue/20 flex items-center justify-center mx-auto mb-5">
           <span class="font-display text-[18px] font-bold text-arc-blue">2</span>
         </div>
@@ -1342,7 +1351,7 @@
       </div>
 
       <!-- Step 3 -->
-      <div class="reveal-left rounded-2xl border border-white/[0.08] p-7 sm:p-8 text-center" style="background: linear-gradient(135deg, rgba(20,25,55,0.6), rgba(15,20,40,0.8)); transition-delay: 300ms;">
+      <div class="reveal-left hover-lift rounded-2xl border border-white/[0.08] p-7 sm:p-8 text-center" style="background: linear-gradient(135deg, rgba(20,25,55,0.6), rgba(15,20,40,0.8)); transition-delay: 300ms;">
         <div class="w-12 h-12 rounded-full bg-arc-blue/10 border border-arc-blue/20 flex items-center justify-center mx-auto mb-5">
           <span class="font-display text-[18px] font-bold text-arc-blue">3</span>
         </div>
@@ -1355,7 +1364,7 @@
     </div>
 
     <!-- CTA button -->
-    <div class="hidden md:flex justify-center mt-20 reveal" style="transition-delay: 400ms;">
+    <div class="hidden md:flex justify-center mt-36 reveal" style="transition-delay: 400ms;">
       <a href="https://cal.com/dani-arcena-systems/erstgesprach" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-arc-blue text-white text-[15px] font-semibold font-body transition-[background-color,box-shadow,transform] duration-300 hover:bg-deep-blue hover:shadow-[0_6px_24px_rgba(70,109,202,0.4)] active:scale-[0.97]">
         Mit Schritt 1 starten
         <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
