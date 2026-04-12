@@ -376,12 +376,13 @@
     .reveal-scale.visible { opacity: 1; transform: scale(1); }
 
     /* ── Hover lift for reveal cards ── */
+    .hover-lift.visible {
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+                  box-shadow 0.3s ease !important;
+    }
     .hover-lift.visible:hover {
       transform: translateY(-3px) !important;
       box-shadow: 0 12px 32px 4px rgba(0, 0, 0, 0.3) !important;
-      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
-                  box-shadow 0.3s ease,
-                  opacity 0.3s ease !important;
     }
 
     /* Variant: fade up large (section headings, hero-like) */
@@ -1364,7 +1365,7 @@
     </div>
 
     <!-- CTA button -->
-    <div class="hidden md:flex justify-center mt-36 reveal" style="transition-delay: 400ms;">
+    <div class="hidden md:flex justify-center mt-48 reveal" style="transition-delay: 400ms;">
       <a href="https://cal.com/dani-arcena-systems/erstgesprach" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-arc-blue text-white text-[15px] font-semibold font-body transition-[background-color,box-shadow,transform] duration-300 hover:bg-deep-blue hover:shadow-[0_6px_24px_rgba(70,109,202,0.4)] active:scale-[0.97]">
         Mit Schritt 1 starten
         <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
