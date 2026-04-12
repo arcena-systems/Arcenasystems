@@ -375,14 +375,13 @@
     }
     .reveal-scale.visible { opacity: 1; transform: scale(1); }
 
-    /* ── Hover lift for reveal cards ── */
-    .hover-lift.visible {
-      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
-                  box-shadow 0.3s ease !important;
+    /* ── Hover lift for cards (inner wrapper, independent of reveal) ── */
+    .card-hover-inner {
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
     }
-    .hover-lift.visible:hover {
-      transform: translateY(-3px) !important;
-      box-shadow: 0 12px 32px 4px rgba(0, 0, 0, 0.3) !important;
+    .card-hover-inner:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px 4px rgba(0, 0, 0, 0.3);
     }
 
     /* Variant: fade up large (section headings, hero-like) */
@@ -1280,21 +1279,27 @@
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-10">
 
       <!-- Cost 1 -->
-      <div class="reveal-scale hover-lift rounded-2xl border border-white/[0.08] p-6 text-center" style="background: linear-gradient(160deg, rgba(24,30,66,0.8) 0%, rgba(16,21,48,0.8) 100%); transition-delay: 100ms;">
-        <div class="font-display text-[28px] sm:text-[32px] font-bold text-arc-white leading-none mb-2">40.000–55.000 €</div>
-        <div class="font-body text-[13px] text-silver/60 leading-[1.5]">Personalkosten pro Jahr<br>für eine zusätzliche Verwaltungskraft</div>
+      <div class="reveal-scale" style="transition-delay: 100ms;">
+        <div class="card-hover-inner rounded-2xl border border-white/[0.08] p-6 text-center" style="background: linear-gradient(160deg, rgba(24,30,66,0.8) 0%, rgba(16,21,48,0.8) 100%);">
+          <div class="font-display text-[28px] sm:text-[32px] font-bold text-arc-white leading-none mb-2">40.000–55.000 €</div>
+          <div class="font-body text-[13px] text-silver/60 leading-[1.5]">Personalkosten pro Jahr<br>für eine zusätzliche Verwaltungskraft</div>
+        </div>
       </div>
 
       <!-- Cost 2 -->
-      <div class="reveal-scale hover-lift rounded-2xl border border-white/[0.08] p-6 text-center" style="background: linear-gradient(160deg, rgba(24,30,66,0.8) 0%, rgba(16,21,48,0.8) 100%); transition-delay: 200ms;">
-        <div class="font-display text-[32px] sm:text-[36px] font-bold text-arc-white leading-none mb-2">25.000 €</div>
-        <div class="font-body text-[13px] text-silver/60 leading-[1.5]">entgangener Umsatz pro Jahr<br>durch verpasste Anfragen</div>
+      <div class="reveal-scale" style="transition-delay: 200ms;">
+        <div class="card-hover-inner rounded-2xl border border-white/[0.08] p-6 text-center" style="background: linear-gradient(160deg, rgba(24,30,66,0.8) 0%, rgba(16,21,48,0.8) 100%);">
+          <div class="font-display text-[32px] sm:text-[36px] font-bold text-arc-white leading-none mb-2">25.000 €</div>
+          <div class="font-body text-[13px] text-silver/60 leading-[1.5]">entgangener Umsatz pro Jahr<br>durch verpasste Anfragen</div>
+        </div>
       </div>
 
       <!-- Cost 3 -->
-      <div class="reveal-scale hover-lift rounded-2xl border border-white/[0.08] p-6 text-center" style="background: linear-gradient(160deg, rgba(24,30,66,0.8) 0%, rgba(16,21,48,0.8) 100%); transition-delay: 300ms;">
-        <div class="font-display text-[28px] sm:text-[32px] font-bold text-silver/50 leading-none mb-2">Unkalkulierbar</div>
-        <div class="font-body text-[13px] text-silver/60 leading-[1.5]">Wachstumsbremse durch<br>fehlende Kapazität</div>
+      <div class="reveal-scale" style="transition-delay: 300ms;">
+        <div class="card-hover-inner rounded-2xl border border-white/[0.08] p-6 text-center" style="background: linear-gradient(160deg, rgba(24,30,66,0.8) 0%, rgba(16,21,48,0.8) 100%);">
+          <div class="font-display text-[28px] sm:text-[32px] font-bold text-silver/50 leading-none mb-2">Unkalkulierbar</div>
+          <div class="font-body text-[13px] text-silver/60 leading-[1.5]">Wachstumsbremse durch<br>fehlende Kapazität</div>
+        </div>
       </div>
 
     </div>
@@ -1330,36 +1335,42 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
 
       <!-- Step 1 -->
-      <div class="reveal-left hover-lift rounded-2xl border border-white/[0.08] p-7 sm:p-8 text-center" style="background: linear-gradient(135deg, rgba(20,25,55,0.6), rgba(15,20,40,0.8)); transition-delay: 100ms;">
-        <div class="w-12 h-12 rounded-full bg-arc-blue/10 border border-arc-blue/20 flex items-center justify-center mx-auto mb-5">
-          <span class="font-display text-[18px] font-bold text-arc-blue">1</span>
+      <div class="reveal-left" style="transition-delay: 100ms;">
+        <div class="card-hover-inner rounded-2xl border border-white/[0.08] p-7 sm:p-8 text-center" style="background: linear-gradient(135deg, rgba(20,25,55,0.6), rgba(15,20,40,0.8));">
+          <div class="w-12 h-12 rounded-full bg-arc-blue/10 border border-arc-blue/20 flex items-center justify-center mx-auto mb-5">
+            <span class="font-display text-[18px] font-bold text-arc-blue">1</span>
+          </div>
+          <h3 class="font-display text-[17px] sm:text-[18px] font-bold text-arc-white mb-3">Kostenloser Prozess-Check</h3>
+          <p class="font-body text-[14px] sm:text-[15px] leading-[1.65] text-silver/70">
+            In 20 Minuten identifizieren wir gemeinsam Ihren größten Zeitfresser und den Prozess mit dem höchsten Einsparpotenzial.
+          </p>
         </div>
-        <h3 class="font-display text-[17px] sm:text-[18px] font-bold text-arc-white mb-3">Kostenloser Prozess-Check</h3>
-        <p class="font-body text-[14px] sm:text-[15px] leading-[1.65] text-silver/70">
-          In 20 Minuten identifizieren wir gemeinsam Ihren größten Zeitfresser und den Prozess mit dem höchsten Einsparpotenzial.
-        </p>
       </div>
 
       <!-- Step 2 -->
-      <div class="reveal-left hover-lift rounded-2xl border border-white/[0.08] p-7 sm:p-8 text-center" style="background: linear-gradient(135deg, rgba(20,25,55,0.6), rgba(15,20,40,0.8)); transition-delay: 200ms;">
-        <div class="w-12 h-12 rounded-full bg-arc-blue/10 border border-arc-blue/20 flex items-center justify-center mx-auto mb-5">
-          <span class="font-display text-[18px] font-bold text-arc-blue">2</span>
+      <div class="reveal-left" style="transition-delay: 200ms;">
+        <div class="card-hover-inner rounded-2xl border border-white/[0.08] p-7 sm:p-8 text-center" style="background: linear-gradient(135deg, rgba(20,25,55,0.6), rgba(15,20,40,0.8));">
+          <div class="w-12 h-12 rounded-full bg-arc-blue/10 border border-arc-blue/20 flex items-center justify-center mx-auto mb-5">
+            <span class="font-display text-[18px] font-bold text-arc-blue">2</span>
+          </div>
+          <h3 class="font-display text-[17px] sm:text-[18px] font-bold text-arc-white mb-3">Aufbau & Integration (1–2 Wochen)</h3>
+          <p class="font-body text-[14px] sm:text-[15px] leading-[1.65] text-silver/70">
+            Wir bauen Ihre maßgeschneiderte Automatisierung — nahtlos integriert in Ihre bestehenden Tools. Kein Umlernen nötig.
+          </p>
         </div>
-        <h3 class="font-display text-[17px] sm:text-[18px] font-bold text-arc-white mb-3">Aufbau & Integration (1–2 Wochen)</h3>
-        <p class="font-body text-[14px] sm:text-[15px] leading-[1.65] text-silver/70">
-          Wir bauen Ihre maßgeschneiderte Automatisierung — nahtlos integriert in Ihre bestehenden Tools. Kein Umlernen nötig.
-        </p>
       </div>
 
       <!-- Step 3 -->
-      <div class="reveal-left hover-lift rounded-2xl border border-white/[0.08] p-7 sm:p-8 text-center" style="background: linear-gradient(135deg, rgba(20,25,55,0.6), rgba(15,20,40,0.8)); transition-delay: 300ms;">
-        <div class="w-12 h-12 rounded-full bg-arc-blue/10 border border-arc-blue/20 flex items-center justify-center mx-auto mb-5">
-          <span class="font-display text-[18px] font-bold text-arc-blue">3</span>
+      <div class="reveal-left" style="transition-delay: 300ms;">
+        <div class="card-hover-inner rounded-2xl border border-white/[0.08] p-7 sm:p-8 text-center" style="background: linear-gradient(135deg, rgba(20,25,55,0.6), rgba(15,20,40,0.8));">
+          <div class="w-12 h-12 rounded-full bg-arc-blue/10 border border-arc-blue/20 flex items-center justify-center mx-auto mb-5">
+            <span class="font-display text-[18px] font-bold text-arc-blue">3</span>
+          </div>
+          <h3 class="font-display text-[17px] sm:text-[18px] font-bold text-arc-white mb-3">Live & Ergebnisse messen</h3>
+          <p class="font-body text-[14px] sm:text-[15px] leading-[1.65] text-silver/70">
+            Ihre Automatisierung läuft. Wir messen die Ergebnisse gemeinsam und optimieren bei Bedarf — gedeckt durch unsere Garantie.
+          </p>
         </div>
-        <h3 class="font-display text-[17px] sm:text-[18px] font-bold text-arc-white mb-3">Live & Ergebnisse messen</h3>
-        <p class="font-body text-[14px] sm:text-[15px] leading-[1.65] text-silver/70">
-          Ihre Automatisierung läuft. Wir messen die Ergebnisse gemeinsam und optimieren bei Bedarf — gedeckt durch unsere Garantie.
-        </p>
       </div>
 
     </div>
